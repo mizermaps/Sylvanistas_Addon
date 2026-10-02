@@ -58,8 +58,7 @@ This file lists what to expect from the current build, then the steps to turn it
 
 ### 1.7 Branding and scale
 - ✅ Logos replaced with the Sylvanistas "S" emblem (`media/logo64`, `logo128`, `emblem128`; source in `art-source/emblem_v3.png`). The bronze portrait borders and star are generic and stay.
-- **Olympus wording remains in the text.** "King" is now **"the Heir" (she/her)** in every language. Still from Olympus: army (103), Lords (62),
-  Captains (56), High Council (94), Steward (48), Hands (51) and Throne (21).
+- ✅ Role names are Sylvanistas-themed in English (see Step 4). Translations only rename the Dark Lady so far.
 - Translations (de, fr, es, pt-BR) were renamed automatically, so some grammar is off, e.g. "do Sylvanistas".
 - The realm-wide census and the voting between guild reports were built for dozens of guilds. With one guild,
   it mostly shows your own roster.
@@ -98,26 +97,35 @@ Replace with your own art at the same sizes, saved as 32-bit TGA files with an a
 You might also change the addon's gold color `ns.COLOR = "ffe6c35c"` (`Core.lua`) and the
 `## Title` color in `Sylvanistas.toc`, for example to a Forsaken purple or green.
 
-### Step 4: Horde-themed role names (optional, partly done)
+### Step 4: Horde-themed role names ✅ done (English)
 
-✅ **King → Heir (she/her)**: done in English, Portuguese, German (Erbin), French (Héritière) and Spanish (Heredera).
-The summons now reads "Heir to Sylvanas summons her Lords!".
-Olympus uses a Greek and royal hierarchy. For a Sylvanas-themed guild you could rename the **text only**
-in `Locales.lua` (code identifiers can stay):
+All Olympus role and feature names in the English text and the in-game help are renamed:
 
-| Olympus term | Possible Sylvanistas term |
-|---|---|
-| ~~King~~ | ✅ the Heir |
-| Throne (tab) | Undercity / Royal Quarter |
-| Hands of the King | Dark Rangers |
-| Steward | Royal Apothecary / Regent |
-| High Council | Deathstalkers |
-| Lords | Ranger-Lords |
-| Captains | Ranger-Captains |
-| army | Forsaken / host |
+| Olympus | Sylvanistas | Who / what |
+|---|---|---|
+| King | **the Dark Lady** (display name **Dark Lady**) | the guild master, Testiana |
+| Steward | **Ambassador** | her named deputy (needs the signed list) |
+| Hands | **Dark Rangers** | helpers she names in game |
+| High Council / Councillor | **the Dreadguard / a Dreadguard** | moderators (signed list) |
+| Captain | **Dreadguard** | officers, guild rank 0-1 |
+| Lord | **Veteran** | guild master of each Sylvanistas guild |
+| army | **the Forsaken** | everyone |
+| Throne | **Sanctum** | her tab |
+| Royal / Crown | **Banshee / the Banshee Queen**, and **the Banshee Court** for her guild's leadership | decrees, inspection, mercy |
+| Court | **Audience** | "holds an audience in …" |
+| Writs | **Edicts** | her formal letters |
+| Pardon | **Mercy** | clears a name from the Wall of Shame |
+| Vox Populi | **Voice of the Forsaken** | her polls |
+| Gates | Gates (kept) | recruiting pin |
 
-Change only the text in quotes on the right of `L.KEY = "..."` lines, and leave `%s` and `%d` exactly as they are.
-I can do this rename as one consistent pass if you pick the terms.
+Pronouns for the Dark Lady are she/her; Ambassadors, Dreadguards and guild masters are "they".
+
+**Not renamed (on purpose or still open):**
+- Slash commands keep their old words: `/syc` (Dreadguard chat), `/syld` (Veterans chat),
+  `/syl vox`, `/syl mute captains | lords`, `/syl sound royal | court | vox | throne`.
+- German, French, Spanish and Portuguese: only the Dark Lady is renamed (die Dunkle Fürstin,
+  la Dame noire, la Dama Oscura, a Dama Sombria). Their other role names are still Olympus-style.
+- Code identifiers and comments (`ns.King`, `KING_GUILD`…) are unchanged; players never see them.
 
 ### Step 5: Remove what you won't use (optional)
 Smaller means faster loading and fewer places for bugs. Candidates:

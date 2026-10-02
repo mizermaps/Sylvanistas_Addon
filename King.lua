@@ -1519,7 +1519,7 @@ function King.StewardStatusLine()
 	table.sort(stewards)
 	for _, steward in ipairs(stewards) do
 		local s = stewardHands[steward]
-		local state = King.IsStewardName(steward) and Heard(s.at) or "ended: no longer a Steward"
+		local state = King.IsStewardName(steward) and Heard(s.at) or "ended: no longer an Ambassador"
 		held[#held + 1] = ("%s's %d (%s)"):format(StewardLabel(steward), #s.names, state)
 	end
 	return ("%s  |  Hands: %s"):format(who, #held > 0 and table.concat(held, ", ") or "none")

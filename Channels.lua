@@ -1706,7 +1706,7 @@ ns.Comm.Handle("N1", function(dist, sender, text) Channels.HandlePin(dist, sende
 function Channels.PinStatus(now)
 	local p = Current(now)
 	if not p then return "none" end
-	local ranks = { [3] = "the Heir", [2] = "Steward or Hand", [1] = "Lord" }
+	local ranks = { [3] = "the Dark Lady", [2] = "Ambassador or Dark Ranger", [1] = "Veteran" }
 	return ("by %s <%s> (%s)%s%s, ends in %dm"):format(ns.DisplayName(p.sender) or "?", Codec.Plain(p.guild), ranks[p.rank] or "?",
 		p.mine and ", ours" or "", Channels.Pin(now) ~= p and ", not shown here (chats off or net-off)" or "",
 		math.ceil((p.expires - (now or ns.Now())) / 60))
