@@ -16,6 +16,7 @@ ns.REALM_GROUP = "ClassicBetaPvE"              -- the author's and Treasurer's r
 ns.TREASURER_CHARACTER = "CHANGEME_Treasurer"  -- the Treasurer (in the main guild)
 ns.TREASURER_MAIL_CHARACTER = "CHANGEME_TreasurerMail" -- where dues and treasury mail go (any guild)
 ns.TREASURY_OFF = true                        -- true turns the Treasury, Dues and Bank tabs off (Olympus ran them on the Alliance only)
+ns.WALL_OF_SHAME = false                       -- true lets the Dark Lady show the untabarded list to every member (the "Wall of Shame")
 
 ns.NAME = "Sylvanistas"
 ns.VERSION = "1.1.2"

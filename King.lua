@@ -780,7 +780,8 @@ ns.Comm.Handle("T3", function(...) King.HandleReport(...) end)
 King.UNTABARDED_EVERY = 300
 local lastUntabardedSent = -math.huge
 
-function King.SharingUntabarded() return ns.db and ns.db.kingUntabarded == true end
+-- Off for good while ns.WALL_OF_SHAME is false (Core.lua): the list stays hers alone.
+function King.SharingUntabarded() return ns.WALL_OF_SHAME == true and ns.db and ns.db.kingUntabarded == true end
 
 -- What the inspection's patrols reported joins his own list.
 local function TakeReports()
@@ -808,6 +809,7 @@ function King.SendUntabarded(force)
 end
 
 function King.ToggleUntabarded()
+	if ns.WALL_OF_SHAME ~= true then return ns.Print(L.WALL_OFF) end
 	if King.Preview() then return ns.Print(L.THRONE_PREVIEW_NOTE) end
 	if not King.IsKing() then return ns.Print(L.THRONE_ONLY_KING) end
 	ns.db.kingUntabarded = not King.SharingUntabarded()
@@ -826,6 +828,7 @@ local function OnUntabarded(sender, rest)
 	if on == "1" or on == "0" then
 		ns.Chronicle.Add("switch", sender, on == "1" and L.ACTS_UNTABARDED_ON or L.ACTS_UNTABARDED_OFF, { key = "untabarded", value = on })
 	end
+	if on == "1" and ns.WALL_OF_SHAME ~= true then on = "0" end -- (no Wall of Shame here: a shared list is dropped)
 	if on == "1" then
 		local s = ns.Codec.DecodeShame("S1~Sylvanistas~0~" .. body)
 		if s then ns.Inspect.ShowShame({ by = ns.KingName(sender), list = s.list, t = ns.Now() }) end
@@ -1390,7 +1393,7 @@ function King.InspectionLines()
 	end
 	-- The untabarded list is the King's: he alone lets the army see it (not a Hand), and can
 	-- take it back at any time, inspection or not.
-	if King.IsKing() or King.Preview() then
+	if ns.WALL_OF_SHAME == true and (King.IsKing() or King.Preview()) then
 		lines[#lines + 1] = { indent = 1, text = Gold("> " .. (King.SharingUntabarded() and L.UNTABARDED_STOP or L.UNTABARDED_SHARE)),
 			onClick = function() King.ToggleUntabarded() end,
 			tooltip = function(tt) tt:AddLine(L.UNTABARDED_TIP, 1, 1, 1, true) end }

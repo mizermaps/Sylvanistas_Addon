@@ -111,18 +111,23 @@ All Olympus role and feature names in the English text and the in-game help are 
 | Lord | **Veteran** | guild master of each Sylvanistas guild |
 | army | **the Forsaken** | everyone |
 | Throne | **Sanctum** | her tab |
-| Royal / Crown | **Banshee / the Banshee Queen**, and **the Banshee Court** for her guild's leadership | decrees, inspection, mercy |
+| Royal / Crown | **Banshee / the Banshee Queen**, and **the Banshee Court** for her guild's leadership | decrees, inspection, absolution |
 | Court | **Audience** | "holds an audience in …" |
 | Writs | **Edicts** | her formal letters |
-| Pardon | **Mercy** | clears a name from the Wall of Shame |
+| Pardon | **Absolution** | clears a name from the untabarded list for a week |
 | Vox Populi | **Voice of the Forsaken** | her polls |
-| Gates | Gates (kept) | recruiting pin |
+| Gates | **Portal** | "the portal to <guild> is open": recruiting pin for 2 hours |
+| Call to Arms | **Call for the Revenant** | help needed here: soft sound, red marker for 5 min (Will of the Forsaken icon) |
+| Muster | **Gathering** | meeting point: soft sound, horn marker for 30 min |
+| soldiers | **Forsaken** | the member counts |
+
+**No Wall of Shame:** `ns.WALL_OF_SHAME = false` (`Core.lua`). Tabard checks still run, but the untabarded list stays the Dark Lady's alone; the switch to show it is hidden, and a shared list from anyone else is dropped. Set it to `true` to bring it back.
 
 Pronouns for the Dark Lady are she/her; Ambassadors, Dreadguards and guild masters are "they".
 
 **Not renamed (on purpose or still open):**
 - Slash commands keep their old words: `/syc` (Dreadguard chat), `/syld` (Veterans chat),
-  `/syl vox`, `/syl mute captains | lords`, `/syl sound royal | court | vox | throne`.
+  `/syl vox`, `/syl mute captains | lords`, `/syl sound royal | court | vox | throne | arms | muster`, `/syl arms`, `/syl muster`.
 - German, French, Spanish and Portuguese: only the Dark Lady is renamed (die Dunkle Fürstin,
   la Dame noire, la Dama Oscura, a Dama Sombria). Their other role names are still Olympus-style.
 - Code identifiers and comments (`ns.King`, `KING_GUILD`…) are unchanged; players never see them.

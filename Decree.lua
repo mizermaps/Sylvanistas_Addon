@@ -2,8 +2,8 @@ local ADDON, ns = ...
 local L = ns.L
 
 -- Royal decrees sent to every Sylvanistas guild over SylvanistasNet:
---   ARMS   "Call to Arms!"  (Horde attacking here) - raid warning + sound, marker for 5 min
---   MUSTER "Muster here"    (gather point)          - softer alert, marker for 30 min
+--   ARMS   "Call for the Revenant" (help needed here) - raid-warning text + soft sound, marker for 5 min
+--   MUSTER "Gathering here"        (meeting point)     - raid-warning text + soft sound, marker for 30 min
 -- Only Captains (rank <= ns.CAPTAIN_RANK) can send, and the King's Steward (1.0.0). Receivers
 -- rate-limit per sender and, for senders only the census vouches for, the whole army (the
 -- flood guard). A decree's words are its sender's own text: sent with the logged API (1.0.0),
@@ -39,7 +39,7 @@ local LABEL = { ARMS = "ARMS", MUSTER = "MUSTER", ROYAL = "ROYAL", HERALDRY = "H
 local SOUND = { ARMS = "arms", MUSTER = "muster", ROYAL = "royal", HERALDRY = "royal" }
 Decree.SOUND = SOUND
 local ICONS = {
-	ARMS = "Interface\\Icons\\Ability_Warrior_WarCry",
+	ARMS = "Interface\\Icons\\Spell_Shadow_RaiseDead",
 	MUSTER = "Interface\\Icons\\INV_Misc_Horn_01",
 	ROYAL = "Interface\\AddOns\\Sylvanistas\\media\\logo64",
 	HERALDRY = "Interface\\Icons\\INV_Shirt_GuildTabard_01",
@@ -91,7 +91,7 @@ local function Show(d, own)
 	local zone = ns.Zones.NameForKey("m" .. d.mapID)
 	local text = ("%s %s%s"):format(Label(d), zone, d.text ~= "" and (" - " .. Decree.Words(d)) or "")
 	ns.Print(("|cffff4040%s|r  (%s <%s>)"):format(text, d.sender, d.guild))
-	ns.Alert(SOUND[d.kind] or "muster", d.kind == "MUSTER" and "soft" or "loud", {
+	ns.Alert(SOUND[d.kind] or "muster", (d.kind == "MUSTER" or d.kind == "ARMS") and "soft" or "loud", {
 		text = text, color = { r = 1, g = 0.3, b = 0.1 }, own = own,
 		what = ("%s (%s)"):format(L["HELP_" .. d.kind .. "_NAME"], zone),
 		open = function() return ns.Now() <= d.expires end,
