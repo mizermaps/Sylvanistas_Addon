@@ -79,10 +79,10 @@ ns.GM_DISPLAY = "Heir to Sylvanas"        -- ✅ done
 ns.AUTHOR_CHARACTER = "Riztosin Psalmpalm" -- ✅ done
 ns.REALM_GROUP = "ClassicBetaPvE"         -- ✅ done
 ns.TREASURER_CHARACTER = "..."            -- or:
-ns.TREASURY_OFF = true                    -- if you have no treasurer yet
+ns.TREASURY_OFF = true                    -- ✅ done (no treasurer yet)
 ```
 
-If there's no treasurer yet, set `ns.TREASURY_OFF = true` so nobody fills in a dues mail to a placeholder.
+✅ `ns.TREASURY_OFF = true` is set: Treasury, Dues and Bank are off until there is a treasurer. To turn them on, fill in the two treasurer names and set it to `false`.
 
 ### Step 2: Seal the channel ⭐
 An officer runs `/syl key <a long secret>` once. Online members receive it automatically.

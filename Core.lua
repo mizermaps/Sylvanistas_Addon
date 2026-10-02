@@ -15,7 +15,7 @@ ns.AUTHOR_CHARACTER = "Riztosin Psalmpalm"      -- the addon keeper's character 
 ns.REALM_GROUP = "ClassicBetaPvE"              -- the author's and Treasurer's realm group (e.g. "ClassicBetaPvP")
 ns.TREASURER_CHARACTER = "CHANGEME_Treasurer"  -- the Treasurer (in the main guild)
 ns.TREASURER_MAIL_CHARACTER = "CHANGEME_TreasurerMail" -- where dues and treasury mail go (any guild)
-ns.TREASURY_OFF = false                       -- true turns the Treasury, Dues and Bank tabs off (Olympus ran them on the Alliance only)
+ns.TREASURY_OFF = true                        -- true turns the Treasury, Dues and Bank tabs off (Olympus ran them on the Alliance only)
 
 ns.NAME = "Sylvanistas"
 ns.VERSION = "1.1.2"
