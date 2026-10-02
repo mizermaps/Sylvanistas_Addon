@@ -271,7 +271,7 @@ ns.ANSWER_BANK = {
 			long = "Players the Dark Lady's Banshee Inspection caught without the colors; only the Dark Lady sees it. A Banshee Absolution takes a name off for a week. Players under 15 are never listed." },
 		{ id = "feat-throne", topic = "features",
 			q = { "What can the Dark Lady do in the addon?", "What's the Sanctum tab?" },
-			text = "The Dark Lady's tab: Agenda, Court, key rotation. Summon the Veterans and portals are on the Realm tab, the inspection on Tabards. Her Ambassador and Dark Rangers get some tools.",
+			text = "The Dark Lady's tab: Agenda, Audience, key rotation. Summon the Veterans and portals are on the Realm tab, the inspection on Tabards. Her Ambassador and Dark Rangers get some tools.",
 			long = "The Dark Lady's own tab: her Agenda and week, Hold Audience and key rotation. Her other tools sit where they belong: Summon the Veterans and the portal on the Realm tab, the Banshee Inspection on Tabards, edicts in Decrees. Her Ambassador and Dark Rangers can use some of them." },
 		{ id = "feat-agenda", topic = "features",
 			q = { "I got a popup about a Banshee event", "What's the Dark Lady's Agenda?" },
