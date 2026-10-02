@@ -57,7 +57,7 @@ This file lists what to expect from the current build, then the steps to turn it
 - The game only allows `/who` searches, whispers and guild invites from clicks, never automatically.
 
 ### 1.7 Branding and scale
-- ✅ Logos replaced with the Sylvanistas "S" emblem (`media/logo64`, `logo128`, `emblem128`; source in `art-source/emblem.png`). The bronze portrait borders and star are generic and stay.
+- ✅ Logos replaced with the Sylvanistas "S" emblem (`media/logo64`, `logo128`, `emblem128`; source in `art-source/emblem_v1.png`). The bronze portrait borders and star are generic and stay.
 - **Olympus wording remains in the text.** "King" is now **"the Heir" (she/her)** in every language. Still from Olympus: army (103), Lords (62),
   Captains (56), High Council (94), Steward (48), Hands (51) and Throne (21).
 - Translations (de, fr, es, pt-BR) were renamed automatically, so some grammar is off, e.g. "do Sylvanistas".
