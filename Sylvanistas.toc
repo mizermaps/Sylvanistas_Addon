@@ -1,0 +1,72 @@
+## Interface: 11509, 16001, 20506
+## Title: |cffe6c35cSylvanistas|r
+## Notes: Live census of the Sylvanistas guilds (Horde): army size, leaders, layers and layer hop.
+## Author: SwiftyPigeon512 (based on the Olympus addon by the Olympus addon contributors, MIT)
+## Version: 1.1.2
+## SavedVariables: SylvanistasDB
+## IconTexture: Interface\AddOns\Sylvanistas\media\logo64
+## X-License: MIT
+## X-Website: https://github.com/CHANGEME/sylvanistas-addon
+
+Bootstrap.lua
+libs\LibStub\LibStub.lua
+libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+libs\HereBeDragons\HereBeDragons-2.0.lua
+libs\HereBeDragons\HereBeDragons-Pins-2.0.lua
+
+Locales.lua
+Locales\deDE.lua
+Locales\esES.lua
+Locales\frFR.lua
+Core.lua
+Diagnostics.lua
+Dialog.lua
+PlayerMenu.lua
+Codec.lua
+Sign.lua
+Zones.lua
+Who.lua
+Data.lua
+Roster.lua
+Comm.lua
+Map.lua
+Layers.lua
+Hop.lua
+Positions.lua
+Decree.lua
+Channels.lua
+Filter.lua
+Inspect.lua
+King.lua
+Vox.lua
+Court.lua
+Board.lua
+Week.lua
+Treasury.lua
+Dues.lua
+Bank.lua
+Backup.lua
+Acts.lua
+Chronicle.lua
+Moderation.lua
+Alts.lua
+Keys.lua
+Loot.lua
+Crafters.lua
+Workshop.lua
+Versions.lua
+Ed25519.lua
+libs\QREncode\qrencode.lua
+Link.lua
+Recruit.lua
+AnswerBank.lua
+Answers.lua
+Views.lua
+Members.lua
+UI.lua
+Consent.lua
+GuildFrame.lua
+Borders.lua
+Nameplates.lua
+ChatWindow.lua
+Bridge.lua
