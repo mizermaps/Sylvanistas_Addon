@@ -31,6 +31,8 @@ Start with **Part 1** whatever your rank, then read your own part.
 4. **Open the window:** type `/syl` or click the minimap button.
 5. **Check it works:** `/syl status`. You should see your guild, the channel, and your layer
    once you have looked at an NPC.
+6. **Check your version:** the first line of `/syl status` (or the AddOns list on the character
+   screen) should say **1.2.0** or newer. Party invites need 1.2.0 on **every** player involved.
 
 > **The beta forgets addon settings at login.** If the privacy page comes back, answer it again.
 > `/syl backup` copies your settings as text; `/syl restore` pastes them back.
@@ -49,7 +51,13 @@ Start with **Part 1** whatever your rank, then read your own part.
 - Your layer is read from nearby NPCs: **target or mouse over an NPC** if the addon doesn't know it yet.
 
 ### Parties
-Off until you say yes, on the privacy page or with a command:
+**Needs version 1.2.0 or newer**, for the leader and for everyone invited. Older copies don't see
+it and can't be invited by it.
+
+Party invites are **off until you say yes**: on the privacy page the first time you open the
+addon, on the **Board**, or with a command. The **Board** opens with `/syl lfg`, or from
+**The Realm** tab; its **Parties** section holds every button below.
+
 | Want to… | Do |
 |---|---|
 | Let guildmates invite you when you're solo | `/syl party on` (off: `/syl party off`) |
@@ -62,6 +70,12 @@ Off until you say yes, on the privacy page or with a command:
   a party also moves you to the leader's layer.
 - Nobody is invited (or auto-joins) **in a dungeon, in combat, while Busy** (`/dnd`), or when already grouped.
 - Party invites are shared over **guild chat only**.
+- A **Party Scream** can be sent once every 2 minutes. Only guildmates who are **solo, in the same
+  zone, and have party invites on** get its **Join** button.
+- **"Nobody solo in <zone> takes party invites"** means no one there has it on (or everyone is
+  grouped, in a dungeon or Busy). Ask them to type `/syl party on`.
+- **The Forever beta forgets addon settings at login,** so the privacy page asks about party
+  invites again each session. Answer it again, or type `/syl party on`.
 
 ### Chat
 | Type | To |
@@ -184,6 +198,7 @@ calls her **Dark Lady** and puts her **crown** on the map.
 | **Voice of the Forsaken** | quick polls, 2 to 6 answers |
 | **Agenda / the week** | dated events with signups (raid night, etc.) |
 | **Banshee Scream** | a free-text announcement shown to every member |
+| **Gather the zone** (**Board**, or `/syl party zone`) | invites every guildmate solo in your zone who takes party invites; past five, you're asked to turn the group into a raid |
 | **Banshee Inspection** | members who opted in check tabards around them for 2 minutes |
 | **Absolution** | clears a name from your untabarded list for a week |
 | **Portal** | sends new recruits to a guild for 2 hours |
@@ -201,7 +216,9 @@ Riztosin Psalmpalm has the **Workshop** tab:
 - **Bug reports:** members can send theirs to you in game while you're online.
 
 **Releasing an update:** change the version in `Core.lua` (`ns.VERSION`) and in `Sylvanistas.toc`
-together, using plain rising numbers (e.g. `1.1.3`).
+together, using plain rising numbers. The current version is **1.2.0** (party invites); the next
+would be e.g. `1.2.1` for fixes or `1.3.0` for new features. After a release, the **Workshop**
+roll call shows who has updated, and **right-click → Ask to update** nudges anyone behind.
 
 ---
 
