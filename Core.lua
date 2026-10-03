@@ -1828,7 +1828,7 @@ SlashCmdList.SYLVANISTAS = function(input)
 		local cmd, rest = (input or ""):match("^%s*(%S*)%s*(.-)%s*$")
 		cmd = (cmd or ""):lower()
 		-- Sylvanistas words for Olympus commands (the old ones still work).
-		cmd = ({ voice = "vox", rise = "arms", gather = "muster", dreadguard = "council" })[cmd] or cmd
+		cmd = ({ voice = "vox", rise = "arms", gather = "muster", dreadguard = "council", screams = "decrees", scream = "decrees" })[cmd] or cmd
 		if cmd == "" then
 			ns.UI.Toggle()
 		elseif cmd == "inspect" or cmd == "tabard" or cmd == "heraldry" then

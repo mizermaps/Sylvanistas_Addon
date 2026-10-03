@@ -133,6 +133,7 @@ Pronouns for the Dark Lady are she/her; Ambassadors, Dreadguards and guild maste
 | `/syl arms` | `/syl rise` |
 | `/syl muster` | `/syl gather` |
 | `/syl council` | `/syl dreadguard` |
+| `/syl decrees` | `/syl screams` |
 | `/syc` / `/syld` | `/syd` (Dreadguard chat) / `/syv` (Veterans chat) |
 | `/syl mute captains \| lords` | `/syl mute dreadguard \| veterans` |
 | `/syl sound arms \| muster \| royal \| court \| throne \| vox` | `rise \| gather \| banshee \| audience \| sanctum \| voice` |
