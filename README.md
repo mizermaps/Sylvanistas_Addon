@@ -45,6 +45,8 @@ A `CHANGEME_` name can belong to no real character, so that role stays empty unt
 | `/sy`, `/syd`, `/sydl` | chats: everyone, Dreadguard, Dark Lords |
 | `/syl screams`, `/syl rise`, `/syl gather` | screams; Call for the Revenant; Gathering |
 | `/syl voice` | polls |
+| `/syl party on/off`, `/syl partyauto on/off` | take party invites when solo; join them without the popup |
+| `/syl party gather`, `scream`, `zone` | gather a party, Party Scream, gather the whole zone (officers) |
 | `/syl key <secret>` | seal the guild channel (Dreadguard) |
 | `/syl key rotate` | new channel key nobody sees (the Dark Lady or a Dreadguard) |
 | `/syl backup`, `/syl restore` | save and restore settings as text |

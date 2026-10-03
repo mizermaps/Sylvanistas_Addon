@@ -734,6 +734,8 @@ function Board.Lines(q)
 	local lines = { { text = Gold(L.BOARD_BACK), onClick = function() ns.Views.ShowBoard(false) end, gapAfter = true } }
 	-- The King's week first (Week.lua, 1.1): what the army has on, by day.
 	if ns.Week and ns.Week.Section then ns.Week.Section(lines, q) end
+	-- Sylvanistas: party invites (Party.lua).
+	if ns.Party and not ns.Party.missing and ns.Party.Section then ns.Party.Section(lines, q) end
 	if not q then
 		lines[#lines + 1] = { header = true, text = L.BOARD_YOURS,
 			tooltip = function(tt) tt:AddLine(L.BOARD_YOURS, 1, 0.82, 0); tt:AddLine(L.BOARD_YOURS_TIP, 1, 1, 1, true) end }

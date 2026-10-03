@@ -1583,6 +1583,7 @@ StandIn("Consent", { "Show" }) -- 1.1: the first-open page (Consent.lua)
 StandIn("Chronicle", { "Slash" }) -- 1.1: the log of acts this client saw (Chronicle.lua)
 StandIn("Filter", { "Slash" }) -- 1.1: block terms (Filter.lua)
 StandIn("Board", { "Slash" }) -- (1.1: the Board)
+StandIn("Party", { "Slash", "SlashAuto" }) -- Sylvanistas: party invites (Party.lua)
 StandIn("Week", {}) -- (1.1: the King's week)
 -- 1.1: net-off (Moderation.lua), alt links (Alts.lua), the King's key rotation (Keys.lua).
 StandIn("Moderation", { "Slash" })
@@ -1792,6 +1793,7 @@ local function Help()
 	print(L.HELP_VOX)
 	print(L.HELP_BOARD)
 	print(L.HELP_CAMP)
+	print(L.HELP_PARTY)
 	print(L.HELP_WEEK)
 	print(L.HELP_CMD_MATES)
 	print(L.HELP_CMD_SHARE)
@@ -2079,6 +2081,10 @@ SlashCmdList.SYLVANISTAS = function(input)
 		elseif cmd == "discord" then
 			-- Sylvanistas Link (Link.lua): this character's Discord role; confirmers' keys; watchers.
 			ns.Link.Slash(rest)
+		elseif cmd == "party" then
+			ns.Party.Slash(rest) -- Sylvanistas: party invites (Party.lua)
+		elseif cmd == "partyauto" then
+			ns.Party.SlashAuto(rest)
 		elseif cmd == "lfg" or cmd == "board" or cmd == "camp" or cmd == "camps" or cmd == "week" then
 			-- The Board (Board.lua, 1.1): who is looking for a group, and where; camps; the King's week.
 			ns.Board.Slash(cmd, rest)

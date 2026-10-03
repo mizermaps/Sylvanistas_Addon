@@ -27,6 +27,7 @@ Start with **Part 1** whatever your rank, then read your own part.
    - **Share my zone and layer**
    - **Layer help** (lets others ask you for an invite to your layer)
    - **Chats**, if you want the guild chats
+   - **Party invites** (and **Auto-join parties**), if you'd like guildmates to pull you into parties
 4. **Open the window:** type `/syl` or click the minimap button.
 5. **Check it works:** `/syl status`. You should see your guild, the channel, and your layer
    once you have looked at an NPC.
@@ -46,6 +47,21 @@ Start with **Part 1** whatever your rank, then read your own part.
 - **Help others:** keep **layer help** on (`/syl layerhelp on`). `/syl layerauto on` invites
   without asking each time.
 - Your layer is read from nearby NPCs: **target or mouse over an NPC** if the addon doesn't know it yet.
+
+### Parties
+Off until you say yes, on the privacy page or with a command:
+| Want to… | Do |
+|---|---|
+| Let guildmates invite you when you're solo | `/syl party on` (off: `/syl party off`) |
+| Join those invites without the popup | `/syl partyauto on` (off: `/syl partyauto off`) |
+| Gather a party (up to 5) of solo guildmates in your zone | **Board** → **Gather a party**, or `/syl party gather` |
+| Tell solo guildmates here you're forming a party | **Board** → **Party Scream**, or `/syl party scream <note>`. They get a **Join** button. |
+
+- The **Board** shows **Party invites: On/Off** and **Auto-join: On/Off**: one click flips each.
+- Invites go one at a time: same layer first, then closest level, with a healer kept in. Joining
+  a party also moves you to the leader's layer.
+- Nobody is invited (or auto-joins) **in a dungeon, in combat, while Busy** (`/dnd`), or when already grouped.
+- Party invites are shared over **guild chat only**.
 
 ### Chat
 | Type | To |
@@ -122,6 +138,7 @@ Until it's sealed, anyone who joins the hidden channel by name can read the cens
 ### Officers' chat and tools
 | Want to… | Do |
 |---|---|
+| Invite every solo guildmate in the zone who takes party invites | **Board** → **Gather the zone**, or `/syl party zone`. Past five, you're asked to turn the group into a raid. |
 | Talk to officers and Dark Lords | `/syd <text>` (Dreadguard channel) |
 | See who's been away | `/syl inactive 7` (or 14, 30). Removing someone takes a confirm, one per click. |
 | Check a player's gear | target them in range, `/syl gear` |
@@ -143,6 +160,7 @@ The Dark Lady names you on her **Sanctum** tab. You then see the **Sanctum** tab
 | **Portal** (pins a guild on top for recruits, 2 hours) | **Realm** tab, recruiting |
 | **Pin a line** for every member, 2 hours | `/syl pin <text>`; `/syl pin off` |
 | **Hide a player** from all addon screens | `/syl netoff <name>: <reason>`; `/syl neton <name>` |
+| **Gather the zone** (party, then raid) | **Board** → **Gather the zone**, or `/syl party zone` |
 
 ---
 
@@ -206,6 +224,10 @@ together, using plain rising numbers (e.g. `1.1.3`).
 | `/syl screams` | all | the Screams tab |
 | `/syl voice on/off` | all | polls in a window, or in chat only |
 | `/syl lfg …` | all | the Board |
+| `/syl party on/off` | all | take party invites when solo, or not |
+| `/syl partyauto on/off` | all | join those invites without the popup |
+| `/syl party gather` / `scream` | all | gather a party / Party Scream |
+| `/syl party zone` | Dreadguard, Dark Rangers, Dark Lady | gather the whole zone |
 | `/syl rise`, `/syl gather` | Dreadguard | Call for the Revenant, Gathering |
 | `/syl key <secret>` | Dreadguard | seal the channel |
 | `/syl key rotate` | Dreadguard, Dark Lady | new channel key |

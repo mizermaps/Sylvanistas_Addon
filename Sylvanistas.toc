@@ -68,3 +68,4 @@ GuildFrame.lua
 Borders.lua
 Nameplates.lua
 ChatWindow.lua
+Party.lua
