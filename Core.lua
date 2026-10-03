@@ -495,9 +495,8 @@ end
 --   update                the author's update notice
 ns.SOUND_KINDS = { "arms", "muster", "royal", "court", "vox", "agenda", "throne", "help", "hop", "treasury", "patrol", "update" }
 -- Sylvanistas names for the kinds (typed and shown); the kinds themselves stay as saved.
-ns.SOUND_ALIAS = { rise = "arms", gather = "muster", banshee = "royal", audience = "court", voice = "vox", sanctum = "throne" }
-ns.SOUND_NAME = {}
-for alias, kind in pairs(ns.SOUND_ALIAS) do ns.SOUND_NAME[kind] = alias end
+ns.SOUND_ALIAS = { rise = "arms", gather = "muster", banshee = "royal", conclave = "court", audience = "court", voice = "vox", sanctum = "throne" }
+ns.SOUND_NAME = { arms = "rise", muster = "gather", royal = "banshee", court = "conclave", vox = "voice", throne = "sanctum" }
 local function KindNames(list)
 	local out = {}
 	for i, k in ipairs(list) do out[i] = ns.SOUND_NAME[k] or k end

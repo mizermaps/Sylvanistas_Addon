@@ -33,7 +33,7 @@ A `CHANGEME_` name can belong to no real character, so that role stays empty unt
 | **the Forsaken** | everyone |
 | **Sanctum** | the Dark Lady's tab |
 | **Screams** | map calls: **Banshee Scream** (hers), **Call for the Revenant** (help needed), **Gathering** (meeting point) |
-| **Covenants**, **Audience**, **Absolution**, **Portal**, **Voice of the Forsaken** | her letters, audiences, clearing a name, recruiting pin, polls |
+| **Covenants**, **Conclave**, **Absolution**, **Portal**, **Voice of the Forsaken** | her letters, conclaves, clearing a name, recruiting pin, polls |
 
 ## Commands
 | Command | What it does |

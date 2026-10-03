@@ -121,7 +121,7 @@ ns.Locale("deDE", {
 	GATES_LINE = "Das Portal zu <%s> ist offen: schickt neue Rekruten dorthin",
 	GATES_TIP = "Die Dunkle Fürstin hat bestimmt, wohin neue Rekruten jetzt gehen (noch %dh %02dm).",
 	PARDON_NEWS = "Durch die Banshee-Absolution von %s verlässt %s die Liste ohne Wappenrock.",
-	COURT_LINE = "%s hält Audienz in %s",
+	COURT_LINE = "%s hält ein Konklave in %s",
 	HOP_KING_LINE = "Einladung auf den Layer von %s erbitten",
 	HOP_KING_BUSY = "Erbitte Einladung auf den Layer von %s...",
 	HOP_KING_HERE = "Du bist auf dem Layer von %s",

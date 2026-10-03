@@ -121,7 +121,7 @@ ns.Locale("frFR", {
 	GATES_LINE = "Le portail de <%s> est ouvert : envoyez-y les nouvelles recrues",
 	GATES_TIP = "La Dame noire a choisi où vont les nouvelles recrues pour l'instant (reste %dh %02dm).",
 	PARDON_NEWS = "Par l'absolution Banshee de %s, %s quitte la liste sans tabard.",
-	COURT_LINE = "%s tient audience à %s",
+	COURT_LINE = "%s tient conclave à %s",
 	HOP_KING_LINE = "Demander une invitation sur la couche de %s",
 	HOP_KING_BUSY = "Demande d'invitation sur la couche de %s...",
 	HOP_KING_HERE = "Vous êtes sur la couche de %s",

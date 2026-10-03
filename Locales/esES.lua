@@ -121,7 +121,7 @@ ns.Locale({ "esES", "esMX" }, {
 	GATES_LINE = "El portal de <%s> está abierto: los nuevos reclutas van allí",
 	GATES_TIP = "La Dama Oscura eligió adónde van ahora los nuevos reclutas (quedan %dh %02dm).",
 	PARDON_NEWS = "Por absolución Banshee de %s, %s sale de la lista sin tabardo.",
-	COURT_LINE = "%s celebra audiencia en %s",
+	COURT_LINE = "%s celebra cónclave en %s",
 	HOP_KING_LINE = "Pedir invitación a la capa de %s",
 	HOP_KING_BUSY = "Pidiendo invitación a la capa de %s...",
 	HOP_KING_HERE = "Estás en la capa de %s",
