@@ -47,7 +47,7 @@ local TABS = {
 	-- 1.1.1: the Sylvanistas chats (ChatWindow.lua), for every member: the Guild & Communities window's
 	-- own chat icon (CommunitiesFrame.xml's ChatTab), else a note.
 	{ key = "chat", label = "TAB_CHAT", icon = function() return UI.FirstTexture(UI.CHAT_ICONS) end },
-	{ key = "decrees", label = "TAB_DECREES", icon = "Interface\\Icons\\INV_Scroll_04" },
+	{ key = "decrees", label = "TAB_DECREES", icon = "Interface\\Icons\\Spell_Shadow_PsychicScream" },
 	{ key = "heraldry", label = "TAB_HERALDRY", icon = "Interface\\Icons\\INV_Shirt_GuildTabard_01" },
 	-- The King's alone (King.lua): hidden for everyone else, see UI.Refresh.
 	{ key = "throne", label = "TAB_THRONE", icon = function() return UI.FirstTexture(UI.CROWNS) end },
