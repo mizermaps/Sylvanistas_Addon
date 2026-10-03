@@ -2,7 +2,7 @@
 ## Title: |cffe6c35cSylvanistas|r
 ## Notes: Live census of the Sylvanistas guilds (Horde): army size, leaders, layers and layer hop.
 ## Author: SwiftyPigeon512
-## Version: 1.1.2
+## Version: 1.2.0
 ## SavedVariables: SylvanistasDB
 ## IconTexture: Interface\AddOns\Sylvanistas\media\logo64
 ## X-License: MIT

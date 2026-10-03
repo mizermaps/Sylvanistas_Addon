@@ -19,7 +19,7 @@ ns.TREASURY_OFF = true                        -- true turns the Treasury, Dues a
 ns.WALL_OF_SHAME = false                       -- true lets the Dark Lady show the untabarded list to every member (the "Wall of Shame")
 
 ns.NAME = "Sylvanistas"
-ns.VERSION = "1.1.2"
+ns.VERSION = "1.2.0"
 ns.PREFIX = "SYLVANISTAS"        -- addon message prefix (max 16 chars)
 ns.CHANNEL = "SylvanistasNet"    -- hidden chat channel (Alliance: unused, the addon is Horde-only)
 ns.CHANNEL_HORDE = "SylvanistasNetH" -- the Horde's hidden chat channel, shared by every Sylvanistas guild
