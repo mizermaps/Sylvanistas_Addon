@@ -61,6 +61,9 @@ A `CHANGEME_` name can belong to no real character, so that role stays empty unt
 - Translations: German, French and Spanish cover part of the text (the rest shows in English);
   Portuguese is complete.
 
+## Using it
+See **GUIDE.md**: a step-by-step guide for every rank, from the Dark Lady to the Forsaken.
+
 ## Credits and licenses
 - Sylvanistas by SwiftyPigeon512, released under the MIT license (`LICENSE.txt`), which also
   carries the notice of the MIT-licensed addon it is derived from.
