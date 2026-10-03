@@ -27,8 +27,8 @@ local NOTICE_WAIT = 10           -- ...a few seconds after the first line held, 
 -- Gold, teal and royal purple: none of them is a colour Blizzard's chat already uses.
 local TIERS = {
 	A = { level = 1, label = "CHAN_ALL",      slash = "/sy",  word = "sylvanistas",  deny = "MEMBERS_ONLY",       color = { 0.90, 0.77, 0.36 } },
-	C = { level = 2, label = "CHAN_CAPTAINS", slash = "/syc", word = "captains", deny = "CHAN_ONLY_CAPTAINS", color = { 0.35, 0.85, 0.85 } },
-	L = { level = 3, label = "CHAN_LORDS",    slash = "/syld", word = "lords",    deny = "CHAN_ONLY_LORDS",    color = { 0.75, 0.50, 1.00 } },
+	C = { level = 2, label = "CHAN_CAPTAINS", slash = "/syd", word = "dreadguard", deny = "CHAN_ONLY_CAPTAINS", color = { 0.35, 0.85, 0.85 } },
+	L = { level = 3, label = "CHAN_LORDS",    slash = "/syv", word = "veterans", deny = "CHAN_ONLY_LORDS",    color = { 0.75, 0.50, 1.00 } },
 }
 Channels.TIERS, Channels.ORDER = TIERS, { "A", "C", "L" }
 Channels.HISTORY = HISTORY
@@ -1810,8 +1810,8 @@ end
 
 local WORDS = {
 	all = "A", a = "A", sylvanistas = "A", todos = "A",
-	captains = "C", captain = "C", c = "C", capitaes = "C", ["capitães"] = "C",
-	lords = "L", lord = "L", l = "L", lordes = "L",
+	dreadguard = "C", dreadguards = "C", d = "C", captains = "C", captain = "C", c = "C", capitaes = "C", ["capitães"] = "C",
+	veterans = "L", veteran = "L", v = "L", lords = "L", lord = "L", l = "L", lordes = "L",
 }
 function Channels.TierForWord(w)
 	return WORDS[(tostring(w or ""):lower():gsub("^%s+", ""):gsub("%s+$", ""))]
@@ -1919,7 +1919,9 @@ local function Slash(tier, where)
 		ns.SafeCall(where, Channels.Send, tier, msg)
 	end
 end
-SLASH_SYLVANISTASALL1, SLASH_SYLVANISTASCAPTAINS1, SLASH_SYLVANISTASLORDS1 = "/sy", "/syc", "/syld"
+-- /syd and /syv (Dreadguard, Veterans); /syc and /syld still work.
+SLASH_SYLVANISTASALL1, SLASH_SYLVANISTASCAPTAINS1, SLASH_SYLVANISTASLORDS1 = "/sy", "/syd", "/syv"
+SLASH_SYLVANISTASCAPTAINS2, SLASH_SYLVANISTASLORDS2 = "/syc", "/syld"
 SlashCmdList.SYLVANISTASALL = Slash("A", "slash /sy")
-SlashCmdList.SYLVANISTASCAPTAINS = Slash("C", "slash /syc")
-SlashCmdList.SYLVANISTASLORDS = Slash("L", "slash /syld")
+SlashCmdList.SYLVANISTASCAPTAINS = Slash("C", "slash /syd")
+SlashCmdList.SYLVANISTASLORDS = Slash("L", "slash /syv")

@@ -125,9 +125,19 @@ All Olympus role and feature names in the English text and the in-game help are 
 
 Pronouns for the Dark Lady are she/her; Ambassadors, Dreadguards and guild masters are "they".
 
-**Not renamed (on purpose or still open):**
-- Slash commands keep their old words: `/syc` (Dreadguard chat), `/syld` (Veterans chat),
-  `/syl vox`, `/syl mute captains | lords`, `/syl sound royal | court | vox | throne | arms | muster`, `/syl arms`, `/syl muster`.
+**Commands** (the old Olympus words still work as aliases):
+
+| Old | New |
+|---|---|
+| `/syl vox` | `/syl voice` |
+| `/syl arms` | `/syl rise` |
+| `/syl muster` | `/syl gather` |
+| `/syl council` | `/syl dreadguard` |
+| `/syc` / `/syld` | `/syd` (Dreadguard chat) / `/syv` (Veterans chat) |
+| `/syl mute captains \| lords` | `/syl mute dreadguard \| veterans` |
+| `/syl sound arms \| muster \| royal \| court \| throne \| vox` | `rise \| gather \| banshee \| audience \| sanctum \| voice` |
+
+**Not renamed (still open):**
 - German, French, Spanish and Portuguese: only the Dark Lady is renamed (die Dunkle Fürstin,
   la Dame noire, la Dama Oscura, a Dama Sombria). Their other role names are still Olympus-style.
 - Code identifiers and comments (`ns.King`, `KING_GUILD`…) are unchanged; players never see them.
@@ -182,4 +192,4 @@ They never cross over, because the prefix differs, but you can rename them for t
 | `/syl key <secret>` | Seal the guild channel (officers) |
 | `/syl backup` / `/syl restore` | Save and restore settings as text |
 | `/syl bug` | Copyable error report |
-| `/sy`, `/syc`, `/syld` | Guild chats: everyone, Captains, Lords |
+| `/sy`, `/syd`, `/syv` | Guild chats: everyone, Dreadguard, Veterans |

@@ -494,6 +494,15 @@ end
 --   hop, treasury, patrol a layer hop, a donation, a patrol's player without the tabard
 --   update                the author's update notice
 ns.SOUND_KINDS = { "arms", "muster", "royal", "court", "vox", "agenda", "throne", "help", "hop", "treasury", "patrol", "update" }
+-- Sylvanistas names for the kinds (typed and shown); the kinds themselves stay as saved.
+ns.SOUND_ALIAS = { rise = "arms", gather = "muster", banshee = "royal", audience = "court", voice = "vox", sanctum = "throne" }
+ns.SOUND_NAME = {}
+for alias, kind in pairs(ns.SOUND_ALIAS) do ns.SOUND_NAME[kind] = alias end
+local function KindNames(list)
+	local out = {}
+	for i, k in ipairs(list) do out[i] = ns.SOUND_NAME[k] or k end
+	return out
+end
 local SOUND_KIND = {}
 for _, k in ipairs(ns.SOUND_KINDS) do SOUND_KIND[k] = true end
 
@@ -557,7 +566,7 @@ function ns.SoundState()
 	if not (ns.db and ns.db.sound) then return L.SOUNDS_OFF end
 	local off = KindsOff()
 	if #off == 0 then return L.SOUNDS_ALL_ON end
-	return L.SOUNDS_SOME_OFF:format(table.concat(off, ", "))
+	return L.SOUNDS_SOME_OFF:format(table.concat(KindNames(off), ", "))
 end
 
 -- For /syl status and /syl bug (in English, as the rest there).
@@ -571,6 +580,7 @@ end
 -- /syl sound: alone, the switch for all (as before 1.1); on|off, the same; <kind> [on|off], one kind.
 function ns.SoundSlash(rest)
 	local what, on = tostring(rest or ""):lower():match("^(%S*)%s*(%S*)")
+	what = ns.SOUND_ALIAS[what] or what
 	if what == "" then
 		ns.SetSound(nil, not ns.db.sound)
 	elseif what == "on" or what == "off" then
@@ -578,7 +588,7 @@ function ns.SoundSlash(rest)
 	elseif SOUND_KIND[what] then
 		if on == "on" or on == "off" then ns.SetSound(what, on == "on") else ns.SetSound(what, not ns.SoundKindOn(what)) end
 	else
-		return ns.Print(L.SOUND_USAGE:format(table.concat(ns.SOUND_KINDS, ", ")))
+		return ns.Print(L.SOUND_USAGE:format(table.concat(KindNames(ns.SOUND_KINDS), ", ")))
 	end
 	ns.Print(ns.SoundState())
 	ns.Fire("DECREES_CHANGED") -- (the switches on the Decrees tab)
@@ -1817,6 +1827,8 @@ SlashCmdList.SYLVANISTAS = function(input)
 	ns.SafeCall(SlashWhere(input), function()
 		local cmd, rest = (input or ""):match("^%s*(%S*)%s*(.-)%s*$")
 		cmd = (cmd or ""):lower()
+		-- Sylvanistas words for Olympus commands (the old ones still work).
+		cmd = ({ voice = "vox", rise = "arms", gather = "muster", dreadguard = "council" })[cmd] or cmd
 		if cmd == "" then
 			ns.UI.Toggle()
 		elseif cmd == "inspect" or cmd == "tabard" or cmd == "heraldry" then
