@@ -730,6 +730,22 @@ Board.Hit = Hit
 
 -- The page's lines: the way back, our flag (or the flags to raise), the Board's flags, then the
 -- camps (Board.CampLines). `q`: the Realm tab's search, over the cards.
+-- Sylvanistas: the Board's grey info lines in rows short enough for the page (rows are one line
+-- each and don't wrap): split at spaces, about WRAP letters a row.
+Board.WRAP = 56
+local function GreyRows(lines, text, indent)
+	local row = ""
+	for word in tostring(text or ""):gmatch("%S+") do
+		if row ~= "" and #row + 1 + #word > Board.WRAP then
+			lines[#lines + 1] = { indent = indent, text = Grey(row) }
+			row = word
+		else
+			row = row == "" and word or (row .. " " .. word)
+		end
+	end
+	if row ~= "" then lines[#lines + 1] = { indent = indent, text = Grey(row) } end
+end
+
 function Board.Lines(q)
 	local lines = { { text = Gold(L.BOARD_BACK), onClick = function() ns.Views.ShowBoard(false) end, gapAfter = true } }
 	-- The King's week first (Week.lua, 1.1): what the army has on, by day.
@@ -753,7 +769,7 @@ function Board.Lines(q)
 					tooltip = function(tt) tt:AddLine(L.BOARD_RAISE:format(Label(flag)), 1, 0.82, 0); tt:AddLine(L.BOARD_RAISE_TIP, 1, 1, 1, true) end }
 			end
 		end
-		lines[#lines + 1] = { indent = 1, text = Grey(SharedZone() and L.BOARD_ZONE_SHARED or L.BOARD_ZONE_PRIVATE) }
+		GreyRows(lines, SharedZone() and L.BOARD_ZONE_SHARED or L.BOARD_ZONE_PRIVATE, 1)
 		lines[#lines].gapAfter = true
 	end
 	local list = Board.List("flag")
@@ -768,7 +784,7 @@ function Board.Lines(q)
 		end
 	end
 	if found == 0 then
-		lines[#lines + 1] = { indent = 1, text = Grey(q and L.SEARCH_NO_MATCH or (askAt and ns.Now() - askAt < 30 and L.BOARD_GATHERING or L.BOARD_EMPTY)) }
+		GreyRows(lines, q and L.SEARCH_NO_MATCH or (askAt and ns.Now() - askAt < 30 and L.BOARD_GATHERING or L.BOARD_EMPTY), 1)
 	end
 	lines[#lines].gapAfter = true
 	Board.CampLines(lines, q)

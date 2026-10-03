@@ -247,7 +247,7 @@ local function MentorLines(lines, q)
 		if #caps == 0 then lines[#lines + 1] = { text = V.Grey(L.MENTOR_NO_CAPTAINS) } end
 		return lines
 	end
-	lines[#lines + 1] = { text = V.Grey(L.MENTOR_HINT), gapAfter = true }
+	V.GreyRows(lines, L.MENTOR_HINT, { gapAfter = true })
 	local list = {}
 	for _, m in ipairs(Members.Recruits()) do
 		if not q or ns.Holds(q, m.name, m.rank) then list[#list + 1] = m end

@@ -604,7 +604,7 @@ function Week.Section(lines, q)
 	end
 	if shown == 0 then
 		lines[#lines + 1] = { indent = 1, text = Grey(q and L.SEARCH_NO_MATCH or L.WEEK_EMPTY) }
-		if not q and mayCancel then lines[#lines + 1] = { indent = 1, text = Grey(L.WEEK_HOW) } end
+		if not q and mayCancel then ns.Views.GreyRows(lines, L.WEEK_HOW, { indent = 1 }) end
 	end
 	lines[#lines].gapAfter = true
 end

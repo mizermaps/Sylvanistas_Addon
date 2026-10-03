@@ -32,6 +32,25 @@ local function Grey(s) return "|cff9d9d9d" .. s .. "|r" end
 local function Red(s) return "|cffff4040" .. s .. "|r" end
 local function Gold(s) return "|cffffd200" .. s .. "|r" end
 Views.Green, Views.Grey, Views.Red, Views.Gold = Green, Grey, Red, Gold
+-- Sylvanistas: a grey info line in rows short enough for the page (rows are one line each and
+-- don't wrap): split at spaces, about WRAP letters a row. `opts` goes on every row (indent,
+-- onClick, tooltip), but gapAfter only on the last.
+Views.WRAP = 56
+function Views.GreyRows(lines, text, opts)
+	opts = opts or {}
+	local rows, row = {}, ""
+	for word in tostring(text or ""):gmatch("%S+") do
+		if row ~= "" and #row + 1 + #word > Views.WRAP then rows[#rows + 1] = row; row = word
+		else row = row == "" and word or (row .. " " .. word) end
+	end
+	if row ~= "" then rows[#rows + 1] = row end
+	for i, r in ipairs(rows) do
+		local l = { text = Grey(r) }
+		for k, v in pairs(opts) do if k ~= "gapAfter" or i == #rows then l[k] = v end end
+		lines[#lines + 1] = l
+	end
+	return lines
+end
 
 -- Names and guilds from other players' reports: shown as plain text, whatever they carry
 -- (0.9.2; Comm.lua already strips every escape code from what arrives).
@@ -682,7 +701,7 @@ local function PublicLines(lines)
 		if officer then tt:AddLine(L.PUBLIC_NET_OFFICER, 0.75, 0.75, 0.75, true) end
 	end
 	local before = #lines
-	if officer then lines[#lines + 1] = { text = Grey(L.PUBLIC_NET:format(name)), tooltip = tip } end
+	if officer then Views.GreyRows(lines, L.PUBLIC_NET:format(name), { tooltip = tip }) end
 	local sealed = C.SealedPeers and C.SealedPeers() or 0
 	if sealed > 0 then lines[#lines + 1] = { text = Grey(L.PUBLIC_NET_SPLIT:format(sealed)), tooltip = tip } end
 	if #lines == before then return false end
@@ -1014,7 +1033,7 @@ local function CensusLines(s, q)
 	local rebuilding = RebuildLines(lines)
 	local top = #lines
 	for _, e in ipairs(SortedGuilds(s.guilds)) do lines[#lines + 1] = CensusRow(e) end
-	if #lines == top and kings == 0 and not rebuilding then lines[#lines + 1] = { text = Grey(L.EMPTY) } end
+	if #lines == top and kings == 0 and not rebuilding then Views.GreyRows(lines, L.EMPTY) end
 	for _, e in ipairs(s.seen or {}) do lines[#lines + 1] = SeenRow(e) end
 	if #(s.seen or {}) > 0 then
 		lines[#lines].gapAfter = true
@@ -1512,7 +1531,7 @@ local function RealmLines(s, q)
 			lines[#lines + 1] = link
 		end
 	end
-	if #s.guilds == 0 and not q and not rebuilding then lines[#lines + 1] = { text = Grey(L.EMPTY) } end
+	if #s.guilds == 0 and not q and not rebuilding then Views.GreyRows(lines, L.EMPTY) end
 	-- A guild's header and, opened, its rows. `only`: what the search found in it (GuildMatches),
 	-- its rows alone under the headers they belong to; nil: all of them. `folds`: its click
 	-- closes and opens what the search opened, instead of the guild itself.
@@ -1850,7 +1869,7 @@ local function DecreeLines()
 	-- 1.1 (#31): a Vox Populi question the player's block terms hid, while it is open.
 	local vox = ns.Vox and ns.Vox.HiddenQuestion and ns.Vox.HiddenQuestion()
 	if vox then
-		lines[#lines + 1] = { text = Grey(L.FILTER_VOX_HIDDEN), onClick = function() ns.Vox.Reveal() end }
+		Views.GreyRows(lines, L.FILTER_VOX_HIDDEN, { onClick = function() ns.Vox.Reveal() end })
 	end
 
 	return lines
