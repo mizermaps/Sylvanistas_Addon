@@ -68,7 +68,7 @@ All current Screams are on the **Screams** tab (`/syl screams`).
 - **Voice of the Forsaken** (polls): a window pops up, so tick your answer. Prefer chat only? `/syl voice off`.
 - **Audience:** when she holds an audience, a line appears if you're in her zone. Click it to ask to speak with her.
 - **Summon the Dark Lords:** a roll call for Dark Lords and Dreadguards; answer **Present, my Lady** or **Busy**.
-- **Edicts:** her formal letters. Click **As you command** to acknowledge.
+- **Covenants:** her formal letters. Click **As you command** to acknowledge.
 
 ### Groups, crafting and more
 | Want to… | Do |
@@ -162,7 +162,7 @@ calls her **Dark Lady** and puts her **crown** on the map.
 | Tool | What it does |
 |---|---|
 | **Hold Audience** (**Sanctum**) | members in your zone queue to speak with you; you call them one by one |
-| **Edicts** | formal letters to the Dark Lords, the Dreadguard or everyone, signed by you |
+| **Covenants** | formal letters to the Dark Lords, the Dreadguard or everyone, signed by you |
 | **Voice of the Forsaken** | quick polls, 2 to 6 answers |
 | **Agenda / the week** | dated events with signups (raid night, etc.) |
 | **Banshee Scream** | a free-text announcement shown to every member |
