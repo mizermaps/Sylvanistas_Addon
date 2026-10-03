@@ -45,7 +45,7 @@ function CallbackHandler.New(_self, target, RegisterName, UnregisterName, Unregi
 	local events = setmetatable({}, meta)
 	local registry = { recurse=0, events=events }
 
-	-- registry:Fire() - fires the given event/message into the registry
+	-- registry:Fire - fires the given event/message into the registry
 	function registry:Fire(eventname, ...)
 		if not rawget(events, eventname) or not next(events[eventname]) then return end
 		local oldrecurse = registry.recurse

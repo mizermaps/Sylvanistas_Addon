@@ -1,6 +1,6 @@
 local ADDON, ns = ...
 
--- Wire format. Pure functions, no WoW API, covered by tests/run.lua.
+-- Wire format. Pure functions, no WoW API, covered by the tests.
 --
 -- Report:  R2~guild~total~online~leader~leaderOnline~users~zones~classes~levels
 --             ~ranks~officers~leaderDays~inactive7~inactive30~avgLevel10~top
@@ -468,7 +468,7 @@ function Codec.SanitizeChat(s)
 			i = j + (len or 1)
 		end
 	end
-	-- Runs of spaces become one: padding could push a fake "[Lords] [Asmon] ..." to the start
+	-- Runs of spaces become one: padding could push a fake "[Lords] [Name] ..." to the start
 	-- of a wrapped line.
 	return (table.concat(out):gsub("%s%s+", " "):gsub("^%s+", ""):gsub("%s+$", ""))
 end

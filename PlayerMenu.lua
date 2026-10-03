@@ -135,7 +135,7 @@ local function Wrap(root)
 		Tip(d, tipTitle, tipText)
 		return d
 	end
-	-- A line that does something: fn() on a click, protected. enabled == false: shown greyed (its
+	-- A line that does something: fn on a click, protected. enabled == false: shown greyed (its
 	-- tooltip says why).
 	function m.Button(text, fn, tipTitle, tipText, enabled)
 		Head()

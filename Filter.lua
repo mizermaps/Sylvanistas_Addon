@@ -1,7 +1,7 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- Block terms (1.1, Fern's #31): words that hide a line of addon text on this client. Two
+-- Block terms (1.1, request #31): words that hide a line of addon text on this client. Two
 -- lists: the player's own (ns.db.filterWords, account-wide, /syl filter add|remove), and a
 -- shared one the King, his Steward, a Hand or a High Councillor of the author's signed list
 -- edits for everyone (ns.rdb.filterShared, this realm group's), which each player may ignore
@@ -42,7 +42,7 @@ Filter.SHARED_MAX = 50          -- words the shared list hides at once
 Filter.SHARED_KEEP = 100        -- entries it keeps, the removed ones included
 Filter.SHARED_TOMB = 30 * 86400 -- a removal is kept this long (an old client can't bring the word back)
 Filter.TERM_MIN, Filter.TERM_MAX = 2, 24
-Filter.SHARED_TERM_MIN = 4      -- letters of a shared term at least (1.1, Konig's review: Filter.SharedTerm)
+Filter.SHARED_TERM_MIN = 4      -- letters of a shared term at least (1.1, review: Filter.SharedTerm)
 Filter.REPEAT = 600
 Filter.FRESH = 900              -- an edit this recent goes out with its editor's name (the log of acts)
 Filter.AHEAD = 60               -- a time further ahead of the server's clock is not taken
@@ -64,7 +64,7 @@ function Filter.Term(s)
 	return s
 end
 
--- A term the shared list takes: one of SHARED_TERM_MIN letters at least (1.1, Konig's review: one
+-- A term the shared list takes: one of SHARED_TERM_MIN letters at least (1.1, review: one
 -- editor adding "the" or "de" hid nearly every decree for everyone). The player's own list still
 -- takes shorter ones: it hides lines on his screen alone.
 function Filter.SharedTerm(s)
@@ -96,7 +96,7 @@ end
 function Filter.SharedOn() return not (ns.db and ns.db.filterSharedOff == true) end
 
 -- The term that hides this text, or nil. ownOnly: the player's own list alone (the King's writs:
--- 1.1, Konig's review, the shared list never hides them; the player's own filter still may).
+-- 1.1, review, the shared list never hides them; the player's own filter still may).
 function Filter.Hit(text, ownOnly)
 	if type(text) ~= "string" or text == "" or not ns.db then return nil end
 	local mine = ns.db.filterWords
@@ -198,7 +198,7 @@ end
 
 -- Removals past SHARED_TOMB go, then the oldest removals while the list keeps too many (on the
 -- same second, by the term: every client keeps the same entries whatever order it heard them in,
--- so the digests agree; 1.1, Konig's review); anything a saved file holds that the list would
+-- so the digests agree; 1.1, review); anything a saved file holds that the list would
 -- never take goes too.
 local function Prune()
 	local S, now = Shared(), Clock()
@@ -360,7 +360,7 @@ function Filter.Receive(dist, sender, text)
 			end
 		end
 	end
-	-- Whatever was stored, the list kept within SHARED_KEEP (1.1, Konig's review: the removal of a
+	-- Whatever was stored, the list kept within SHARED_KEEP (1.1, review: the removal of a
 	-- word the list never held changes nothing shown, and the list grew with each one, without end).
 	if stored then Prune() end
 	if digest == Filter.Digest() then heardSame = ns.Now() end

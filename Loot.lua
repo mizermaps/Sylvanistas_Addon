@@ -1,7 +1,7 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- Loot notes (1.1, Fern's #22): "[Loot notes] and an optional points column officers edit by
+-- Loot notes (1.1, request #22): "[Loot notes] and an optional points column officers edit by
 -- hand. Not a bid window and not auto-loot. Loot arguments restart every raid because nobody kept
 -- last week's decision. Notes carry that history. Points, if you use them, stay a notebook. Gold
 -- bids are out because GDKP is not allowed on Forever."
@@ -180,10 +180,10 @@ end
 -- live: an officer's own change (X1): a new note, and a points change's "by", must be his own.
 -- Otherwise (an answer or a push, XB) it may pass on another officer's change: only one made
 -- before `from`, the start of this session (one made since reached us from him, live), and never
--- one that rewrites a note (Konig's review of 1.1: an answer could put words in another officer's
+-- one that rewrites a note (review of 1.1: an answer could put words in another officer's
 -- note, or his name on a points change). A note is written once: after that only its removal
 -- changes it (any officer's), save that its writer's own copy replaces one a relay gave us.
--- Another officer's change passed on keeps who passed it ("via"; Konig's review of 1.1: one dated
+-- Another officer's change passed on keeps who passed it ("via"; review of 1.1: one dated
 -- back to before our session cannot be told from a real one, so its relayer is named).
 local function Take(b, entry, sender, live, from)
 	local now = ServerNow()
@@ -464,7 +464,7 @@ end
 -- A stream's changes in (lo, hi], newest first: what our answers and pushes carry. A note in our
 -- own name only as we hold it ourselves (by == writer, as Write makes it): a copy of ours another
 -- officer gave us (a wiped book on the Forever beta) would read, sent by us, as our own and replace
--- a reader's honest copy (Konig's review of 1.1); the officers who hold it pass it on. A points
+-- a reader's honest copy (review of 1.1); the officers who hold it pass it on. A points
 -- change "by" us likewise, but one another officer passed on to us ("via").
 local function Entries(b, kind, lo, hi)
 	local list, me = {}, ns.FullName(ns.me or "")
@@ -801,7 +801,7 @@ end
 
 local function Date(t) return date("%Y-%m-%d", t) end
 -- A note's writer as a line names him, and the officer who passed it on to us, if one did: it
--- comes on his word, so he is named with it (Konig's review of 1.1).
+-- comes on his word, so he is named with it (review of 1.1).
 local function Who(n)
 	local who = ns.ShortName(ns.DisplayName(n.writer) or "?")
 	if n.via then who = L.LOOT_VIA:format(who, ns.ShortName(ns.DisplayName(n.via) or "?")) end

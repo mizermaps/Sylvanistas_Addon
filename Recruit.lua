@@ -6,7 +6,7 @@ local L = ns.L
 -- members online, group them by guild, and whisper one of them a ready-made request. No answer?
 -- Try someone else. Rate limited so nobody gets spammed.
 --
--- Routing (1.1, Fern's #20): recruits whispered whoever /who returned, so the guild the King
+-- Routing (1.1, request #20): recruits whispered whoever /who returned, so the guild the King
 -- opened stayed empty while full ones got spammed. Now the Join screen asks one member's addon
 -- (J1, an addon whisper, one per search) where recruits should go: that member's census answers
 -- (J2) with the King's gates, the guilds with the most free slots and a couple of their Lords
@@ -385,7 +385,7 @@ end
 -- The members' side (in a Sylvanistas guild)
 ---------------------------------------------------------------------------
 
--- Do not contact (Fern's #20): recruits' addons are told, and never offer us.
+-- Do not contact (request #20): recruits' addons are told, and never offer us.
 function Recruit.NoContactMe() return ns.db and ns.db.recruitsOff == true end
 function Recruit.SetNoContact(on)
 	ns.db.recruitsOff = on and true or nil
@@ -553,7 +553,7 @@ function Recruit.Accept(req)
 end
 
 -- Where to send one we can't take: the gates' guild while the King's gates are open, else only
--- ours (the Join screen shows who has room). Never a guild named for its free slots (Konig's
+-- ours (the Join screen shows who has room). Never a guild named for its free slots (the reviewer's
 -- review of 1.1: the top "most room" guild is one two characters can fake, and this whisper goes
 -- from the officer's own chat).
 function Recruit.DeclineText(req)

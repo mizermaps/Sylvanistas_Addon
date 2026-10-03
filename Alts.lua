@@ -1,7 +1,7 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- Alt links (1.1, Fern's request #21): a player links the characters of this account as one
+-- Alt links (1.1, request #21): a player links the characters of this account as one
 -- player, so the census and the treasury count them once.
 -- - For this account only: the main names the alt (/syl alt add), then the player logs the alt
 --   and confirms there. The offer waits in this account's saved variables (every character of the

@@ -91,7 +91,7 @@ function GuildFrameHook.IsHDClient()
 end
 
 -- Whether our window takes the new (HD) look, next to the Guild & Communities window.
--- host: an entry of Hosts(), nil = the one in use. Nothing used yet: the client decides,
+-- host: an entry of Hosts, nil = the one in use. Nothing used yet: the client decides,
 -- unless ClassicUI Forever's old tab is already there (hooked or not: it can be built
 -- after the scan at login, when that login was in combat).
 function GuildFrameHook.IsHD(host)

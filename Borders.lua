@@ -2,7 +2,7 @@ local ADDON, ns = ...
 local L = ns.L
 
 -- The elite borders (1.0.1, asked for on the community Discord): the game's own elite and rare
--- art, and Max's bronze frames drawn over it, around the portrait of a Sylvanistas player on your
+-- art, and bronze frames drawn over it, around the portrait of a Sylvanistas player on your
 -- target and focus frames, and around your own portrait for your own rank, like Elite Player
 -- Frame (Enhanced) but for other players too. `/syl borders on|off`, on by default.
 --
@@ -11,7 +11,7 @@ local L = ns.L
 -- a texture of the frame's TargetFrameContainer, set in TargetFrameMixin:CheckClassification
 -- (GetBossPortraitFrameData gives the atlas and where it goes). Sylvanistas leaves that texture alone:
 -- it puts its own hidden textures on the same container, one per border, just above the game's
--- (same layer, one sublevel up), with the game's atlases (or Max's files, at the size and offsets
+-- (same layer, one sublevel up), with the game's atlases (or files, at the size and offsets
 -- of the game's frames they were drawn over), sized and anchored once, out of combat. From then on
 -- it only shows and hides them: Show and Hide are not protected for a texture (the client's API
 -- documentation marks them protected for a frame only), so a target change in combat is fine.
@@ -32,14 +32,14 @@ local L = ns.L
 -- its guild (or the High Council's list, or for a councillor the council's names shown or hidden
 -- on the King's screen, or whether a net-off word hides him: 1.1) changes, and only from lookups:
 -- its guild's report by name, never a walk over every guild.
--- A character or a guild the moderators took off (net-off, Moderation.lua; 1.1, Konig's review)
+-- A character or a guild the moderators took off (net-off, Moderation.lua; 1.1, review)
 -- gets no border and no nameplate mark: a Sylvanistas player to nobody's eye.
 --
 -- The author's preview (1.0.0): his character holds no Sylvanistas rank, so his own portrait shows
 -- none of the borders he ships. `/syl borders test <tier>` (a tier's name, as /syl status prints
 -- it) shows that border round his own portrait, turned round as a holder sees his own, and on his
 -- target or focus frame while that is himself; `/syl borders test off` ends it. His alone
--- (Workshop.Visible: his character, or his test build, as Asmon's and the Treasurer's views):
+-- (Workshop.Visible: his character, or his test build, as the Dark Lady's and the Treasurer's views):
 -- anyone else's command gets what /syl borders prints, and changes nothing. His screen alone:
 -- nothing is sent, nothing is saved (a /reload forgets it), nobody else's border changes. It goes
 -- through the same Refresh as a real border, so the same rules hold: none while the borders are
@@ -52,11 +52,11 @@ local L = ns.L
 local Borders = {}
 ns.Borders = Borders
 
--- Max's second option: the High Council gold, like the King. Off: the High Council is silver
+-- A second option: the High Council gold, like the King. Off: the High Council is silver
 -- (both winged).
 ns.BORDERS_COUNCIL_GOLD = false
 
--- Who gets which border, checked from the top: the first that holds is the border (Max's list,
+-- Who gets which border, checked from the top: the first that holds is the border (the list,
 -- highest first). The game's art is as Blizzard_UnitFrame/Camelot/TargetFrameUtils.lua
 -- (GetBossPortraitFrameData) gives it for a boss, a rare and an elite creature, at the offsets the
 -- game anchors each at (x, y: from the top right of the target frame's container; mirrored on your
@@ -81,19 +81,16 @@ ns.BORDERS_COUNCIL_GOLD = false
 --            whole word): rank names are what each guild master wrote, as the game shows them
 local WINGED = "UI-HUD-UnitFrame-Target-PortraitOn-Boss-Gold-Winged"
 local PLAIN = "UI-HUD-UnitFrame-Target-PortraitOn-Boss-Gold"
--- Max's bronze frames, drawn over the winged and the plain gold at twice their size: 256 x 256
--- TGAs, the art at the top left (scripts/make-borders.py makes them from media/borders/src).
-local MEDIA = "Interface\\AddOns\\Sylvanistas\\media\\borders\\"
+-- The bronze tiers: the game's gold frames without colour, tinted bronze (as the nameplates' mark).
+local BRONZE = { 158 / 255, 118 / 255, 86 / 255 }
 Borders.TIERS = {
 	{ name = "gold-elite", atlas = WINGED, x = 11, y = -4, king = true, council = "BORDERS_COUNCIL_GOLD" },
 	{ name = "silver-elite", atlas = "UI-HUD-UnitFrame-Target-PortraitOn-Boss-Rare-Silver-Winged", x = 8, y = -7,
 		council = true },
 	{ name = "gold", atlas = PLAIN, x = 0, y = 1, leader = true },
 	{ name = "silver", atlas = "ui-hud-unitframe-target-portraiton-boss-rare-silver", x = 0, y = 1, officer = true },
-	{ name = "bronze-elite", file = MEDIA .. "bronze-winged", coords = { 0, 220 / 256, 0, 180 / 256 }, width = 110, height = 90,
-		x = 11, y = -4, fallback = WINGED, ranks = { "raider" } },
-	{ name = "bronze", file = MEDIA .. "bronze-plain", coords = { 0, 200 / 256, 0, 200 / 256 }, width = 100, height = 100,
-		x = 0, y = 1, fallback = PLAIN, ranks = { "veteran", "veterano", "veterana" } },
+	{ name = "bronze-elite", atlas = WINGED, bronze = true, x = 11, y = -4, ranks = { "raider" } },
+	{ name = "bronze", atlas = PLAIN, bronze = true, x = 0, y = 1, ranks = { "veteran", "veterano", "veterana" } },
 }
 
 -- Where they go: the frame (a global of the game's), its container, and the hook that follows the
@@ -130,7 +127,7 @@ local function RankHolds(ranks, rankName)
 	return false
 end
 
--- 1.1 (Konig's review): a character the moderators took off (net-off, Moderation.lua), or one of a
+-- 1.1 (review): a character the moderators took off (net-off, Moderation.lua), or one of a
 -- guild they took off the network, shows as no Sylvanistas player on this client: no border, no
 -- nameplate mark (never the King: nobody takes him off). Our own portrait keeps ours.
 local function NetOff(who, guild)
@@ -172,7 +169,7 @@ local function Facts(unit)
 		-- not soft): the picture most senders give, and two senders naming him in it, one of them
 		-- someone else. One report never makes its own sender a Lord or a Captain: alone, against
 		-- the guild's other senders, or once their row is old. Nor does one report of anyone else's
-		-- (1.0.0, Konig's review of 1.0.0: a single character's report naming him gave a Lord's gold
+		-- (1.0.0, review of 1.0.0: a single character's report naming him gave a Lord's gold
 		-- or a Captain's silver on every screen); the Crown asks two for a guild master, and a
 		-- border asks two for a Captain as well.
 		local rank, named = ns.Data.KnownRank(who, f.guild)
@@ -208,7 +205,7 @@ end
 -- the High Council's list, our roster when his rank came from it (our own guild's, the server
 -- giving none; Roster.lua makes a new table at each scan), and for a High Councillor whether the
 -- council's names were hidden (the King's screen while he streams, ns.CouncilMasked: the eye in
--- the Realm, Asmon's view, becoming the King); and (1.1) his name, and whether a net-off word hid him.
+-- the Realm, the Dark Lady's view, becoming the King); and (1.1) his name, and whether a net-off word hid him.
 local function Inputs(f)
 	local report = f and f.report
 	local row = type(report) == "table"
@@ -336,7 +333,7 @@ end
 -- windows (1.1.2: the game's windows showed the High Council's alone): the King's crown, a High
 -- Councillor's mark and icon, silver, bronze (the gold atlas in Nameplates.BRONZE), the star; ""
 -- for none. 14 px, as the Chat tab has shown them; an atlas the client lacks: the star.
-Borders.CHAT_STAR = "|TInterface\\AddOns\\Sylvanistas\\media\\borders\\star:14:14|t"
+Borders.CHAT_STAR = "|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_1:14:14|t" -- (the game's raid-marker star)
 local CHAT_SILVER = "nameplates-icon-elite-silver"
 local CHAT_BRONZE, CHAT_BRONZE_TINT = "nameplates-icon-elite-gold", ":0:0:158:118:86" -- (Nameplates.BRONZE x 255)
 
@@ -377,6 +374,10 @@ local function Dress(tex, t, mirror)
 		tex:SetDesaturated(true)
 	else
 		tex:SetAtlas(t.atlas, true, nil, true)
+		if t.bronze then
+			tex:SetDesaturated(true)
+			tex:SetVertexColor(BRONZE[1], BRONZE[2], BRONZE[3])
+		end
 	end
 	if mirror then tex:SetTexCoord(right, left, top, bottom) end
 	return true

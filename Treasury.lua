@@ -22,7 +22,7 @@ local L = ns.L
 -- balance, the ranking, the book), and with any of them on the Treasury tab appears for every
 -- member with the addon. (The channel is readable by anyone on it: the switches choose what the
 -- addon shows, they don't hide the numbers.) The King's word carries the time he gave it; his
--- switches, like his list of keepers, count only from his client and his Stewards' (Konig's
+-- switches, like his list of keepers, count only from his client and his Stewards' (the reviewer's
 -- review of 1.0.0: the Treasurer's book could name anyone a keeper; of 1.1: it could set the
 -- switches too). The Treasurer's book still carries them, for 1.0's addons alone.
 -- 1.0's fresh start: the books of 0.9 are closed (kept in the saved variables, never shown or
@@ -232,7 +232,7 @@ end
 
 -- The King's view of the treasury: the King, his Steward (1.0.0: the switches and the keepers
 -- are his to set in the King's name, never the King's own book or his yes to share it, which
--- are the King's client's alone), and the author's Asmon's view.
+-- are the King's client's alone), and the author's Dark Lady view.
 local function IsKingView() return ns.King.IsKing() or ns.King.IsSteward() or ns.King.Preview() end
 
 -- The King's list of keepers as this client last heard it (never expires: a keeper's book must
@@ -246,7 +246,7 @@ local function Listed(name)
 	for _, n in ipairs(k and k.names or {}) do if SameChar(n, name) then return true end end
 	return false
 end
--- The names on the King's list (the author's Asmon's view: its own, on his screen only).
+-- The names on the King's list (the author's Dark Lady view: its own, on his screen only).
 function Treasury.Keepers()
 	local k
 	if ns.King.Preview() then k = ns.db and ns.db.previewTreasuryKeepers else k = KeeperStore() end
@@ -265,11 +265,11 @@ local function TreasurerPin(name)
 	return nil
 end
 Treasury.TreasurerPin = TreasurerPin
--- 1.1 (Fern's #36): a line of someone's dues: gold given to one of the Treasurer's characters, by
+-- 1.1 (request #36): a line of someone's dues: gold given to one of the Treasurer's characters, by
 -- trade or mail (the dues' ledger counts every one, Dues.lua). Its name and its time never leave
 -- his client in a book: not on the channel (TB, TR, T8), nor in the whole book whispered to the
 -- King, his Steward and the keepers (1.1): with one fixed amount a week, they would be a list of
--- who paid it, and Fern's #36 gives it to the King and that guild's Captains alone (the dues' lists).
+-- who paid it, and request #36 gives it to the King and that guild's Captains alone (the dues' lists).
 -- Here, not in Dues.lua, so that it holds even while that file is missing (a restart owed).
 local function DuesLine(keeper, e)
 	if type(e) ~= "table" or e.out or e.item or e.kind == "transfer" or (tonumber(e.money) or 0) <= 0 then return false end
@@ -327,7 +327,7 @@ Treasury.RealKeeper = RealKeeper
 function Treasury.IsKeeper() return RealKeeper() or Treasury.DevView() end
 
 -- The King's switches: what the army sees (every client keeps the King's last word). The
--- author's Asmon's view keeps its own, on his screen only: the real King's word stays as it is.
+-- author's the Dark Lady's view keeps its own, on his screen only: the real King's word stays as it is.
 local FLAGS = { "balance", "ranking", "book" }
 function Treasury.Flags()
 	local f
@@ -1047,9 +1047,9 @@ function Treasury.Totals(b)
 	return t
 end
 
--- 1.1, Konig's review (the ranking): a ranked donor's total in the Treasurer's book grew by the
+-- 1.1, review (the ranking): a ranked donor's total in the Treasurer's book grew by the
 -- dues' amount the week he paid it (one fixed amount), which told the channel who paid and so who
--- did not (Fern's #36). The ranking (all time, which Fern kept public) that leaves the Treasurer's
+-- did not (request #36). The ranking (all time, which a moderator kept public) that leaves the Treasurer's
 -- client (the channel's, the whole book whispered, 0.9's copy, his mail character's he passes on)
 -- leaves out, of each giver's gold to the Treasurer's characters, each week's up to that week's
 -- amount as the book kept it, and all he sent with the dues' note (Dues.DuesPart): what may be his
@@ -1124,7 +1124,7 @@ end
 
 -- His no withdraws his book (and his copy of the bank) from every screen: at once when he says
 -- it, then again as his book would go out (Share: after login, and every SHARE_EVERY while he
--- plays), for as long as his no stands (it is kept: ns.db.keeperShares). Konig's review of
+-- plays), for as long as his no stands (it is kept: ns.db.keeperShares). review of
 -- 1.0.0: said once, it never reached a client that was offline then, which kept showing his
 -- book (a keeper's book never runs out while he is one).
 local lastWithdraw = -math.huge
@@ -1215,7 +1215,7 @@ local function FlagsWord()
 	return type(f) == "table" and tonumber(f.at) and (FlagDigits(f) .. "@" .. math.floor(f.at)) or "-"
 end
 
--- A date as a book sends it (Konig's review of 1.0.0). The lines are dated by this PC's clock
+-- A date as a book sends it (review of 1.0.0). The lines are dated by this PC's clock
 -- (ns.Now), and every client refuses a book with a date before FIRST_DAY or more than
 -- DATE_SLACK ahead of the server's clock (ReadBook): so a date past the server's clock goes out
 -- as the server's now, and one before FIRST_DAY as FIRST_DAY. A keeper whose PC clock is wrong,
@@ -1250,20 +1250,20 @@ function Treasury.Message(b, parts)
 	local showBalance, showRanking, showBook = whole or parts.balance == true, whole or parts.ranking == true, whole or parts.book == true
 	-- The King's switches ride the Treasurer's book alone (not a book of his mail character's he
 	-- passes on), for 1.0's addons, which read them there; 1.1 reads them from nobody's book
-	-- (Konig's review of 1.1: TakeFlags). His keepers never do: they are the King's and his
-	-- Stewards' to set, from their own clients (Konig's review of 1.0.0), and the field stays "-"
+	-- (review of 1.1: TakeFlags). His keepers never do: they are the King's and his
+	-- Stewards' to set, from their own clients (review of 1.0.0), and the field stays "-"
 	-- (1.1: on the channel, the parts the book holds).
 	local mine = ns.IsTreasurer(ns.me, GetGuildInfo("player") or "") and SameChar(b.name or ns.me, ns.me)
 	local flags = mine and FlagsWord() or "-"
 	local keepers = whole and "-" or ((showBalance and "1" or "0") .. (showRanking and "1" or "0") .. (showBook and "1" or "0") .. "@1")
 	local caps = { rank = Treasury.RANK_SENT, book = Treasury.BOOK_SENT, items = Treasury.ITEMS_SENT }
-	-- (1.1, Konig's review: never what may be someone's dues in the Treasurer's ranking.)
+	-- (1.1, review: never what may be someone's dues in the Treasurer's ranking.)
 	local ranking = PublicRanking(b, t)
 	local function Build()
-		-- 1.1 (Fern's #36): the week's donors go out as a count, never by name. With the dues (one
+		-- 1.1 (request #36): the week's donors go out as a count, never by name. With the dues (one
 		-- fixed amount a week, Dues.lua) their names on the channel would be a public list of who
 		-- paid this week, and so of who did not: every client on it receives the bytes, whatever the
-		-- King's switches show. The ranking (all time, which Fern kept) stays, less what may be each
+		-- King's switches show. The ranking (all time, which a moderator kept) stays, less what may be each
 		-- giver's dues in the Treasurer's (PublicRanking); so do the book's latest lines, except the
 		-- gold given to the Treasurer's characters: each of those is someone's dues (a name and his
 		-- last payment: DuesLine), and never goes out.
@@ -1441,7 +1441,7 @@ local function Entries(s)
 	return out
 end
 
--- A book (TB) as it came, of this era, as of `t`, checked (Konig's review of 1.0.0: it was
+-- A book (TB) as it came, of this era, as of `t`, checked (review of 1.0.0: it was
 -- taken as it came, its numbers clamped and its lists cut). An honest client never sends one
 -- that fails (its dates too, whatever his PC's clock says: SentDate), so one that fails is
 -- refused whole (nil and why; our copy of that keeper's book stays):
@@ -1475,7 +1475,7 @@ local function ReadBook(text, from, t)
 	end
 	if f[11] ~= "-" and not f[11]:match("^[01][01][01]@%d+$") then return nil, "its switches" end
 	-- (The keepers' field is read from nobody's book: "-", or the shape 1.0.0 builds before
-	-- Konig's review wrote.)
+	-- review wrote.)
 	if f[12] ~= "-" and not f[12]:match("^%d+@") then return nil, "its keepers' field" end
 	local clock, now = Clock(), ns.Now()
 	local function When(s, unknown)
@@ -1572,8 +1572,8 @@ end
 
 -- A keeper's book (TB): from a keeper himself (his name, which the server sets), of this era.
 -- The King's keepers never from a book: the Treasurer's could name anyone a keeper, or take the
--- King's off, with a fresh date (Konig's review of 1.0.0); only the King and his Stewards set them
--- (T1~K). 1.1: nor his switches (Konig's review of 1.1: the same fresh date set them): the
+-- King's off, with a fresh date (review of 1.0.0); only the King and his Stewards set them
+-- (T1~K). 1.1: nor his switches (review of 1.1: the same fresh date set them): the
 -- Treasurer's copy is only answered when older than ours (TakeFlags).
 -- 1.1: on the channel, or by whisper (put together from its pieces: Treasury.HandlePrivate),
 -- whole, to the King, a Steward or a keeper.
@@ -1609,7 +1609,7 @@ ns.Comm.Handle("TB", function(...) Treasury.HandleReport(...) end)
 -- himself (his name, set by the server, in <Sylvanistas>), about his mail character alone, of this
 -- era; taken unless our copy of that book is as new (its own TB, dated when it came, always is).
 -- The book is checked as a keeper's own is (ReadBook), and its date too: DATE_SLACK ahead of the
--- server's clock at most (Konig's review of 1.0.0).
+-- server's clock at most (review of 1.0.0).
 function Treasury.HandleRelay(dist, sender, text)
 	if (dist ~= "CHANNEL" and dist ~= "WHISPER") or type(text) ~= "string" or ns.TREASURY_OFF then return end
 	local whose, at, book = text:match("^TR~([^~]+)~(%d+)~(TB~.*)$")
@@ -1670,7 +1670,7 @@ local function SharesBook(key, name)
 end
 -- shared: the treasury as it may go out (0.9's T8): a book of another character of this account
 -- only with that character's yes. public (and shared): each of this account's books ranks as it
--- leaves this client (PublicRanking: the Discord copy, the review of Konig's fixes, 1.1).
+-- leaves this client (PublicRanking: the Discord copy, the review of the fixes, 1.1).
 local function Parts(shared, public)
 	public = shared or public
 	local parts, seen = {}, {}
@@ -1787,7 +1787,7 @@ end
 
 ---------------------------------------------------------------------------
 -- 1.1: what the King's switches hide never goes on the channel (a promise made to a community
--- reviewer: "the parts Asmon hides won't be sent at all"). On the Sylvanistas channel, which anyone
+-- reviewer: "the parts the Dark Lady hides won't be sent at all"). On the Sylvanistas channel, which anyone
 -- can read, each keeper's book carries only what the army may see (Treasury.Message: the
 -- balance, the ranking, the book, each with its switch); the guild bank goes there only with the
 -- "book" switch (Bank.lua) and the early supporters only with the "ranking" one. The whole of it
@@ -1836,10 +1836,10 @@ local resetAt = {}       -- [Name-Realm] = when his "I hold nothing" was last ta
 local pieceId = 0
 local privAsm = ns.Codec.NewAssembler()
 local lastAsk = -math.huge
-local privateKinds = {}  -- [type] = { from(sender), to(), handle(dist, sender, text) }
+local privateKinds = {}  -- [type] = { from(sender), to, handle(dist, sender, text) }
 local held = false       -- a changed message was held back by PRIVATE_GAP: FlushPrivate sends it
 
--- The King's switches as he last gave them (never the author's Asmon's view): what goes on the
+-- The King's switches as he last gave them (never the author's Dark Lady view): what goes on the
 -- channel. Returns the parts, and whether all of them show (the whole book goes there then).
 function Treasury.PublicParts()
 	local f = ns.rdb and ns.rdb.treasuryFlags
@@ -2121,7 +2121,7 @@ end)
 -- Steward's: the King's newer word always wins. The King's client and his Steward's take the
 -- newest word as theirs and repeat it, and answer an older one they hear with theirs (at most
 -- once in WORD_ANSWER). The Treasurer's book carries the switches for 1.0's addons, never the
--- keepers; 1.1 takes neither from it (Konig's review of 1.1).
+-- keepers; 1.1 takes neither from it (review of 1.1).
 ---------------------------------------------------------------------------
 
 Treasury.WORD_ANSWER = 30
@@ -2155,7 +2155,7 @@ function Treasury.SendFlags(force)
 	ns.Comm.Send("CHANNEL", ("T1~T~%d~%s~%s~%d"):format(ns.King.NewId(), GetGuildInfo("player") or "", FlagDigits(f), math.floor(f.at)), "treasuryflags")
 end
 
--- The King's switch, or his Steward's in his name (the author's Asmon's view: its own switches,
+-- The King's switch, or his Steward's in his name (the author's Dark Lady view: its own switches,
 -- on his screen only).
 function Treasury.SetFlag(what, on)
 	if not IsKingView() then return ns.Print(L.THRONE_ONLY_KING) end
@@ -2193,7 +2193,7 @@ end
 -- The King's word ("101" and the time it was given), from him or his Steward: taken when newer
 -- than the one kept (a time ahead of the server's clock by King.DATE_AHEAD at most: a minute, so a
 -- modified client never keeps a word over the King's newer one for longer).
--- `relayed`: the Treasurer's copy in his book (1.0's addons read it there). Konig's review of 1.1:
+-- `relayed`: the Treasurer's copy in his book (1.0's addons read it there). review of 1.1:
 -- only the King and his Stewards set the switches, and a copy can't be told from a word the
 -- Treasurer's client made up or dated anew (no signature of the King's travels with it; taken, it
 -- was also repeated by the King's and his Stewards' clients as theirs), so it is never taken: an
@@ -2510,7 +2510,7 @@ end
 -- 0.9's book was the Treasurer's: its names go out with his own yes to 1.0's question, which
 -- says the names go to everyone on the channel, whichever of his pinned characters holds it.
 -- (1.1: his line on the first-open page asks it, and says so too: YesSendsEarly.)
--- His 0.9.3 yes is not enough (Konig's review of 1.0.0: it was given to a question that never
+-- His 0.9.3 yes is not enough (review of 1.0.0: it was given to a question that never
 -- said so; his book still goes out under it, and he is asked 1.0's question: AskConsent). His
 -- mail character's yes is to its own book, not to his.
 local function TreasurerYes()
@@ -2628,7 +2628,7 @@ end
 -- the soonest, however many ask: the answer goes to the whole channel), with the same yeses as
 -- its own sending (SendEarly). Anyone's ask holds ours (EARLY_ASK_HOLD) only when its answer
 -- reaches us too: it asks for no newer list than ours, so any list newer than it has is newer
--- than ours (Konig's review of 1.0.0: an ask as new as the holder's list, or dated ahead, is
+-- than ours (review of 1.0.0: an ask as new as the holder's list, or dated ahead, is
 -- never answered, and anyone repeating one kept every client without the list from asking).
 function Treasury.HandleEarlyAsk(dist, sender, text)
 	if dist ~= "CHANNEL" or type(text) ~= "string" then return end
@@ -2842,7 +2842,7 @@ function Treasury.HandleDonations(dist, sender, text)
 end
 ns.Comm.Handle("TD", function(...) Treasury.HandleDonations(...) end)
 
--- "Pyralis Ashandar is taking donations (in Stormwind City)": the King by the army's name for him.
+-- "Firstname Surname is taking donations (in Stormwind City)": the King by the army's name for him.
 function Treasury.DonationText(name, d)
 	local who = (ns.KingDisplaySet() and ns.IsKingCharacter(name)) and ns.KING_NAME or (ns.DisplayName(name) or "?")
 	local info = d and d.mapID and C_Map and C_Map.GetMapInfo and C_Map.GetMapInfo(d.mapID)
@@ -3478,7 +3478,7 @@ end
 
 -- For Discord, a public place: each book of this account ranked as it leaves this client, never
 -- the Treasurer's screen's whole ranking, which grows by each payer's dues every week
--- (PublicRanking; the review of Konig's fixes, 1.1). Other keepers' books as they came (the
+-- (PublicRanking; the review of the fixes, 1.1). Other keepers' books as they came (the
 -- Treasurer's already so).
 function Treasury.DiscordText()
 	local r = Treasury.Report(false, true)
@@ -3558,7 +3558,7 @@ StaticPopupDialogs["SYLVANISTAS_TREASURY_OPENING"] = {
 }
 
 ---------------------------------------------------------------------------
--- 1.1: the clipboard backup (Backup.lua, Fern's): this character's book, and on the Treasurer's
+-- 1.1: the clipboard backup (Backup.lua, a moderator's): this character's book, and on the Treasurer's
 -- characters the other pinned one's (his account keeps both), and the King's word.
 ---------------------------------------------------------------------------
 

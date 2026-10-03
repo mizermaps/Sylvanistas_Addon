@@ -1,12 +1,12 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- Net-off (1.1, Fern's requests #32 and #33): the King, his Steward, a Hand (the King's list or a
+-- Net-off (1.1, requests #32 and #33): the King, his Steward, a Hand (the King's list or a
 -- Steward's) or a High Councillor of the author's signed list gives a word, with a reason and the
 -- time, on one of two things:
 --   a character (c): every honest client hides that character on every addon surface: the chats
 --     (and their history), the pinned line (Channels.Pin), decrees, layers and hop offers, Vox Populi (questions and votes), the
---     court's queue, and (1.1, Konig's review) the King's week (entries, sheets and signups), the
+-- court's queue, and (1.1, review) the King's week (entries, sheets and signups), the
 --     Board (flags and camps), the crafters' board (listings, answers and recipe lists), and the
 --     elite borders and nameplate marks (Borders.lua). The names that character's player linked
 --     as alts (Alts.lua, confirmed on each character) are hidden with it. The rest of the guild,
@@ -22,7 +22,7 @@ local L = ns.L
 -- Its words travel with the logged API, as a chat line's do (the server keeps them, so abuse
 -- can be reported), one word per message. Every client keeps, on each name, the word from
 -- highest up (its weight: its giver's rank, the King 3, a Steward 2, a Hand or a councillor 1;
--- no word replaces one from higher up, whatever its date: Konig's review of 1.1), and among
+-- no word replaces one from higher up, whatever its date: review of 1.1), and among
 -- words of the same weight the newest (by the server's clock; on the same second the King's
 -- own, else the one taking the name off, else by its giver's name: every client keeps the same
 -- one), and takes a word only from someone who may give one now, as this client knows them (the
@@ -45,11 +45,11 @@ local L = ns.L
 -- King showed again; nor does a Steward undo the King's word. Nor does a word push one from
 -- higher up out of a full list (MakeRoom), nor hide a name through another name of its player
 -- (a linked alt, or the same name on another realm of the group) when the name's own word
--- weighs more, or as much and is newer (Hidden, Character): 1.1, Konig's review.
+-- weighs more, or as much and is newer (Hidden, Character): 1.1, review.
 -- What it is not: /syl block stays one client's and one player's, and nothing here uninvites,
 -- demotes, or writes Blizzard's ignore list. It never aims at the pinned King (his name in any
 -- case) or his guild. It knows nothing of the treasury or of payments, and no treasury code
--- calls it (tests/run.lua proves it). A modified client can ignore it.
+-- calls it (the tests proves it). A modified client can ignore it.
 
 local Moderation = {}
 ns.Moderation = Moderation
@@ -73,7 +73,7 @@ Moderation.REASON_MAX = 80        -- bytes of a reason
 Moderation.GUILDS_KNOWN = 3000    -- senders whose guild this client remembers (the hop's whispers name none)
 -- What a client whose own character or guild is off stops sending (the receivers drop it anyway):
 -- chat lines, decrees, layer announcements, hop asks, offers and answers, Vox votes; and (1.1,
--- Konig's review) its signups to the King's week (Y2), its flags and camps on the Board (G1), its
+-- review) its signups to the King's week (Y2), its flags and camps on the Board (G1), its
 -- crafter's listing, answers and recipe lists (W1, WA, WL), and the Throne's calls to the army,
 -- the week's entries among them (T1 of a kind in King.HIDDEN_CALLS: its lists still go, and so
 -- does a setter's cancel of his own entry on the week, 1.1 review). (Its
@@ -223,7 +223,7 @@ local function OwnWord(full) return Store().c[Key("c", full)] end
 
 -- Does a name's own word stand above a word found on another name of its player (the same name
 -- on another realm of the group, or a name its player linked)? It does when it weighs more, or
--- as much and is newer: then that word doesn't hide it (1.1, Konig's review: a rogue Hand's word
+-- as much and is newer: then that word doesn't hide it (1.1, review: a rogue Hand's word
 -- on the victim's alt, or on his name on the group's other realm, hid again one the King had
 -- shown again).
 local function Overrides(own, e)
@@ -381,7 +381,7 @@ end
 -- Room for one more: the oldest word putting a name back on goes; none, no room, except for the
 -- King's own word (king), for which the oldest word taking a name off that is not his own goes:
 -- a list filled by anyone never shuts the King out. Never a word that weighs more than the new
--- one (weight: 1.1, Konig's review: a rogue Hand who filled the list pushed out the King's word
+-- one (weight: 1.1, review: a rogue Hand who filled the list pushed out the King's word
 -- showing a name again, then hid that name anyway).
 local function MakeRoom(list, kind, king, weight)
 	if Count(list) < Moderation.MAX[kind] then return true end
@@ -493,7 +493,7 @@ end
 
 -- "taken", "older" (ours is newer), "same" (the same word: a repeat), "tie", "outranked" (ours
 -- comes from higher up) or "full".
--- 1.1 review (Konig): no word replaces one from higher up (Weight: the King's, then a Steward's,
+-- 1.1 review (the reviewer): no word replaces one from higher up (Weight: the King's, then a Steward's,
 -- then a Hand's or a councillor's), whatever its date, so a rogue Hand never wins an edit war with
 -- the King's undo; a word from higher up replaces a lower one whatever its date, so every client
 -- keeps the same word whatever came first. Between words of the same weight the newest wins.
@@ -896,7 +896,7 @@ end
 -- Every minute: an issuer's client repeats the words due, a few at a time; a word it held unheard
 -- waits until it has been online WARMUP (a newer word may come). The army repeats
 -- REPEATS_A_MINUTE words a minute at most, however long the list: a longer one is repeated less
--- often. Only a word its own player gave (1.1 review, Konig: never one heard, whose giver it
+-- often. Only a word its own player gave (1.1 review, the reviewer: never one heard, whose giver it
 -- names: a word passed on in the King's name went out from his client as his own, at his rank),
 -- while he may still give words, and one the others would take from this client (a word aimed
 -- at one who gives words, only from higher up).

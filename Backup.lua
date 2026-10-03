@@ -1,7 +1,7 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- 1.1: a clipboard backup (asked by Fern, a moderator on Asmon's team: "the beta has been wiping
+-- 1.1: a clipboard backup (asked by a moderator: "the beta has been wiping
 -- saved variables"). A wiped SavedVariables file loses the treasury's book with no server to
 -- restore it: one text, copied out (/syl backup) and pasted back (/syl restore), brings back this
 -- character's book of the treasury and the player's setup. Clipboard only: nothing is uploaded or
@@ -19,7 +19,7 @@ local L = ns.L
 --   word: the King's switches and keepers (his client's or a Steward's), given again as a new word;
 --   settings: the player's toggles (Backup.SETTINGS) and this character's chat windows;
 --   blocked: the players this character blocked (/syl block).
--- Never the channel key (Konig's review of 1.1: a restore took whatever key the text carried, and
+-- Never the channel key (review of 1.1: a restore took whatever key the text carried, and
 -- an officer's client then hands it to every guildmate, so "paste this to fix your settings" moved
 -- a guild to a channel the sender knows). A restore never sets one, on anyone's character, held or
 -- not: the guild's officers hand it over in game as ever (K0, K5), or /syl key. A text that carries
@@ -176,7 +176,7 @@ function Backup.Data()
 		books[#books + 1] = { name = b.name, opening = b.opening, openedAt = b.openedAt, opened = b.opened, lines = Copy(b.lines), sums = Copy(b.sums) }
 	end
 	if #books > 0 then d.books = books end
-	-- The King's word, from his client or a Steward's (never the author's Asmon's view).
+	-- The King's word, from his client or a Steward's (never the author's Dark Lady view).
 	if ns.King and ns.King.SetsLists and ns.King.SetsLists() and ns.rdb then
 		local f = ns.rdb.treasuryFlags
 		local k = ns.rdb.treasuryKeepers
@@ -218,7 +218,7 @@ local function CheckBook(b)
 			if e.item == nil or (item and count) then
 				out.lines[#out.lines + 1] = { name = e.name, money = e.money, how = e.how, t = e.t, out = e.out == true or nil, excluded = e.excluded == true or nil,
 					kind = e.kind, item = item, count = item and count or nil, returned = e.returned == true or nil,
-					noted = e.noted == true or nil } -- (sent with the dues' note: Dues.Stamp, Konig's review of 1.1)
+					noted = e.noted == true or nil } -- (sent with the dues' note: Dues.Stamp, review of 1.1)
 			end
 		end
 	end
@@ -247,7 +247,7 @@ local function CheckBook(b)
 		end
 		-- (1.1: each giver's sum a week, the dues' weeks (Dues.WeekAdd), and what may be each giver's
 		-- dues in the weeks no longer kept (Dues.DuesPart): rebuilt from the lines instead, a restored
-		-- book's ranking would send again what they left out, Konig's review of 1.1.)
+		-- book's ranking would send again what they left out, review of 1.1.)
 		if good and type(s.weeks) == "table" then
 			sums.weeks = {}
 			for wk, list in pairs(s.weeks) do
@@ -274,7 +274,7 @@ local function CheckBook(b)
 			end
 		end
 		-- (Each week's amount as the book kept it, Dues.WeekAmount: a restored book never works it out
-		-- again from a later word. Konig's review of 1.1.)
+		-- again from a later word. review of 1.1.)
 		if good and type(s.amounts) == "table" then
 			sums.amounts = {}
 			for wk, c in pairs(s.amounts) do
@@ -405,7 +405,7 @@ function Backup.Summary(d)
 			lines[#lines + 1] = L.BACKUP_WORD_NOT_KING
 		end
 	end
-	-- A key in it is never set (Konig's review of 1.1); one a newer key replaced, said so.
+	-- A key in it is never set (review of 1.1); one a newer key replaced, said so.
 	if d.key then
 		if ns.Keys and ns.Keys.IsRetired and ns.Keys.IsRetired(d.key) then lines[#lines + 1] = L.BACKUP_KEY_RETIRED
 		else lines[#lines + 1] = (ns.IsMember() and ns.Roster.IsOfficer()) and L.BACKUP_KEY or L.BACKUP_KEY_NOT_OFFICER end

@@ -55,8 +55,8 @@ Who.QUERY = 'g-"Sylvanistas"'
 -- part of the name: "Silvanist" finds Silvanistas and Silvanista, "Sylvanyst" Sylvanystas.
 -- (Each one costs a /who click: keep the list short, or empty.)
 Who.VARIANTS = { "Silvanist", "Sylvanyst" }
-Who.lastSend = 0   -- GetTime() of our last search, 0 = none yet
-Who.lastPlain = 0  -- GetTime() of the last SendPlain, 0 = none yet
+Who.lastSend = 0   -- GetTime of our last search, 0 = none yet
+Who.lastPlain = 0  -- GetTime of the last SendPlain, 0 = none yet
 
 -- The frames that open a who list on WHO_LIST_UPDATE, looked up when we search (Blizzard's
 -- group finder loads on demand). ClassicUI Forever's is its list's `driver` frame.
@@ -74,7 +74,7 @@ local WINDOWS = { "WhoFrame", "LFGWhoListFrame", "ClassicUIForeverWhoPanel" }
 -- The round of searches in progress. step: the next search, 0 = the broad one, k = level
 -- range k. shown/total: the broad answer's counts. missing: players may be left out (a
 -- capped answer not dug through yet, or a level range capped too). done: every search of
--- the round answered, the next click starts over. started: GetTime() of the broad answer.
+-- the round answered, the next click starts over. started: GetTime of the broad answer.
 local sweep
 local function NewSweep()
 	sweep = { step = 0, list = {}, byName = {}, answers = 0, shown = 0, total = 0,
@@ -418,7 +418,7 @@ function Who.GuildName(guild)
 	return guild, realm
 end
 
--- Everyone an answer of ours listed and the guild it showed ("" for none), with GetTime() (0.9.10,
+-- Everyone an answer of ours listed and the guild it showed ("" for none), with GetTime (0.9.10,
 -- Sylvanistas Link: a confirmer's "w" is a /who of the requester in exactly the guild they claim, at
 -- most 15 minutes old). [Name-Realm] = { guild, t }.
 Who.SEEN_MAX = 2000

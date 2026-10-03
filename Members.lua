@@ -1,8 +1,8 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- Our own guild's members page (1.1), in the Realm tab like the Board. Asked for by Fern, of
--- Asmongold's moderators:
+-- Our own guild's members page (1.1), in the Realm tab like the Board. Asked for by a moderator, of
+-- the Dark Lady's moderators:
 -- #38: the members offline 7, 14 or 30 days and more, with rank, class, level and last online,
 --   from our own roster (Roster.Scan: the server's word, what the game's Guild window shows every
 --   member). A player whose rank may remove members (CanGuildRemove, and only ranks below theirs,
@@ -95,7 +95,7 @@ function Members.Remove(m)
 end
 
 ---------------------------------------------------------------------------
--- Mentors (Fern's #19). Recruits: our guild's lowest rank, and whoever joined since our first
+-- Mentors (request #19). Recruits: our guild's lowest rank, and whoever joined since our first
 -- roster read this session (Classic keeps no join date). The Lord (rank 0 on his own roster)
 -- clicks a recruit who is online, then one of his Captains who is online, and says yes: one
 -- whisper to each (a whisper can't reach someone offline), both from that click, never the
@@ -389,7 +389,7 @@ function Members.Lines(q)
 end
 
 ---------------------------------------------------------------------------
--- A Lord away (1.1, Fern's #39): one chat line when a guild's Lord crosses warnDays offline
+-- A Lord away (1.1, request #39): one chat line when a guild's Lord crosses warnDays offline
 -- (/syl warndays, 3 by default), instead of a red name in a list of twenty guilds. To our own
 -- guild's officers about our Lord, from our roster (the server's word, GetGuildRosterLastOnline);
 -- to the King, his Steward and his Hands (King.CanCommand) about every guild's Lord, from the

@@ -41,7 +41,7 @@ local LOCKED_RETRY = { 60, 120, 300, 600 } -- a channel locked against us is tri
 
 local peers = {}
 local queue = {}
-local chatQueue = {}  -- chat lines (Channels.lua): { msg, done, t, channel } (channel: the one it was written for, GitHub #34)
+local chatQueue = {}  -- chat lines (Channels.lua): { msg, done, t, channel } (channel: the one it was written for, 
 local lastWasChat = false
 local asm = Codec.NewAssembler()
 local guildAsm = Codec.NewAssembler() -- pieces over GUILD (1.0.0)...
@@ -216,7 +216,7 @@ end
 --
 -- The top-level types (the first two bytes, then "~"), one module each (1.1): a type registered
 -- twice goes to the module loaded last, and the other never hears it again (the 1.1 review: the
--- loot notes and the census's route ask had one type). Pick a new one here first; tests/run.lua
+-- loot notes and the census's route ask had one type). Pick a new one here first; the tests
 -- fails on a type two files register, or one missing here.
 --   Before any handler, here: K0 K1 (the realm key), H1 (hello), R1 R2 (census reports), and
 --   C<id>:<n>:<of>: (pieces)
@@ -279,7 +279,7 @@ end
 -- (true) or was dropped (false, why): "moved" the channel changed before it left (a new realm
 -- key), "late" it waited CHAT_TTL, "failed" the game refused it, "left" we are out of a Sylvanistas
 -- guild. Each part carries the channel it was written for, and never goes out on another one
--- (GitHub #34: a line typed for one channel's audience is not sent to the next). line (1.1.1):
+-- : a line typed for one channel's audience is not sent to the next). line (1.1.1):
 -- any value the parts of one line share, for Comm.DropLine. Returns false when the lane is full,
 -- or while we are on no channel.
 function Comm.SendChat(msg, done, line)
@@ -330,7 +330,7 @@ local function SendNow(dist, msg, logged, whisperTo)
 	return false
 end
 
--- The Join screen's own addon whispers (1.1, Fern's #20, Recruit.lua): outside a Sylvanistas guild
+-- The Join screen's own addon whispers (1.1, request #20, Recruit.lua): outside a Sylvanistas guild
 -- the addon sends nothing else, and these only: J1 (which guild should I ask? to a member /who
 -- found) and J3 (my request, with the whisper the player sends himself), one per click or
 -- search, straight to that one player, never through the queue (Pump sends nothing for a
@@ -357,7 +357,7 @@ local function DropChat(why)
 	end
 end
 
--- GitHub #34: the chat parts written for another channel than the one we are on now are dropped
+-- : the chat parts written for another channel than the one we are on now are dropped
 -- ("moved"), the others keep their place. Comm.JoinChannel drops the lane when the channel
 -- changes; this second guard holds whatever path changed joinedName. The same channel given
 -- another number by the game is no move (Pump follows its number).
@@ -785,7 +785,7 @@ function Comm.JoinChannel()
 	if joinedName and joinedName ~= name then
 		-- Another channel (the realm key arrived or changed). The chat lines still waiting were
 		-- written for the old one's audience: dropped, never sent on this one, and their writer is
-		-- told (GitHub #34). Votes heard on the old one don't count here, and its reporters have
+		-- told . Votes heard on the old one don't count here, and its reporters have
 		-- not heard our census request.
 		DropChat("moved")
 		if ns.Data and ns.Data.ForgetVotes then ns.Data.ForgetVotes() end
@@ -939,7 +939,7 @@ end
 -- The realm, not ours, that the hello of this guildmate named (counted now), or nil. The channel
 -- may send a name of another realm without it (see heardOwn): matched by the short name then,
 -- unless the full name is a peer of its own. Only a realm the server stamped on the hello's
--- sender too (1.0.0, Konig's review of 1.0.0): a guildmate of our realm whose hello named another
+-- sender too (1.0.0, review of 1.0.0): a guildmate of our realm whose hello named another
 -- one, sending our guild's report on our channel, made our election cross realms, and our guild's
 -- reporter then played on another realm's channel, off our realm's census.
 local function OtherRealm(name, now)
@@ -1006,7 +1006,7 @@ end
 -- (a hello without one: "old", on no other realm by the server's stamp), or every realm's while
 -- the channel is shared (see Realms, above); never one left out by the guard below. The
 -- runner-up is drawn from the same pool.
--- The server's stamp on a peer's name counts first, whatever its hello says (1.0.0, Konig's
+-- The server's stamp on a peer's name counts first, whatever its hello says (1.0.0, the reviewer's
 -- review of 1.0.0): a guildmate the server places on PvP 2 whose hello named no realm, or one
 -- we can't read ("old"), was elected on ours, never heard on our channel, and our guild was off
 -- our realm's census while the guard left him out (GUARD_AFTER), then his next alt. A peer of
@@ -1383,7 +1383,7 @@ local function OnAddonMessage(prefix, text, dist, sender, target, zoneChannelID,
 		if not peers[sender] then ns.Log("peer %s (%s)", sender, text:sub(4)) end
 		peers[sender] = now
 		-- The realm the hello names, unless the server stamped another one than ours on its sender:
-		-- then the server's (1.0.0, Konig's review of 1.0.0: a guildmate's hello naming our realm
+		-- then the server's (1.0.0, review of 1.0.0: a guildmate's hello naming our realm
 		-- from another one was elected our realm's reporter, never heard on our channel).
 		local named, stamped = Codec.RealmField(text:match("^H1~[^~]*~([^~]+)")) or "old", ns.RealmOf(sender)
 		if named ~= "old" and stamped and stamped ~= ns.realm then named = stamped end

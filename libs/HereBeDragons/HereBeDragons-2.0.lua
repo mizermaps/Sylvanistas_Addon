@@ -638,7 +638,7 @@ end
 
 --- Get the current world position of the specified unit
 -- The position is transformed to the current continent, if applicable
--- NOTE: The same restrictions as for the UnitPosition() API apply,
+-- NOTE: The same restrictions as for the UnitPosition API apply,
 -- which means a very limited set of unit ids will actually work.
 -- @param unitId Unit Id
 -- @return x, y, instanceID

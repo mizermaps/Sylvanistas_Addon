@@ -1,7 +1,7 @@
 local ADDON, ns = ...
 
 -- Signatures (0.9.7): what the author's character publishes (the High Council list) carries an
--- RSA signature made on the author's own computer (scripts/council-sign.py). Every client
+-- RSA signature made on the author's own computer (the signing tool). Every client
 -- checks it with the public key below, so anyone may pass a signed list along and nobody can
 -- forge or change one. RSA-2048, e = 3, PKCS#1 v1.5 over SHA-256: the whole block is compared
 -- byte for byte (no lenient parsing, the known weakness of e = 3).
@@ -121,8 +121,7 @@ local function Shift(a, n) local r = {} for i = n + 1, #a do r[#r + 1] = a[i] en
 local function Low(a, n) local r = {} for i = 1, math.min(n, #a) do r[i] = a[i] end return Trim(r) end
 
 -- CHANGEME: the signing key's public half (RSA-2048, e = 3): N and the Barrett constant MU in hex, and
--- K, the limb count. Empty, as here, every signature is refused (no signed list is ever taken):
--- the Olympus author's key was here, and it must not be able to sign for Sylvanistas.
+-- K, the limb count. Empty, as here, every signature is refused (no signed list is ever taken).
 Sign.N = FromHex("") -- CHANGEME
 Sign.MU = FromHex("") -- CHANGEME
 Sign.K = 86 -- (a 2048-bit key in 24-bit limbs)
@@ -181,7 +180,7 @@ function Sign.Verify(text, sigHex)
 	return Cmp(m, FromBytes(em)) == 0
 end
 
--- Tests: fn runs with another key (hex N and mu, K limbs, as scripts/council-sign.py keeps
+-- Tests: fn runs with another key (hex N and mu, K limbs, as the signing tool keeps
 -- them), the author's comes back after, whatever fn does.
 function Sign.WithKey(nHex, muHex, k, fn)
 	local n, mu, kk = Sign.N, Sign.MU, Sign.K

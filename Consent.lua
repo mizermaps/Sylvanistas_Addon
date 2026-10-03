@@ -1,7 +1,7 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- The first-open page (1.1, Fern's #11): one page, in plain words, of what leaves this client,
+-- The first-open page (1.1, request #11): one page, in plain words, of what leaves this client,
 -- and the first question the addon asks: after login (LOGIN_WAIT, then on the minute until it
 -- could), or when the Sylvanistas window opens first, never in combat or an instance, once a session,
 -- while a line waits for its answer. The 1.0 questions (the zone and layer's, a keeper's) open
@@ -24,9 +24,9 @@ local L = ns.L
 -- The one place such a choice lives: later features that share something on their own (a group
 -- board's raised flag, a camp pin...) add their line here with Consent.Register:
 --   Consent.Register({ key = "camp", label = "L key or text", text = "L key, text or function",
---     shown = function() return true end, get = function() return true|false|nil end,
---     set = function(on) ... end, note = function() return "a line under it" or nil end,
---     pending = function() return true while it waits for an answer end })
+-- shown = function return true end, get = function return true|false|nil end,
+-- set = function(on) ... end, note = function return "a line under it" or nil end,
+-- pending = function return true while it waits for an answer end })
 -- (`get` is what goes out now, shown on the line; `pending`, when given, says whether the line
 -- still waits for the player's answer: by default, while `get` is nil.)
 
@@ -338,7 +338,7 @@ Consent.Register({
 -- still sends his book, and the line says so), and waits for his answer to 1.0's question
 -- (Treasury.ConsentAnswer), asked in 1.0's words: the Treasurer's character holding 0.9's book
 -- is told that his yes also sends the early supporters' names to everyone on the channel
--- (Treasury.YesSendsEarly), as 1.0's question tells him (Konig's review of 1.0.0).
+-- (Treasury.YesSendsEarly), as 1.0's question tells him (review of 1.0.0).
 local function TreasuryHas(fn) return ns.Treasury ~= nil and type(ns.Treasury[fn]) == "function" end
 Consent.Register({
 	key = "treasurer", label = "CONSENT_TREASURER",
@@ -373,8 +373,8 @@ Consent.Register({
 	get = function() return ns.db.addonChat end,
 	set = function(on) ns.Channels.SetChatOn(on) end,
 })
--- An officer's patrol findings to his guild's officers (Inspect.lua, Fern's #29): officers alone
--- send and keep them, so only they are asked (Konig's review of 1.1: it was on by default and
+-- An officer's patrol findings to his guild's officers (Inspect.lua, request #29): officers alone
+-- send and keep them, so only they are asked (review of 1.1: it was on by default and
 -- missing from this page).
 Consent.Register({
 	key = "patrolshare", label = "CONSENT_PATROLSHARE", text = "CONSENT_PATROLSHARE_TEXT",

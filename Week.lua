@@ -1,7 +1,7 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- The King's week (1.1, Fern's #26): the King's Agenda holds dated entries for the next 7 days
+-- The King's week (1.1, request #26): the King's Agenda holds dated entries for the next 7 days
 -- beside its one current event, and the Board shows them as a week, by day, with the player's
 -- own guild's events from the game's calendar among them: raid night, PvP night and court on one
 -- page, so nobody books the army twice. The King, his Steward and his Hands set an entry with
@@ -16,7 +16,7 @@ local L = ns.L
 -- as the minimap clock's) and says which day to pick: he creates the guild event there, with
 -- the game's own button. With the gamepad UI, or in combat, it only says how to open it.
 -- Clients before 1.1 leave the kind D out (King.HandleCommand), as any kind they don't know.
--- A setter or a signer the moderators took off (net-off, Moderation.lua; 1.1, Konig's review)
+-- A setter or a signer the moderators took off (net-off, Moderation.lua; 1.1, review)
 -- shows nowhere: every client drops their D, R and Y2 and hides what it heard of them before,
 -- and their own client sends none, but a setter taking his own entry down: that cancel still
 -- goes, and every client takes it for his own entry alone (1.1 review: it was held, and the
@@ -67,7 +67,7 @@ Week.after = function(seconds, where, fn) ns.After(seconds, where, fn) end
 
 local function Clean(s, n) return ns.Cut((tostring(s or ""):gsub("[~|%c]", " "):gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")), n) end
 
--- 1.1 (Konig's review): a name the moderators took off (net-off, Moderation.lua), in the name of
+-- 1.1 (review): a name the moderators took off (net-off, Moderation.lua), in the name of
 -- `guild` when known: its entries, sheets and signups show nowhere (King.HIDDEN_CALLS drops its D
 -- and R as they come; these are the ones heard before the word). Never our own.
 local function Off(name, guild)
@@ -325,7 +325,7 @@ local function Send(e, fresh)
 		"week" .. e.id)
 end
 
--- The King, his Steward or a Hand puts an entry on the week (Asmon's view: on his screen alone).
+-- The King, his Steward or a Hand puts an entry on the week (the Dark Lady's view: on his screen alone).
 function Week.SetEntry(input)
 	local seconds, title = Week.Parse(input)
 	if not seconds then
@@ -596,7 +596,7 @@ function Week.Section(lines, q)
 				if mayCancel and not e.agenda then
 					actions[#actions + 1] = { indent = 3, text = Grey("x " .. L.WEEK_CANCEL), onClick = function() Week.Cancel(e.id) end }
 				end
-				-- Its signup sheet (Fern's #27).
+				-- Its signup sheet (request #27).
 				Week.SheetLines(lines, e)
 				for _, a in ipairs(actions) do lines[#lines + 1] = a end
 			end
@@ -610,7 +610,7 @@ function Week.Section(lines, q)
 end
 
 ---------------------------------------------------------------------------
--- The signup sheet (1.1, Fern's #27): on any entry of the King's Agenda (its current event or
+-- The signup sheet (1.1, request #27): on any entry of the King's Agenda (its current event or
 -- one of the week's), a player clicks Sign up and picks the role he claims: Tank, Healer, DPS
 -- or Any. Nothing checks the claim (no aura, no spec, no gear), nothing invites anyone: the
 -- signup is a whisper to whoever set that entry, alone, and whoever runs the event invites by
@@ -735,7 +735,7 @@ function Week.Counts(e)
 		local c = { T = 0, H = 0, D = 0, A = 0, others = 0 }
 		local s = signups[e.id]
 		for name, v in pairs(s and s.list or {}) do
-			-- (1.1, Konig's review: never a name the moderators took off since.)
+			-- (1.1, review: never a name the moderators took off since.)
 			if Off(name, v.guild) then
 			elseif v.placed then c[v.role] = c[v.role] + 1
 			else c.others = c.others + 1 end
@@ -819,7 +819,7 @@ function Week.HandleSignup(dist, sender, text)
 	if not e or not e.mine or e.preview or e.at <= ns.Now() then return end
 	sender = ns.FullName(sender)
 	guild = ns.King.CleanGuild(guild)
-	-- 1.1 (Konig's review): a name the moderators took off (net-off, Moderation.lua) signs nothing.
+	-- 1.1 (review): a name the moderators took off (net-off, Moderation.lua) signs nothing.
 	if Off(sender, guild) then return end
 	local s = signups[e.id]
 	if not s then
@@ -857,7 +857,7 @@ ns.Comm.Handle("Y2", function(...) Week.HandleSignup(...) end)
 function Week.SendSheet(soon)
 	local K = ns.King
 	if K.Preview() or not K.CanCommand() then return false end
-	-- (1.1, Konig's review: every client drops the sheet of a setter the moderators took off, and
+	-- (1.1, review: every client drops the sheet of a setter the moderators took off, and
 	-- a long one goes in pieces, past Comm.Send's backstop.)
 	local M = ns.Moderation
 	if M.SelfOff and M.SelfOff() then return false end
@@ -966,7 +966,7 @@ end
 -- The sheets heard, as this client holds them (tests).
 function Week.Sheets() return sheets end
 
--- A nudge for what this character signed (1.1, Fern's #2): a few minutes before an entry it
+-- A nudge for what this character signed (1.1, request #2): a few minutes before an entry it
 -- signed, one chat line and the usual alert sound, on this client alone: never a raid warning,
 -- nothing sent. Once per entry (kept with the signup, across a /reload). From the signup itself
 -- (its time, title and zone) when the entry isn't heard again before it begins (1.1 review: a

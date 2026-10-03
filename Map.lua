@@ -160,7 +160,7 @@ local function ContinentOf(mapID)
 	return false
 end
 
--- { [continentMapID] = count } plus per-guild breakdown, from a Data.Summary().
+-- { [continentMapID] = count } plus per-guild breakdown, from a Data.Summary.
 function Map.ContinentTotals(s)
 	local totals, guilds = {}, {}
 	for _, z in ipairs(s.zoneList) do
@@ -269,7 +269,7 @@ Map.BADGE_SLOTS = { 45, 135, -45, -135, 0, 180, 90, -90 } -- degrees from the ri
 Map.BADGE_REACH = 0.75 -- a badge's centre this many of its radii past a circle's edge: over its rim at most
 Map.BADGE_RINGS = 3    -- rings of places around a crowded circle
 Map.BADGE_EVERY = 0.1  -- seconds between layouts while a badge is on the map
--- Laid out at most (1.0.0, Konig's review of 1.0.0: every badge tries every place round its
+-- Laid out at most (1.0.0, review of 1.0.0: every badge tries every place round its
 -- circle against every other, a few times a second, and enough decrees at once stalled the world
 -- map): the crown first, then the newest decrees (Map.Badge's `since`); the rest stay on their spot.
 Map.BADGE_MAX = 24

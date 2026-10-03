@@ -1,7 +1,7 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- The acts log (1.1, Fern's #12): what this client actually saw done, each with the sender's
+-- The acts log (1.1, request #12): what this client actually saw done, each with the sender's
 -- name as the server stamped it: decrees, the gates, pardons, the King's visibility switches
 -- (what the army sees of the treasury, the untabarded list), and the moderation acts later
 -- features write here (a character or a guild taken off the net, the shared block terms). "Who

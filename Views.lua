@@ -555,7 +555,7 @@ end
 local function NoMatch() return { text = Grey(L.SEARCH_NO_MATCH) } end
 
 ---------------------------------------------------------------------------
--- The census's marks (1.1, Fern's #30): a row its senders disagree on (Data.Dispute: its leader
+-- The census's marks (1.1, request #30): a row its senders disagree on (Data.Dispute: its leader
 -- or officers, or its size), and, fainter, one a single sender stands behind. A game texture in
 -- the row's text, so both windows and the gamepad UI show it; the tooltip says what it is.
 ---------------------------------------------------------------------------
@@ -855,7 +855,7 @@ local function GuildLink(name, right, prefix)
 	}
 end
 
--- The Census's search (1.1, Fern's #16): "recruiting" (or "free 50", L.SEARCH_RECRUITING_WORDS)
+-- The Census's search (1.1, request #16): "recruiting" (or "free 50", L.SEARCH_RECRUITING_WORDS)
 -- lists every guild with room, the gates' guild first; the least free slots it asks for, or 1.
 local function RecruitQuery(q)
 	local word, n = q:match("^(%S+)%s*(%d*)$")
@@ -1124,7 +1124,7 @@ end
 
 local boardShown = false -- the Board (Board.lua, 1.1) shown instead of the Realm tree
 -- Pages of the Realm tab (1.1): a module lists one in ns.RealmPages (Loot.lua's loot notes,
--- Crafters.lua's board): { key, Link = function() return its link line, or nil end,
+-- Crafters.lua's board): { key, Link = function return its link line, or nil end,
 -- Lines = function(q) return its lines end, tip = what its search finds (L.SEARCH_TIP_...) }.
 -- A link line under the chats' link opens it in place of the tree.
 local pageShown -- the page shown instead of the Realm tree, or nil
@@ -1175,7 +1175,7 @@ local function ChatTiers()
 end
 
 ---------------------------------------------------------------------------
--- The High Council in the Realm (0.9.9, Max's): under the King and the Treasurer, the
+-- The High Council in the Realm (0.9.9): under the King and the Treasurer, the
 -- moderators by department with their titles (Workshop.CouncilTree), for whoever may see them
 -- (ns.CouncilVisible: until launch, the councillors and the author alone).
 ---------------------------------------------------------------------------
@@ -1727,11 +1727,11 @@ local function RealmLines(s, q)
 		}
 	end
 	if #open == 0 then lines[#lines + 1] = { text = Grey(L.ALL_FULL) } end
-	-- The first RECRUIT_SHOWN, every one on a click (1.1, Fern's #16), and back.
+	-- The first RECRUIT_SHOWN, every one on a click (1.1, request #16), and back.
 	local shownOpen = Views.recruitAll and #open or math.min(Views.RECRUIT_SHOWN, #open)
 	for i = 1, shownOpen do
 		local name = open[i].name
-		-- (Its census mark too, 1.1: the gates open on its size, Fern's #30.)
+		-- (Its census mark too, 1.1: the gates open on its size, request #30.)
 		local mark, d = Views.DisputeMark(open[i].e.g)
 		lines[#lines + 1] = {
 			text = mark .. Green("<" .. name .. ">"), right = L.FREE_SLOTS:format(ns.FormatNumber(open[i].free)),
@@ -1757,7 +1757,7 @@ local function RealmLines(s, q)
 			end,
 		}
 	end
-	-- Our do-not-contact flag (1.1, Fern's #20): recruits' Join screens skip us while it is on.
+	-- Our do-not-contact flag (1.1, request #20): recruits' Join screens skip us while it is on.
 	local closed = ns.Recruit and ns.Recruit.NoContactMe and ns.Recruit.NoContactMe()
 	lines[#lines + 1] = {
 		text = Grey(closed and L.NOCONTACT_LINE_ON or L.NOCONTACT_LINE_OFF),
@@ -1939,7 +1939,7 @@ Views.RECRUIT_SHOWN = 5 -- guilds with room shown in the Realm's Recruiting, the
 Views.raceShown = Views.RACE_PAGE
 Views.INSPECT_ROWS = 200 -- inspected players listed on the Tabards page
 
--- 1.1 (Fern's #28): the gear an officer's click kept (Inspect.InspectGear), newest first, the
+-- 1.1 (request #28): the gear an officer's click kept (Inspect.InspectGear), newest first, the
 -- players whose name or guild holds `q`: a click shows or hides the items, in their slots, each
 -- with its own tooltip. Nothing added up, scored or compared. False when none shows.
 Views.GEAR_ROWS = 50
@@ -2094,7 +2094,7 @@ local function HeraldryLines(q)
 				tt:AddLine(ClassColored(p.name, p.class))
 				tt:AddLine("<" .. (p.guild or "?") .. ">" .. (p.level and ("  lvl " .. p.level) or ""), 0.25, 1, 0.25)
 				if p.note then tt:AddLine('"' .. p.note .. '"', 1, 0.5, 0.5, true) end
-				-- 1.1 (Fern's #29): another officer of our guild found it.
+				-- 1.1 (request #29): another officer of our guild found it.
 				if p.shared and p.by then tt:AddLine(L.PATROLSHARE_BY:format(p.by), 0.6, 0.8, 1, true) end
 				tt:AddLine(L.CLICK_MARK_PLAYER, 0.6, 0.6, 0.6)
 			end,
@@ -2108,7 +2108,7 @@ local function HeraldryDetail()
 	local s = ns.Inspect.Summary()
 	local c = s.counts
 	local text = ns.Inspect.IsPatrolling() and Green(L.PATROL_ON) or Grey(L.PATROL_HINT)
-	-- 1.1 (Fern's #29): how many on the list our guild's other officers found.
+	-- 1.1 (request #29): how many on the list our guild's other officers found.
 	local shared = ns.Inspect.SharedCount and ns.Inspect.SharedCount() or 0
 	if shared > 0 then text = text .. "\n" .. Grey(L.PATROLSHARE_COUNT:format(shared)) end
 	return L.INSPECT_COUNTS:format(s.total, c.GUILD, c.NONE, c.OTHER), text
@@ -2146,7 +2146,7 @@ function Views.RecruitLines()
 	-- "Showing 50 of 312 online", and which levels the next click searches.
 	WhoStatus(lines)
 	if #lines > 1 then lines[#lines].gapAfter = true end
-	-- Where to go (1.1, Fern's #20): what a member's census said (Recruit.Route), the King's gates
+	-- Where to go (1.1, request #20): what a member's census said (Recruit.Route), the King's gates
 	-- first (two answers agree on them), then the most free slots of the guilds /who found; a
 	-- click asks one of that guild's officers /who found online.
 	local route = R.Route()

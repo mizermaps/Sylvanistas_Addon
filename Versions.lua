@@ -242,7 +242,7 @@ function Versions.Check(name)
 	end
 	checks[key] = e
 	if IsAuthor() then
-		-- The author: his roll call to this player alone, answered only after their yes (Fern's #11).
+		-- The author: his roll call to this player alone, answered only after their yes (request #11).
 		e.roll = true
 		if not W().AskOne(full, Sent) then
 			if checks[key] == e then checks[key] = nil end

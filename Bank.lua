@@ -215,7 +215,7 @@ function Bank.HandleReport(dist, sender, text)
 	local kept = ns.rdb.bankReport
 	if type(kept) == "table" and (tonumber(kept.t) or 0) > r.t and not (ns.Treasury.SameChar and ns.Treasury.SameChar(kept.by, r.by)) then return end
 	-- (1.1: the snapshot it replaces, of another visit, is what "gone since" compares with: only the
-	-- same keeper's, Konig's review of 1.1. Another's stays where it was, for that keeper's next.)
+	-- same keeper's, review of 1.1. Another's stays where it was, for that keeper's next.)
 	if type(kept) == "table" and tonumber(kept.t) ~= r.t and kept.guild == r.guild and ns.Treasury.SameChar(kept.by, r.by) then
 		ns.rdb.bankReportPrev = kept
 	end
@@ -351,13 +351,13 @@ end)
 
 ---------------------------------------------------------------------------
 -- 1.1: the bank's search, what left it since the last visit, and the sister guilds' banks
--- (asked by Fern, a moderator on Asmon's team: finding one item in eight tabs is slow, and a
+-- (asked by a moderator: finding one item in eight tabs is slow, and a
 -- missing stack is either a withdrawal nobody noted or theft). Counts only: the game's bank log
 -- (who took what) is never read, and nothing in any bank is ever moved.
 ---------------------------------------------------------------------------
 
 -- The snapshot before `cur` (the same guild's, older: of an earlier visit), which "gone since"
--- compares with; nil when none. Konig's review of 1.1: of the same source alone, this client's own
+-- compares with; nil when none. review of 1.1: of the same source alone, this client's own
 -- snapshots with each other, a keeper's with his own earlier one. Another keeper's snapshot (a
 -- modified client's, or one of fewer tabs) never marks anything gone: a snapshot is its sender's
 -- word, and "gone" reads as a theft.
@@ -466,7 +466,7 @@ end
 -- Taken only from a Lord or Captain of that guild as our roster or its census confirms (the
 -- census can be gamed: a snapshot is its sender's word, shown with his name), kept in memory
 -- alone, SISTERS_MAX guilds at most. A no is taken from them too, and from whoever sent the
--- snapshot held. Konig's review of 1.1: his no reaches every viewer holding his bank, at once
+-- snapshot held. review of 1.1: his no reaches every viewer holding his bank, at once
 -- those whose addon asked within ASK_EVERY and NO_MARGIN (before a /reload of ours too: the names
 -- and times are kept in ns.db.sisterHeard that long), the others (heard before that: we were
 -- offline) at their next ask, once a session, for as long as it stands: a character whose snapshot
@@ -524,7 +524,7 @@ local function SentGuild()
 	return type(g) == "string" and g ~= "" and g or nil
 end
 -- The viewers heard asking, kept over a /reload of ours (ns.db.sisterHeard, by name: when) for as
--- long as our no goes to them at once (NO_WITHIN), older ones dropped. Konig's review of 1.1.
+-- long as our no goes to them at once (NO_WITHIN), older ones dropped. review of 1.1.
 local function KeptHeard()
 	if not ns.db then return {} end
 	local t, now = type(ns.db.sisterHeard) == "table" and ns.db.sisterHeard or {}, ns.Now()
@@ -562,7 +562,7 @@ function Bank.ShareSister()
 end
 
 -- The King, a Steward or a Hand asked (TA): our guild's bank goes to him (fresh: he holds none).
--- While our no stands, after our snapshot went out: the no, once a session (Konig's review of 1.1).
+-- While our no stands, after our snapshot went out: the no, once a session (review of 1.1).
 function Bank.HeardAsk(sender, fresh)
 	if not SisterViewer(sender) then return end
 	local name = ns.FullName(sender)
@@ -595,7 +595,7 @@ function Bank.SetSisterConsent(on)
 		return Bank.ShareSister()
 	end
 	-- His no: taken back from the screens it reached, at once from every viewer whose addon asked
-	-- within NO_WITHIN (they ask every ASK_EVERY: Konig's review of 1.1; AUDIENCE_FRESH, shorter,
+	-- within NO_WITHIN (they ask every ASK_EVERY: review of 1.1; AUDIENCE_FRESH, shorter,
 	-- missed one who asked 12 minutes before), those heard before a /reload of ours too (KeptHeard);
 	-- from the others at their next ask (HeardAsk). Whole snapshots still go only to those heard
 	-- within AUDIENCE_FRESH (ShareSister).
@@ -682,7 +682,7 @@ function Bank.Sisters()
 end
 
 ---------------------------------------------------------------------------
--- 1.1: bank requests (Fern's): a Lord or a Captain asks the treasury for an item and a count
+-- 1.1: bank requests : a Lord or a Captain asks the treasury for an item and a count
 -- ("need 10 Ironwood"), shown next to the bank snapshot. The bank view shows what the treasury
 -- holds, not what the raid is short: a request line stops five officers from buying the same
 -- stack. Handing it over stays a normal trade or mail, the player's own click: the addon moves
@@ -699,7 +699,7 @@ end
 --                                     goes with it), for everyone who sees the bank; none: not sent
 -- No text travels, only an item's number and a count; REQUEST_OPEN open per character at most, each
 -- for REQUEST_DAYS. Whom it comes from is checked as a sister guild's bank is (Bank.LordOrCaptain).
--- Paced (Konig's review of 1.1: a request taken back and made again, or a modified client's new
+-- Paced (review of 1.1: a request taken back and made again, or a modified client's new
 -- ids, had every keeper print a line, answer and put his list on the channel each time): REQUEST_NEW
 -- new requests a REQUEST_WINDOW per character (his own client says so; a keeper's takes no more from
 -- one player, and keeps REQUESTS_EACH of his at most), one answer to the same open request unchanged
@@ -715,7 +715,7 @@ Bank.REQUEST_NEW = 6        -- new requests of one character a REQUEST_WINDOW, a
 Bank.REQUEST_WINDOW = 3600
 Bank.REQUESTS_EACH = 10     -- requests of one player a keeper's client keeps (his oldest closed one goes)
 Bank.ANSWER_GAP = Bank.REQUEST_AGAIN / 2 -- an open request unchanged answered again this long after at the soonest
-                            -- (a closed one, its state told, never again: Konig's review of 1.1)
+                            -- (a closed one, its state told, never again: review of 1.1)
 Bank.PUBLIC_GAP = 60        -- a keeper's list goes on the channel this often at most
 Bank.PUBLIC_KEPT = 1800   -- a keeper's list on the channel not repeated this long is dropped
 Bank.PUBLIC_MSGS = 2      -- messages of it at most, each one of the channel's size
@@ -910,7 +910,7 @@ function Bank.HandleRequest(dist, sender, text)
 				closed = k
 			end
 		end
-		-- (Paced, Konig's review of 1.1: past REQUEST_NEW new ones in the window, nothing at all.)
+		-- (Paced, review of 1.1: past REQUEST_NEW new ones in the window, nothing at all.)
 		if open >= Bank.REQUEST_OPEN or recent >= Bank.REQUEST_NEW then return end
 		-- His REQUESTS_EACH: his oldest closed one goes. Full: the oldest closed one goes, else the oldest.
 		if mine >= Bank.REQUESTS_EACH and myClosed then
@@ -927,7 +927,7 @@ function Bank.HandleRequest(dist, sender, text)
 	e.heard = now
 	-- (A change at once. Unchanged: an open request once an ANSWER_GAP at most, half its asker's
 	-- REQUEST_AGAIN, so each honest ask is answered; a closed one, its state told, never again.
-	-- Konig's review of 1.1: paced per request id alone, a requester's REQUESTS_EACH ids asked about
+	-- review of 1.1: paced per request id alone, a requester's REQUESTS_EACH ids asked about
 	-- every minute drew as many whispers a minute from every keeper, the King and each Steward.)
 	local code = CODE[e.state] or "o"
 	if e.told ~= code or (Open(e.state) and now - (tonumber(e.toldAt) or 0) >= Bank.ANSWER_GAP) then

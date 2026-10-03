@@ -8,12 +8,12 @@ local L = ns.L
 -- census trusts them, our own guild's from the server or our roster, our faction only):
 --   the King                         the game's gold elite mark (nameplates-icon-elite-gold)
 --   High Council, Lords, Captains    the game's silver one (nameplates-icon-elite-silver)
---   Raiders and Veterans             the gold without colour, tinted the bronze of Max's frames
+-- Raiders and Veterans the gold without colour, tinted the bronze of the bronze frames
 --                                    here (no copy of the game's art is shipped)
 --   any other member of a Sylvanistas   a plain four-point star, Sylvanistas's own art
---   guild of our faction             (media/borders/star.tga, drawn by scripts/make-borders.py)
+-- guild of our faction (media/borders/star.tga, drawn by )
 -- Nobody else: hostile players, creatures, the other faction, anyone outside a Sylvanistas guild,
--- and (1.1, Konig's review) a character or a guild the moderators took off (net-off, Borders.MarkOf).
+-- and (1.1, review) a character or a guild the moderators took off (net-off, Borders.MarkOf).
 --
 -- Where (the author's choice): left of the name, not by the health bar, so it reads the same on
 -- the "names only" plates of friendly players. How, on Forever's nameplates (Blizzard_NamePlates):
@@ -69,12 +69,11 @@ local L = ns.L
 local Nameplates = {}
 ns.Nameplates = Nameplates
 
-local MEDIA = "Interface\\AddOns\\Sylvanistas\\media\\borders\\"
 local GOLD = "nameplates-icon-elite-gold"
 Nameplates.SIZE = 16 -- px, at the classification scale 1 (the game's own mark: 20 at Forever's medium size)
 Nameplates.GAP = 2   -- px between the mark and the name's first letter
--- Max's bronze: the gold without colour, tinted the mean colour of the brightest quarter of his
--- plain frame's opaque pixels (media/borders/src/bronze-plain.png: 158, 118, 86). The gold's
+-- Bronze: the gold without colour, tinted the mean colour of the brightest quarter of his
+-- plain frame's opaque pixels (158, 118, 86). The gold's
 -- highlights come out as his bright metal, and its golden middle (a gold like 255, 200, 60 is
 -- about three quarters of white without colour) near the mean of his frame's brighter half
 -- (129, 89, 65).
@@ -84,7 +83,7 @@ Nameplates.MARKS = {
 	gold = { atlas = GOLD },
 	silver = { atlas = "nameplates-icon-elite-silver" },
 	bronze = { atlas = GOLD, bronze = true },
-	member = { file = MEDIA .. "star" },
+	member = { file = "Interface\\TargetingFrame\\UI-RaidTargetingIcon_1" }, -- (the game's raid-marker star)
 }
 Nameplates.ORDER = { "gold", "silver", "bronze", "member" }
 -- The author's preview: each border tier's mark (the King's gold wings: his gold), and the star.
@@ -96,7 +95,7 @@ local byUnit = {} -- [nameplate unit] = the rig of the plate showing it
 local known = {}  -- [nameplate unit] = { guid, mark, and what it was worked out from (Borders.MarkOf) }
 local mine        -- his own name's marks (the preview): { tex = { [mark] = texture }, shown }; false: no such frame
 local hooked, waiting = false, false
-local active      -- Active() as last worked out; nil: to work out again (IsActive)
+local active      -- Active as last worked out; nil: to work out again (IsActive)
 Nameplates.stats = { computed = 0 } -- (tests, /syl status)
 
 -- Values the client hides from addons (secret values) count as none.
@@ -115,7 +114,7 @@ local function Active()
 	return ns.Borders.Enabled() == true and Nameplates.Enabled() and not ns.GamepadUI() and ns.IsMember() == true
 end
 
--- Active(), kept (the game's name updates come many times a second): worked out again after
+-- Active, kept (the game's name updates come many times a second): worked out again after
 -- anything it comes from may have changed. RefreshAll (the two switches, the preview, a login,
 -- our own guild, the end of a fight), CensusChanged (the census: the King's guild, say) and a
 -- switch of interface style forget it.

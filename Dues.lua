@@ -1,7 +1,7 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- The dues (1.1, Fern's requests #36 and #37): one fixed amount of gold a week that members
+-- The dues (1.1, requests #36 and #37): one fixed amount of gold a week that members
 -- send the Treasurer, counted from the treasury's own books (Treasury.lua) and never public.
 -- - Every line of a keeper's book is stamped with its week (from one weekly reset to the next,
 --   the client's own), and each book keeps every giver's sum per week (the last WEEKS_KEPT
@@ -12,16 +12,16 @@ local L = ns.L
 -- - The King sets one fixed amount, once (1 gold until he does): his word, or his Steward's in
 --   his name, dated like the treasury's switches (the newest wins, the King's on the same
 --   second). Their clients repeat it, and only theirs: the Treasurer's, which receives the dues,
---   never does (Konig's review of 1.1: his copy, with a date of his, set the amount and this
+-- never does (review of 1.1: his copy, with a date of his, set the amount and this
 --   week's). Never a share of anyone's gold or loot. A new amount starts at the next weekly
 --   reset: the week it is given keeps the amount it had (the word carries it), so nobody who paid
---   that week's amount falls under it afterwards (Fern's "one fixed amount").
+-- that week's amount falls under it afterwards (a moderator's "one fixed amount").
 -- - Who sees what: the King, his Steward and the Treasurer see every guild (its members in the
 --   census, how many paid this week, the gold in, the percentage) and, a click away, a guild's
 --   players; each guild's Captains (and its Lord) see their own guild alone: each member's name,
 --   last payment, gold this week, above or below the amount. The army's Treasury tab keeps the
 --   King's three switches (the balance, the ranking, the book) and nothing of this.
--- - None of it goes on the Sylvanistas channel (Fern's #36: every client on it receives the bytes,
+-- - None of it goes on the Sylvanistas channel (request #36: every client on it receives the bytes,
 --   and a switch that only hides them would make it a public list of who is short): not the
 --   week's donors, and not the book's lines of gold given to the Treasurer's characters
 --   (Treasury.DuesLine). The Treasurer's addon works the lists out from his account's books and
@@ -30,13 +30,13 @@ local L = ns.L
 --   who paid with no guild on it is never in a list: a guild's Captain asks about his own
 --   roster's members missing from it, by five letters of each name's hash, and hears back about
 --   those alone. Only the amount, which is the same for everyone, is public.
--- - Nothing here ever turns anyone off (Fern's rule, #33): no census report, chat line, decree,
+-- - Nothing here ever turns anyone off (a moderator's rule, #33): no census report, chat line, decree,
 --   channel or feature of the addon waits on paying, for a guild or a player; a guild's Captains
 --   may only remove members one click at a time, as the game's Guild window does (#34). No
 --   access switch of the moderators' (1.1) may take anything from here.
 --   T1~Y~<id>~<guild>~<copper>~<time>~<before>   the King's amount (his, or his Steward's; King.lua),
 --                                                from the reset after <time>; <before> until then
---   (FK, the Treasurer's client's copy of it, is gone: Konig's review of 1.1, Dues.TakeAmount)
+-- (FK, the Treasurer's client's copy of it, is gone: review of 1.1, Dues.TakeAmount)
 --   FQ~<week>~<Guild, or * for every guild>~<id> an ask to the Treasurer (a whisper), with the id
 --                                                of the list held whole (0: none)
 --   FS~<id>~<week>~<copper>~<i>~<n>~<Guild:paid:copper:payers;...>   his answer, every guild (whispers, the King's and his Steward's)
@@ -53,7 +53,7 @@ local L = ns.L
 --   A code: five letters of a name's hash.)
 --   (FS's and FA's <copper>: the amount his list was counted by. Never the week's amount on the
 --   page, which is the King's word as the asker's client holds it; a list whose <copper> differs
---   removes nobody, and its "paid" counts are not known there: the review of Konig's fixes, 1.1.)
+-- removes nobody, and its "paid" counts are not known there: the review of the fixes, 1.1.)
 -- Versions before 1.1 have no handler for F? messages and drop them; a Steward's T1~Y is logged
 -- there as ignored.
 
@@ -197,7 +197,7 @@ function Dues.Available()
 	if ns.TREASURY_OFF or not ns.splitNames or not ns.IsMember() then return false end
 	return ns.GroupOf(ns.realm or "") == ns.GroupOf(ns.TREASURER_REALM)
 end
--- The King, his Steward, the author's Asmon's view: the amount is theirs to set.
+-- The King, his Steward, the author's Dark Lady view: the amount is theirs to set.
 local function KingView() return ns.King.IsKing() or ns.King.IsSteward() or ns.King.Preview() end
 Dues.KingView = KingView
 -- The Treasurer himself (or the author's Treasurer's view): his books are the dues' ledger.
@@ -266,7 +266,7 @@ function Dues.SendAmount(force)
 end
 
 -- The King (or his Steward) sets it: one amount for everyone, dated, from the next weekly reset
--- (this week's stays: the word carries it). The author's Asmon's view: its own, on his screen alone.
+-- (this week's stays: the word carries it). The author's the Dark Lady's view: its own, on his screen alone.
 function Dues.SetAmount(input)
 	if not KingView() then return ns.Print(L.THRONE_ONLY_KING) end
 	local copper = ns.Treasury.ParseGold(input)
@@ -290,7 +290,7 @@ end
 
 -- His word (or his Steward's), by their own client alone: taken when newer than ours (a time
 -- ahead of the server's clock by King.DATE_AHEAD at most), the King's own on the same second.
--- (Konig's review of 1.1: the Treasurer's client repeated it, FK, and a copy can't be told from an
+-- (review of 1.1: the Treasurer's client repeated it, FK, and a copy can't be told from an
 -- amount it made up or dated anew, which set the next weeks' amount and, by its <before>, this
 -- week's: he receives the dues. No client sends or reads FK now; each keeps the last word it
 -- heard from the King or a Steward themselves.)
@@ -312,7 +312,7 @@ function Dues.TakeAmount(copper, at, sender, before)
 	before = Copper(before) or AmountIn(kept, week)
 	local was, wasBefore = type(kept) == "table" and tonumber(kept.copper) or nil, AmountIn(kept, week)
 	ns.rdb.duesAmount = { copper = copper, at = at, before = before, from = ns.FullName(sender), t = ns.Now() }
-	Dues.KeepAmounts() -- (the running week's amount as known now, into the ledger's books: Konig's review of 1.1)
+	Dues.KeepAmounts() -- (the running week's amount as known now, into the ledger's books: review of 1.1)
 	if was ~= copper or wasBefore ~= before then
 		if ns.King.IsKing() and ns.King.IsStewardName(sender) then
 			ns.Print(L.STEWARD_SET_DUES:format(ns.King.StewardLabel(sender), Coins(copper), Dues.DateLabel(week + 1)))
@@ -363,7 +363,7 @@ function Dues.Stamp(e, name, o)
 	e.wk = week
 	if e.out or e.item or e.kind == "transfer" or (tonumber(e.money) or 0) <= 0 then return end
 	local noted, claimed = Dues.ReadNote(o.note, week)
-	-- (e.noted: sent with the dues' note, his dues all of it: Dues.DuesPart, Konig's review of 1.1.)
+	-- (e.noted: sent with the dues' note, his dues all of it: Dues.DuesPart, review of 1.1.)
 	if noted then e.wk, e.noted = noted, true end
 	local guild, verified = ns.King.CleanGuild(o.guild), true
 	if not guild and ns.IsMember() and ns.Roster.RankOf(ns.FullName(ns.Normal(name))) then guild = GetGuildInfo("player") end
@@ -371,12 +371,12 @@ function Dues.Stamp(e, name, o)
 	if guild then e.guild, e.gv = guild, verified or nil end
 end
 
--- Konig's review of 1.1 (the ranking): of each giver's gold in a book, what may be his dues, each
+-- review of 1.1 (the ranking): of each giver's gold in a book, what may be his dues, each
 -- week's gold up to that week's amount (paid or not: nobody can tell which), and all of what he sent
 -- with the dues' note. The ranking that leaves the Treasurer's client leaves it out
 -- (Treasury.PublicRanking). A week dropped from the WEEKS_KEPT is folded into the book's sums first
 -- (s.duesOut, by giver), so no total grows back when it goes.
--- A week's amount (Konig's review of 1.1, again), as the book keeps it next to that week's sums
+-- A week's amount (review of 1.1, again), as the book keeps it next to that week's sums
 -- (s.amounts[week]): the amount this client knew while the week ran, raised when it hears a higher
 -- one, never lowered, and never worked out again once the week is gone (a word carries only the
 -- amount of the week it was given in, its <before>, and of the weeks after it: worked out from the
@@ -465,7 +465,7 @@ function Dues.WeekAdd(s, e, copper)
 	if copper > 0 then
 		p.n = e.name
 		if (tonumber(e.t) or 0) > p.t then p.t = tonumber(e.t) end
-		WeekAmount(s, wk) -- (its amount kept as this client knows it now: Konig's review of 1.1)
+		WeekAmount(s, wk) -- (its amount kept as this client knows it now: review of 1.1)
 	end
 	if e.guild and (e.gv or not p.gv) then p.g, p.gv = e.guild, e.gv or nil end
 	if p.c <= 0 then week[key] = nil end
@@ -499,7 +499,7 @@ local function LedgerBooks()
 	return out
 end
 -- A word taken or given (Dues.TakeAmount, SetAmount): the running week's amount as this client
--- knows it now, kept in each of the ledger's books (raised only: WeekAmount). Konig's review of 1.1.
+-- knows it now, kept in each of the ledger's books (raised only: WeekAmount). review of 1.1.
 function Dues.KeepAmounts()
 	local week = Dues.Week()
 	for _, b in ipairs(LedgerBooks()) do WeekAmount(ns.Treasury.SumsOf(b), week) end
@@ -519,7 +519,7 @@ end
 -- lower, "" for none] = { name, paid, copper, payers } } }.
 function Dues.Ledger(week)
 	week = week or Dues.Week()
-	local amount = Dues.AmountOf(week) -- (that week's own: Fern's one fixed amount)
+	local amount = Dues.AmountOf(week) -- (that week's own: a moderator's one fixed amount)
 	local players, since = {}, nil
 	for _, b in ipairs(LedgerBooks()) do
 		local opened = tonumber(b.openedAt or b.opened)
@@ -1024,7 +1024,7 @@ ns.Comm.Handle("FD", function(...) Dues.HandleCodes(...) end)
 -- whatever the guild); anyone else as the Treasurer sent it. Its amount, what above and below go
 -- by, is the week's by the King's word as this client holds it (Dues.AmountOf), never the one the
 -- Treasurer's list came with (listAmount): his client, which receives the dues, sets none of it,
--- stale or modified (the review of Konig's fixes, 1.1).
+-- stale or modified (the review of the fixes, 1.1).
 local function GuildData(guild)
 	if Dues.IsTreasurer() then
 		local led = Dues.Ledger()
@@ -1333,7 +1333,7 @@ local function TableLines(lines, q)
 	end
 	if not complete then lines[#lines + 1] = { text = Grey(L.DUES_RECEIVING:format(led.count or 0, led.n or 0)) } end
 	-- The week's amount by the King's word as this client holds it, never the Treasurer's list's
-	-- (the review of Konig's fixes, 1.1). His "paid" counts go by his list's amount: when it is
+	-- (the review of the fixes, 1.1). His "paid" counts go by his list's amount: when it is
 	-- another, they are not known here ("?"), and the page says why.
 	local amount = Dues.AmountOf(led.week)
 	local differs = led.listAmount ~= nil and led.listAmount ~= amount

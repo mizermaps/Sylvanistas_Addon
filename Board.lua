@@ -1,14 +1,14 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- The Board (1.1, Fern's): who is looking for a group, and where, from what each player chose to
+-- The Board (1.1, a moderator's): who is looking for a group, and where, from what each player chose to
 -- share. One click raises a flag (a dungeon, a raid, PvP or a layer) with a short note if the
 -- player wants one; the card shows the poster's zone only while they share it (/syl location on)
 -- and says the zone is hidden otherwise. A click on someone else's card whispers them. Nothing
 -- here invites, queues or forms a group: the whisper is the player's own, and so is any invite
 -- that follows (the game's own, from the person card or the chat). A page of the Realm tab, like
 -- the Sylvanistas chats (Views.lua); /syl lfg opens it.
--- A camp (Fern's #25) is the same message with flag C: the player drops it where they stand, it
+-- A camp (request #25) is the same message with flag C: the player drops it where they stand, it
 -- carries the zone and nothing finer, it needs their /syl location on, and it ends by itself
 -- after CAMP_LIFE. Each player holds one flag and one camp.
 --   G1~<id>~<guild>~<flag>~<level>~<class>~<every>~<age>~<zone>~<note>
@@ -26,7 +26,7 @@ local L = ns.L
 --   GQ~       a client opened the Board: flag holders answer it alone, by whisper, with their
 --             G1, so a player who just logged in sees the Board without waiting for refreshes
 -- Clients before 1.1 have no handler for G1, G0 or GQ: they leave them unread.
--- A poster the moderators took off (net-off, Moderation.lua; 1.1, Konig's review): his flags and
+-- A poster the moderators took off (net-off, Moderation.lua; 1.1, review): his flags and
 -- camps (their map badges too) leave every Board and no new one is taken, and his own client
 -- raises none and sends no G1.
 
@@ -179,7 +179,7 @@ end
 
 -- A post past its end leaves, and its id stays out like a lowered one: a refresh that still
 -- comes (a sender claiming it was raised just now) can't bring it back. A post of one the
--- moderators took off since leaves too (1.1, Konig's review), its id not held: put back on, his
+-- moderators took off since leaves too (1.1, review), its id not held: put back on, his
 -- next refresh shows it again.
 local function Prune(now)
 	for key, e in pairs(posts) do
@@ -243,7 +243,7 @@ function Board.HandlePost(dist, sender, text)
 	if not e or not ns.IsFederation(e.guild) then return end
 	sender = ns.FullName(sender)
 	if sender == ns.me or Ignored(sender) then return end
-	-- 1.1 (Konig's review): a name the moderators took off (net-off, Moderation.lua): no flag or
+	-- 1.1 (review): a name the moderators took off (net-off, Moderation.lua): no flag or
 	-- camp of his, and the ones he had leave the Board.
 	if Off(sender, e.guild) then
 		if posts[sender] or posts[Key(sender, "camp")] then
@@ -403,7 +403,7 @@ function Board.Ready()
 		ns.Print(L.CHAN_LOCKDOWN)
 		return false, "lockdown"
 	end
-	-- 1.1 (Konig's review): the moderators took this character off (net-off, Moderation.lua):
+	-- 1.1 (review): the moderators took this character off (net-off, Moderation.lua):
 	-- nobody would see it.
 	local M = ns.Moderation
 	local off = M.SelfOff and M.SelfOff()
@@ -466,7 +466,7 @@ function Board.Lower(quiet)
 	return true
 end
 
--- A camp (Fern's #25), dropped where we stand: its zone and nothing finer, only while we share
+-- A camp (request #25), dropped where we stand: its zone and nothing finer, only while we share
 -- our location (/syl location on: the zone is the point of it), one every CAMP_GAP, ending by
 -- itself after CAMP_LIFE. It takes the place of our last one.
 function Board.CampZone()
@@ -773,7 +773,7 @@ function Board.Lines(q)
 	return lines
 end
 
--- The camps (Fern's #25): ours (or where we could drop one), then every camp up, by zone.
+-- The camps (request #25): ours (or where we could drop one), then every camp up, by zone.
 function Board.CampLines(lines, q)
 	local list = Board.List("camp")
 	table.sort(list, function(a, b)

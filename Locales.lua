@@ -1085,11 +1085,11 @@ L.PIN_OUTRANKED = "%s's pin outranks yours: it stays until it ends or is taken d
 L.PIN_WAIT = "Wait %ds before pinning again."
 L.PIN_NOT_YOURS = "Only its author or a higher rank can take this pin down."
 L.HELP_PIN = "  /syl pin <text> | /syl pin off - one line pinned for 2 hours: the Dark Lady, her Ambassadors and Dark Rangers for the Forsaken, a guild master for their guild"
--- 1.1 (Konig's review): a guild master pins for his own guild alone, over guild chat.
+-- 1.1 (review): a guild master pins for his own guild alone, over guild chat.
 L.PIN_ADD_GUILD = "Pin a line for your guild..."
 L.PIN_ADD_GUILD_TIP = "One short line on top of the Sylvanistas chats and the Realm, for your guild's members, for 2 hours: a raid move, a change of plans. It goes over guild chat, where each guildmate's addon reads your rank in its own roster. No popup and no sound. A pin of the Dark Lady, her Ambassadors or Dark Rangers outranks yours. Your words go out with the logged API, like a chat line, so abuse can be reported."
 L.PIN_DONE_GUILD = "Pinned for your guild for 2 hours: %s"
--- 1.1 (Konig's review): /syl pin off with nothing pinned here (a /reload on the Forever beta forgets your pin).
+-- 1.1 (review): /syl pin off with nothing pinned here (a /reload on the Forever beta forgets your pin).
 L.PIN_DOWN_ANY = "Nothing is pinned here (a /reload on the Forever beta forgets your pin): your takedown went out all the same, so wherever a line of yours still shows, it comes down."
 -- 1.1: the commands' help and replies, once written in the code (request #6).
 L.HELP_CMD_HEAD = "v%s commands:"
@@ -1118,7 +1118,7 @@ L.BLOCKED_NOW = "Blocked %s: nothing this player sends reaches you."
 L.DEBUG_ON = "Debug log in chat: on."
 L.DEBUG_OFF = "Debug log in chat: off."
 L.CACHE_CLEARED = "Cache cleared: the guild reports and /who sightings kept here are forgotten, and the census refills from the channel."
--- 1.1 (Fern's #16): the Census's search by player, zone and free slots, and tonight's count.
+-- 1.1 (request #16): the Census's search by player, zone and free slots, and tonight's count.
 L.SEARCH_RECRUITING_WORDS = "recruiting,recruit,free,slots"
 L.SEARCH_RECRUITING_COUNT = "%d guilds"
 L.SEARCH_ZONE_TIP = "Forsaken in this zone, counted by the guilds whose reporter shares their zone (/syl location on), and how the count moved tonight on this client. A guild whose reporter keeps it private is in no zone."
@@ -1129,7 +1129,7 @@ L.EVENING_TIP = "Your addon reads the census it holds once a minute, from %s on 
 L.EVENING_SINCE = "since %s"
 L.RECRUIT_SHOW_ALL = "Show all %d guilds with room"
 L.RECRUIT_SHOW_FEWER = "Show fewer"
--- 1.1 (Fern's #30): the census's mark on a disputed or unconfirmed row.
+-- 1.1 (request #30): the census's mark on a disputed or unconfirmed row.
 L.DISPUTE_TITLE = "Disputed: its senders disagree"
 L.DISPUTE_SINGLE_TITLE = "Unconfirmed: one sender"
 L.DISPUTE_SPLIT = "Its senders are split on who its Veteran or Dreadguards are."
@@ -1138,7 +1138,7 @@ L.DISPUTE_SIZES = "Its senders give different sizes: %s (%s) and %s (%s)."
 L.DISPUTE_SINGLE = "Only %s reports it: nobody else confirms these numbers."
 L.DISPUTE_TIP = "Check before acting on this row (a gathering, the portal): a marked row can still be right, and a guild with one addon user has one sender. The mark changes nothing that counts."
 L.GATES_CONFIRM_MARKED = "Open the portal to <%s>? Its census row is marked: %s For 2 hours the Forsaken send new recruits there."
--- 1.1 (Fern's #38): our guild's members offline 7, 14 or 30 days and more, one removal per click.
+-- 1.1 (request #38): our guild's members offline 7, 14 or 30 days and more, one removal per click.
 L.MEMBERS_TITLE = "Your guild's members"
 L.MEMBERS_OPEN = "(click: who)"
 L.MEMBERS_OPEN_TIP = "Lists your guild's members offline 7, 14 or 30 days and more, with rank, class, level and last online, from your own roster. A rank that may remove members removes one person per click, after a question. Nothing is sent."
@@ -1162,7 +1162,7 @@ L.MEMBERS_REMOVE_WAIT = "One removal at a time: wait a moment before the next."
 L.MEMBERS_REMOVED_LINE = "%s was removed from the guild."
 L.HELP_INACTIVE = "  /syl inactive [7|14|30] - your guild's members offline that long, by name (a rank that may remove members removes one per click)"
 L.SEARCH_TIP_MEMBERS = "A name, a rank or a class, any case: only the members that match show."
--- 1.1 (Fern's #39): one line when a Lord crosses warnDays offline.
+-- 1.1 (request #39): one line when a Lord crosses warnDays offline.
 L.LORD_AWAY_OWN = "Your Veteran %s has been offline %d days (your warning is at %d days). Sylvanistas changes nothing: your officers and the Banshee Court decide."
 L.LORD_AWAY_CROWN = "Veteran %s of <%s> has been offline %d days, by the census's word."
 L.LORD_AWAY_ENTRY = "%s <%s> %dd"
@@ -1171,7 +1171,7 @@ L.LORD_AWAY_MORE = "And %d more: their names are red in the Realm."
 L.WARNDAYS_USAGE = "Usage: /syl warndays <1-60>. Now: %d days."
 L.WARNDAYS_SET = "A Veteran or Dreadguard now counts as away after %d days offline (red in the Realm, and one line when a Veteran crosses it)."
 L.HELP_WARNDAYS = "  /syl warndays <days> - when a Veteran or Dreadguard counts as away (red name, and one line when a Veteran crosses it)"
--- 1.1 (Fern's #19): the Lord names a Captain as a recruit's mentor; each gets one whisper from him.
+-- 1.1 (request #19): the Lord names a Captain as a recruit's mentor; each gets one whisper from him.
 L.MENTOR_FILTER = "Recruits and their mentors"
 L.MENTOR_HINT = "Click a recruit who is online, then one of your Dreadguards: each gets one whisper from you, naming the other. Recruits: your guild's lowest rank, and whoever joined since you logged in."
 L.MENTOR_PICK = "Pick a Dreadguard to mentor %s"
@@ -1192,7 +1192,7 @@ L.MENTOR_WAIT = "Wait a moment before the next pair."
 L.MENTOR_TIP = "Click: pick one of your Dreadguards as their mentor."
 L.MENTOR_CAPTAIN_TIP = "Click: make them the mentor of %s (you are asked first)."
 L.HELP_MENTORS = "  /syl recruits - Veterans: your recruits, and a Dreadguard as each one's mentor (one whisper to each, from your click)"
--- 1.1 (Fern's #20): the Join screen's routing, do not contact, and an officer's yes or no.
+-- 1.1 (request #20): the Join screen's routing, do not contact, and an officer's yes or no.
 L.RECRUIT_ROUTE_TITLE = "Where to go"
 L.RECRUIT_ROUTE_TIP = "What %s's census says: the guild the Dark Lady opened the portal to first (once two members say so), then the guilds with the most free slots that /who found online. A click asks one of that guild's Veterans or Dreadguards /who found, who can say yes or no."
 L.RECRUIT_GATES = "the Dark Lady's portal is open"
@@ -1221,7 +1221,7 @@ L.JOIN_POINT_TEXT = "Thanks! I can't invite, but %s can: whisper them."
 L.JOIN_DISMISS = "Dismiss"
 L.JOIN_MORE = "... and %d more"
 L.JOIN_INVITED = "%s was invited to <%s>."
--- 1.1: the Board (Board.lua, Fern's): who is looking for a group, and where.
+-- 1.1: the Board (Board.lua, a moderator's): who is looking for a group, and where.
 L.BOARD_FLAG_D = "Dungeon"
 L.BOARD_FLAG_R = "Raid"
 L.BOARD_FLAG_P = "PvP"
@@ -1259,7 +1259,7 @@ L.BOARD_HOURLY = "%d flags an hour at most: lower yours only when you are done."
 L.BOARD_FULL = "The Board is full right now: try again in a few minutes."
 L.HELP_BOARD = "  /syl lfg [dungeon | raid | pvp | layer [note] | off] - the Board: who is looking for a group; raise or lower your flag"
 L.SEARCH_TIP_BOARD = "A flag, a name, a guild, a zone or words of a note, any case: only the cards that hold it show."
--- 1.1: camps on the Board (Board.lua, Fern's #25).
+-- 1.1: camps on the Board (Board.lua, request #25).
 L.BOARD_FLAG_C = "Camp"
 L.BOARD_CAMPS = "Camps up (%d)"
 L.BOARD_CAMPS_TIP = "Fires where people cook, craft and rest, dropped by the players who lit them. Before you plant another, see whether one is already up in your zone: whisper whoever dropped it. A camp shows its zone and nothing finer, and ends by itself after 30 minutes."
@@ -1286,7 +1286,7 @@ L.BOARD_CAMPS_MAP_ON = "Camps show on the world map (/syl camps off hides them; 
 L.BOARD_CAMPS_MAP_OFF = "Camps are hidden on the world map (/syl camps on shows them; the Board keeps them)."
 L.MAPOPT_CAMPS = "Camps"
 L.HELP_CAMP = "  /syl camp [note] | off - drop a camp in your zone (it needs /syl location on) or take yours down; /syl camps on | off - camps on the world map"
--- 1.1: the King's week (Week.lua, Fern's #26).
+-- 1.1: the King's week (Week.lua, request #26).
 L.WEEK_TITLE = "The Dark Lady's week"
 L.WEEK_TIP = "The Dark Lady's Agenda for the next 7 days, by day, at the realm's hour, with your own guild's events from the game's calendar (green) among them: raid night, PvP night and audiences on one page, so nobody books the Forsaken twice. The Dark Lady, her Ambassador and her Dark Rangers add an entry with the Agenda button: a day and an hour, then what (Sat 20:00 Raid night)."
 L.WEEK_TODAY = "Today"
@@ -1316,7 +1316,7 @@ L.WEEK_CAL_OPENED = "The game's calendar is open: right-click %s and create a gu
 L.WEEK_CAL_HINT = "Open the game's calendar (the minimap clock, /calendar, or the gamepad menu's Calendar), right-click %s and create a guild event for \"%s\" with its own button."
 L.WEEK_LINK = "%d this week"
 L.HELP_WEEK = "  /syl week - the Dark Lady's week on the Board (the Dark Lady and her Dark Rangers add entries with the Agenda button: Sat 20:00 Raid night)"
--- 1.1: the signup sheet on the King's Agenda (Week.lua, Fern's #27).
+-- 1.1: the signup sheet on the King's Agenda (Week.lua, request #27).
 L.SIGN_ROLE_T = "Tank"
 L.SIGN_ROLE_H = "Healer"
 L.SIGN_ROLE_D = "DPS"
@@ -1333,7 +1333,7 @@ L.SIGN_WITHDRAWN = "Your signup for %s is withdrawn."
 L.SIGN_NOT_NOW = "Whoever set that entry isn't online with the addon right now: sign up when their counts show again."
 L.SIGN_WHO = "Who signed (%d)"
 L.SIGN_UNCONFIRMED = "(the census can't place this one: not counted)"
--- 1.1: the nudge for what this character signed (Week.lua, Fern's #2).
+-- 1.1: the nudge for what this character signed (Week.lua, request #2).
 L.SIGN_SOON = "You signed up as %s: %s in %d min%s."
 -- 1.1 (b2-moderation): net-off of a character (Moderation.lua).
 L.HELP_NETOFF = "  /syl netoff [guild] [name: reason] | /syl neton [guild] <name> - the Dark Lady, her Ambassador, a Dark Ranger or a Dreadguard: hide a character on every Sylvanistas surface for all the Forsaken, or take a guild off the Sylvanistas network; neton puts it back (/syl netoff alone lists them)"
@@ -1410,7 +1410,7 @@ L.KEY_MOVE_CONFIRM = "Move to the new key now? Your guild follows you. Veterans 
 L.KEY_ROTATION_MOVED = "You and your guild are on the new Forsaken key: the old channel is left behind."
 L.KEY_ROTATED_AGO = "Rotated %s: %d Veterans and Dreadguards have it (%d guilds)"
 L.KEY_ROTATED_TAKEN = "The Forsaken's channel key changed (the Dark Lady's new key, or your officers'): joining the new channel."
--- 1.1: the dues (Dues.lua, Fern's #36 and #37): one fixed amount a week to the Treasurer, never public.
+-- 1.1: the dues (Dues.lua, request #36 and #37): one fixed amount a week to the Treasurer, never public.
 L.DUES_TITLE = "Dues, week of %s"
 L.DUES_A_WEEK = "%s a week"
 L.DUES_LINK = "This week's dues (%s a week)"
@@ -1446,7 +1446,7 @@ L.DUES_AS_OF = "The Treasurer's list, %s."
 L.DUES_SINCE = "His book counts from %s: payments before that are not in it."
 L.DUES_CUT = "The list was too long to send whole: members not on it show as not known."
 L.DUES_DAYS_AGO = "%dd ago"
--- 1.1: the payer's own click that fills in his mail or trade (Fern's #35).
+-- 1.1: the payer's own click that fills in his mail or trade (request #35).
 L.DUES_SEND = "Send this week's dues: %s"
 L.DUES_SEND_TIP = "One click fills in a mail to %s, the Treasurer's mail character (or your trade, if you are trading with the Treasurer): %s, and the note \"%s\". You still press Send or Trade yourself, and closing the window sends nothing: Sylvanistas never moves gold."
 L.DUES_SEND_HOW = "Open your mailbox on its Send Mail tab, or a trade with the Treasurer, then click again: the addon fills in %s, %s and the note, and you press Send or Trade."
@@ -1458,7 +1458,7 @@ L.DUES_SEND_TRADE_TYPE = "Type %s in your trade with %s yourself, then press Tra
 L.DUES_SEND_TRADE_BLOCKED = "The game did not let Sylvanistas fill in your trade's gold: from now on the button tells you the amount to type."
 L.DUES_SEND_NOT_ENOUGH = "You carry less than %s: nothing filled in."
 L.DUES_SEND_GAMEPAD = "With the gamepad interface the addon fills in nothing (the game's windows are its own there): send %s to %s with the note \"%s\", or trade it to the Treasurer."
--- 1.1: your guild's roster filtered to who is under the amount, and one removal per click (Fern's #34).
+-- 1.1: your guild's roster filtered to who is under the amount, and one removal per click (request #34).
 L.DUES_FILTER_UNPAID = "Show only who is under the dues this week (%d)"
 L.DUES_FILTER_ALL = "Show every member (%d)"
 L.DUES_FILTER_TIP = "Your roster against the Treasurer's list: only the members under the amount this week (never those the list can't tell yet). A mail the Treasurer hasn't taken yet is not counted. Click a name to pick it."
@@ -1484,14 +1484,14 @@ L.DUES_CODES_WAIT = "Some paid this week with no guild on their payment: the Tre
 L.DUES_BUSY = "The Treasurer's addon is busy answering others: this page asks again in a few minutes."
 L.DUES_REMOVE_WAIT = "Removing needs the Treasurer's list of the last 10 minutes: this page asks for a newer one while it stays open."
 L.DUES_REMOVE_STALE = "The Treasurer's list is more than 10 minutes old: asked again, nothing done to %s. Try once the newer list is here."
--- 1.1 (the review of Konig's fixes): above and below by the King's amount as this addon holds it,
+-- 1.1 (the review of the fixes): above and below by the King's amount as this addon holds it,
 -- never by the one the Treasurer's list came with; a list that differs removes nobody.
 L.DUES_AMOUNT_DIFFERS = "The Treasurer's list came counted by %s a week, but the Dark Lady's word your addon holds says %s this week: above and below go by the Dark Lady's, nobody is removed by this list, and the page asks for a newer one while it stays open."
 L.DUES_TABLE_DIFFERS = "The Treasurer's list came counted by %s a week, but the Dark Lady's word your addon holds says %s this week: who paid that is not known here (?) until a list by the Dark Lady's amount comes; the page asks for a newer one while it stays open."
 L.DUES_REMOVE_AMOUNT_WAIT = "Removing needs the Treasurer's list counted by the Dark Lady's amount for this week: this page asks for a newer one while it stays open."
 L.DUES_REMOVE_AMOUNT = "The Treasurer's list came counted by %s, not the Dark Lady's %s for this week: asked again, nothing done to %s. Try once a list by the Dark Lady's amount is here."
 
--- 1.1 (Fern's #28): the gear an officer's click keeps (Inspect.InspectGear).
+-- 1.1 (request #28): the gear an officer's click keeps (Inspect.InspectGear).
 L.GEAR_BTN = "Inspect gear"
 L.GEAR_BTN_TIP = "Officers: inspects the player you target (in range, about 28 yards) once, paced like every inspection, and keeps what they wear in your saved variables: the Tabards tab lists it under Gear seen, for a raid signup days later without pulling them again. Nothing is scored or sent. Also /syl gear."
 L.GEAR_OFFICERS_ONLY = "Only officers keep other players' gear: the guild master and the officer rank right below."
@@ -1504,7 +1504,7 @@ L.GEAR_TITLE = "Gear seen (your officer inspections)"
 L.GEAR_ITEMS = "%d items"
 L.GEAR_ROW_TIP = "What %s wore when you inspected them (%s). Your own record: nothing is scored, compared or sent. Click to show or hide it."
 L.HELP_GEAR = "  /syl gear - officers: inspect your target's gear (in range) and keep it"
--- 1.1 (Fern's #29): officers share their patrols' findings inside their guild (Inspect.lua).
+-- 1.1 (request #29): officers share their patrols' findings inside their guild (Inspect.lua).
 L.PATROLSHARE_ON = "Patrol share on: what your inspections find (a player without the colors or with another tabard, or wearing ours again) goes to your guild's officers, and theirs comes to you, on the Tabards tab. Nothing is inspected more or sooner for it. /syl patrolshare off stops it."
 L.PATROLSHARE_ON_NOT_OFFICER = "Patrol share on, but only officers (the guild master and the officer rank right below) send and keep it: nothing is shared from this character."
 L.PATROLSHARE_OFF = "Patrol share off: your findings stay yours, and your officers' are not taken. /syl patrolshare on (or the Sylvanistas page: /syl privacy) shares them."
@@ -1525,7 +1525,7 @@ L.APPROVED_MINE = "<%s> is one of them: a Sylvanistas guild."
 L.APPROVED_NOT_MINE = "<%s> is not on it. If it belongs to Sylvanistas, ask the author or a Dreadguard for the signed list and paste it: /syl approved paste."
 L.HELP_APPROVED = "  /syl approved [paste] - the guilds the author's signed list makes Sylvanistas guilds; paste that list"
 L.APPROVED_JOIN_HINT = "Is <%s> one of Sylvanistas guilds whose name doesn't say Sylvanistas? Click to paste the author's signed list (/syl approved paste)."
--- 1.1 (Fern's #22): the guild's loot notes and points (Loot.lua).
+-- 1.1 (request #22): the guild's loot notes and points (Loot.lua).
 L.LOOT_LINK = "Loot notes of <%s>"
 L.LOOT_LINK_TIP = "Your guild's book of loot decisions, written by its officers: which item went to whom and why, so the next raid starts from last week's decision. Points too, if your guild uses them: numbers the officers set by hand. No bids, no rolls, no gold: nothing is handed out here."
 L.LOOT_TITLE = "Loot notes of <%s>"
@@ -1562,7 +1562,7 @@ L.LOOT_VIA = "%s via %s" -- (a note's writer, and the officer who passed it on)
 L.LOOT_VIA_TIP = "Passed on by %s. A change from before your session comes on the word of the officer who passes it on: nothing proves who made it."
 L.SEARCH_TIP_LOOT = "An item, a name or words of a note, any case: only the notes and points that hold it show."
 L.HELP_LOOT = "  /syl loot - your guild's loot notes and points (officers write them)"
--- 1.1 (Fern's #24): the crafters' board (Crafters.lua).
+-- 1.1 (request #24): the crafters' board (Crafters.lua).
 L.CRAFTER_LIST_ASK = "List your %s on the Sylvanistas crafter board? Your name, guild, this profession and its skill go to every Sylvanistas player of your realm and faction; your addon answers who can make an item from the recipes you know (their ids, by whisper to the one who asked). Others whisper you: you craft nothing for anyone unless you choose to."
 L.CRAFTER_LIST_YES = "List me"
 L.CRAFTER_LIST_NO = "Not now"
@@ -1711,7 +1711,7 @@ L.KEY_PICK_HINT = "Pick who gets it. Guilds your /who saw are checked; a census 
 L.KEY_GUILD_SEEN = "seen with /who"
 L.KEY_GUILD_CENSUS = "census only"
 L.KEY_GUILD_TIP = "Its Veterans and Dreadguards online whom your /who saw in it (they get the key): %s. Click: it gets the key, or not; checked, your /who looks in it."
--- 1.1 (Konig's review of the rotation): only the Lords and Captains the rotating client's own /who saw in
+-- 1.1 (review of the rotation): only the Lords and Captains the rotating client's own /who saw in
 -- their guild are whispered; the census alone names the others.
 L.KEY_GUILD_WAIT_TIP = "Named by the census alone, not seen in it by your /who: %s. No key for them until it sees them there (a census row is anyone's word)."
 L.KEY_GUILD_WAITING = "%d not seen by your /who"
@@ -2790,11 +2790,11 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.PIN_WAIT = "Espere %ds para fixar de novo."
 	L.PIN_NOT_YOURS = "Só o autor ou alguém de posto mais alto pode tirar essa fixação."
 	L.HELP_PIN = "  /syl pin <texto> | /syl pin off - uma linha fixada por 2 horas: a Dama Sombria, os Embaixadores e os Patrulheiros Sombrios dela para os Renegados, um guild master para a guilda dela"
-	-- 1.1 (revisão do Konig): um guild master fixa só para a própria guilda, pelo chat da guilda.
+	-- 1.1 (revisão): um guild master fixa só para a própria guilda, pelo chat da guilda.
 	L.PIN_ADD_GUILD = "Fixar uma linha para a sua guilda..."
 	L.PIN_ADD_GUILD_TIP = "Uma linha curta no topo dos chats de Sylvanistas e do Reino, para os membros da sua guilda, por 2 horas: uma mudança de raid, uma mudança de planos. Ela vai pelo chat da guilda, onde o addon de cada colega lê o seu posto no próprio roster. Sem popup e sem som. A fixação da Dama Sombria, dos Embaixadores ou dos Patrulheiros Sombrios dela passa na frente da sua. As suas palavras vão pela API registrada, como uma linha de chat, então abusos podem ser denunciados."
 	L.PIN_DONE_GUILD = "Fixado para a sua guilda por 2 horas: %s"
-	-- 1.1 (revisão do Konig): /syl pin off sem nada fixado aqui (um /reload no beta do Forever esquece a sua fixação).
+	-- 1.1 (revisão): /syl pin off sem nada fixado aqui (um /reload no beta do Forever esquece a sua fixação).
 	L.PIN_DOWN_ANY = "Nada está fixado aqui (um /reload no beta do Forever esquece a sua fixação): o seu pedido para tirar saiu mesmo assim, então onde uma linha sua ainda aparecer, ela sai."
 	-- 1.1: a ajuda dos comandos e as respostas deles, antes escritas no código (pedido #6).
 	L.HELP_CMD_HEAD = "comandos da v%s:"
@@ -2996,7 +2996,7 @@ function ns.LocaleReport()
 end
 
 ---------------------------------------------------------------------------
--- 1.1 (Fern's #11): the first-open page of what this addon shares (Consent.lua), the Sylvanistas
+-- 1.1 (request #11): the first-open page of what this addon shares (Consent.lua), the Sylvanistas
 -- chats on or off, and the switches that stay off until answered.
 ---------------------------------------------------------------------------
 L.CONSENT_TITLE = "Sylvanistas: what this addon shares"
@@ -3071,7 +3071,7 @@ if GetLocale and GetLocale() == "ptBR" then
 end
 
 ---------------------------------------------------------------------------
--- 1.1 (Fern's #12): the log of the acts this client saw (Chronicle.lua).
+-- 1.1 (request #12): the log of the acts this client saw (Chronicle.lua).
 ---------------------------------------------------------------------------
 L.ACTS_TITLE = "What this client saw"
 L.ACTS_NOTE = "Kept on this computer only, never sent: the acts this client saw while online, each with the sender's name as the server stamped it. A record, not proof: anyone can edit their own saved files."
@@ -3129,7 +3129,7 @@ if GetLocale and GetLocale() == "ptBR" then
 end
 
 ---------------------------------------------------------------------------
--- 1.1 (Fern's #31): block terms on addon text (Filter.lua).
+-- 1.1 (request #31): block terms on addon text (Filter.lua).
 ---------------------------------------------------------------------------
 L.FILTER_ADDED = "Your filter hides lines with \"%s\" in the Sylvanistas chats, the Dark Lady's edicts, screams and Voice of the Forsaken, on your screen. It never touches names, guilds, the census, the treasury or the game's own chat."
 L.FILTER_REMOVED = "\"%s\" is off your filter."
@@ -3192,7 +3192,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.FILTER_VOX_HIDDEN = "Uma pergunta da Voz dos Renegados que o seu filtro esconde (clique para mostrar e votar)"
 	L.ACTS_TERMS = "os termos bloqueados compartilhados: %d incluídos, %d tirados"
 	L.HELP_FILTER = "  /syl filter add|remove <palavra> · shared on|off - esconder linhas de texto do addon com uma palavra (chats Sylvanistas, éditos, gritos, Voz)"
-	-- 1.1: o Mural (Board.lua, do Fern): quem procura grupo, e onde.
+	-- 1.1: o Mural (Board.lua): quem procura grupo, e onde.
 	L.BOARD_FLAG_D = "Masmorra"
 	L.BOARD_FLAG_R = "Raide"
 	L.BOARD_FLAG_P = "JxJ"
@@ -3230,7 +3230,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.BOARD_FULL = "O Mural está cheio agora: tente de novo em alguns minutos."
 	L.HELP_BOARD = "  /syl lfg [dungeon | raid | pvp | layer [recado] | off] - o Mural: quem procura grupo; levantar ou baixar sua bandeira"
 	L.SEARCH_TIP_BOARD = "Uma bandeira, um nome, uma guilda, uma zona ou palavras de um recado, maiúsculas ou não: só os cartões que têm o texto aparecem."
-	-- 1.1: acampamentos no Mural (Board.lua, do Fern).
+	-- 1.1: acampamentos no Mural (Board.lua).
 	L.BOARD_FLAG_C = "Acampamento"
 	L.BOARD_CAMPS = "Acampamentos de pé (%d)"
 	L.BOARD_CAMPS_TIP = "Fogueiras onde o pessoal cozinha, cria itens e descansa, deixadas por quem as acendeu. Antes de plantar outra, veja se já tem uma na sua zona: sussurre para quem a deixou. Um acampamento mostra a zona e nada mais preciso, e acaba sozinho depois de 30 minutos."
@@ -3257,7 +3257,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.BOARD_CAMPS_MAP_OFF = "Os acampamentos estão escondidos no mapa-múndi (/syl camps on mostra; o Mural continua com eles)."
 	L.MAPOPT_CAMPS = "Acampamentos"
 	L.HELP_CAMP = "  /syl camp [recado] | off - deixar um acampamento na sua zona (precisa de /syl location on) ou desfazer o seu; /syl camps on | off - acampamentos no mapa-múndi"
-	-- 1.1: a semana do Rei (Week.lua, do Fern).
+	-- 1.1: a semana do Rei (Week.lua).
 	L.WEEK_TITLE = "A semana da Dama Sombria"
 	L.WEEK_TIP = "A Agenda da Dama Sombria dos próximos 7 dias, por dia, na hora do reino, com os eventos da sua guilda no calendário do jogo (em verde) no meio: noite de raide, noite de JxJ e audiência numa página só, para ninguém marcar os Renegados duas vezes. A Dama Sombria, o Embaixador e os Patrulheiros Sombrios dela põem uma entrada com o botão Agenda: um dia e uma hora, depois o quê (sáb 20:00 Noite de raide)."
 	L.WEEK_TODAY = "Hoje"
@@ -3287,7 +3287,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.WEEK_CAL_HINT = "Abra o calendário do jogo (o relógio do minimapa, /calendar, ou Calendário no menu do controle), clique com o botão direito em %s e crie um evento de guilda para \"%s\" com o botão dele."
 	L.WEEK_LINK = "%d esta semana"
 	L.HELP_WEEK = "  /syl week - a semana da Dama Sombria no Mural (a Dama Sombria e os Patrulheiros Sombrios dela põem entradas com o botão Agenda: sáb 20:00 Noite de raide)"
-	-- 1.1: a lista de inscrição na Agenda do Rei (Week.lua, do Fern).
+	-- 1.1: a lista de inscrição na Agenda do Rei (Week.lua).
 	L.SIGN_ROLE_T = "Tanque"
 	L.SIGN_ROLE_H = "Curador"
 	L.SIGN_ROLE_D = "DPS"
@@ -3304,7 +3304,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.SIGN_NOT_NOW = "Quem marcou essa entrada não está online com o addon agora: inscreva-se quando as contagens dele aparecerem de novo."
 	L.SIGN_WHO = "Quem se inscreveu (%d)"
 	L.SIGN_UNCONFIRMED = "(o censo não consegue situar este: não conta)"
-	-- 1.1: o lembrete do que este personagem assinou (Week.lua, do Fern).
+	-- 1.1: o lembrete do que este personagem assinou (Week.lua).
 	L.SIGN_SOON = "Você se inscreveu como %s: %s em %d min%s."
 	-- 1.1 (b2-moderation): net-off de um personagem (Moderation.lua).
 	L.HELP_NETOFF = "  /syl netoff [guild] [nome: motivo] | /syl neton [guild] <nome> - a Dama Sombria, o Embaixador dela, um Patrulheiro Sombrio ou um Dreadguard: esconde um personagem em tudo do Sylvanistas para todos os Renegados, ou tira uma guilda da rede do Sylvanistas; neton devolve (/syl netoff sozinho lista)"
@@ -3378,7 +3378,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.KEY_ROTATION_MOVED = "Você e a sua guilda estão na chave nova dos Renegados: o canal antigo ficou para trás."
 	L.KEY_ROTATED_AGO = "Trocada %s: %d Veteranos e Dreadguards têm (%d guildas)"
 	L.KEY_ROTATED_TAKEN = "A chave do canal dos Renegados mudou (a chave nova da Dama Sombria, ou a dos seus oficiais): entrando no canal novo."
-	-- 1.1: a contribuição (Dues.lua, pedidos #36 e #37 do Fern): um valor fixo por semana ao Tesoureiro, nunca público.
+	-- 1.1: a contribuição (Dues.lua, pedidos #36 e #37): um valor fixo por semana ao Tesoureiro, nunca público.
 	L.DUES_TITLE = "Contribuição, semana de %s"
 	L.DUES_A_WEEK = "%s por semana"
 	L.DUES_LINK = "Contribuição desta semana (%s por semana)"
@@ -3412,7 +3412,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.DUES_SINCE = "O livro dele conta desde %s: pagamentos antes disso não estão nele."
 	L.DUES_CUT = "A lista era longa demais para ir inteira: membros fora dela aparecem como não se sabe."
 	L.DUES_DAYS_AGO = "há %dd"
-	-- 1.1: o clique do próprio pagador que preenche o correio ou a troca (pedido #35 do Fern).
+	-- 1.1: o clique do próprio pagador que preenche o correio ou a troca (pedido #35).
 	L.DUES_SEND = "Enviar a contribuição desta semana: %s"
 	L.DUES_SEND_TIP = "Um clique preenche um correio para %s, o personagem de correio do Tesoureiro (ou a sua troca, se você estiver trocando com o Tesoureiro): %s, e a nota \"%s\". Você ainda aperta Enviar ou o botão da troca, e fechar a janela não envia nada: o Sylvanistas nunca move ouro."
 	L.DUES_SEND_HOW = "Abra o correio na aba de enviar, ou uma troca com o Tesoureiro, e clique de novo: o addon preenche %s, %s e a nota, e você aperta Enviar ou o botão da troca."
@@ -3424,7 +3424,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.DUES_SEND_TRADE_BLOCKED = "O jogo não deixou o Sylvanistas preencher o ouro da sua troca: daqui em diante o botão diz o valor para você digitar."
 	L.DUES_SEND_NOT_ENOUGH = "Você tem menos de %s: nada preenchido."
 	L.DUES_SEND_GAMEPAD = "Com a interface de controle o addon não preenche nada (as janelas do jogo são dele ali): envie %s para %s com a nota \"%s\", ou dê na troca ao Tesoureiro."
-	-- 1.1: a lista de membros filtrada a quem está abaixo do valor, e uma remoção por clique (pedido #34 do Fern).
+	-- 1.1: a lista de membros filtrada a quem está abaixo do valor, e uma remoção por clique (pedido #34).
 	L.DUES_FILTER_UNPAID = "Mostrar só quem está abaixo da contribuição nesta semana (%d)"
 	L.DUES_FILTER_ALL = "Mostrar todos os membros (%d)"
 	L.DUES_FILTER_TIP = "Sua lista de membros contra a lista do Tesoureiro: só quem está abaixo do valor nesta semana (nunca quem a lista ainda não sabe). Um correio que o Tesoureiro ainda não pegou não conta. Clique num nome para escolhê-lo."
@@ -3439,7 +3439,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.DUES_REMOVE_GONE = "%s não está mais na sua lista abaixo do seu rank: nada feito."
 	L.DUES_REMOVE_PAID = "%s não está mais abaixo do valor na lista do Tesoureiro: nada feito."
 	L.DUES_REMOVE_FAILED = "O jogo não aceitou a remoção de %s."
-	-- 1.1 (pedido #28 do Fern): o equipamento que o clique de um oficial guarda.
+	-- 1.1 (pedido #28): o equipamento que o clique de um oficial guarda.
 	L.GEAR_BTN = "Inspecionar equipamento"
 	L.GEAR_BTN_TIP = "Oficiais: inspeciona uma vez o jogador no seu alvo (ao alcance, uns 28 metros), no mesmo ritmo de toda inspeção, e guarda o que ele veste nas suas variáveis salvas: a aba Tabards lista em Equipamento visto, para uma inscrição de raide dias depois sem chamar o jogador de novo. Nada é pontuado nem enviado. Também /syl gear."
 	L.GEAR_OFFICERS_ONLY = "Só oficiais guardam o equipamento de outros jogadores: o mestre da guilda e o cargo de oficial logo abaixo."
@@ -3452,7 +3452,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.GEAR_ITEMS = "%d itens"
 	L.GEAR_ROW_TIP = "O que %s vestia quando você inspecionou (%s). Registro seu: nada é pontuado, comparado ou enviado. Clique para mostrar ou esconder."
 	L.HELP_GEAR = "  /syl gear - oficiais: inspecionar o equipamento do seu alvo (ao alcance) e guardar"
-	-- 1.1 (pedido #29 do Fern): os oficiais compartilham o que as patrulhas acham dentro da guilda.
+	-- 1.1 (pedido #29): os oficiais compartilham o que as patrulhas acham dentro da guilda.
 	L.PATROLSHARE_ON = "Patrulha compartilhada ligada: o que as suas inspeções acham (um jogador sem as cores ou com outro tabard, ou de novo com o nosso) vai para os oficiais da sua guilda, e o que eles acham vem para você, na aba Tabards. Nada é inspecionado a mais nem antes por isso. /syl patrolshare off para."
 	L.PATROLSHARE_ON_NOT_OFFICER = "Patrulha compartilhada ligada, mas só oficiais (o mestre da guilda e o cargo de oficial logo abaixo) enviam e guardam: nada é compartilhado deste personagem."
 	L.PATROLSHARE_OFF = "Patrulha compartilhada desligada: o que você acha fica com você, e o dos seus oficiais não é aceito. /syl patrolshare on (ou a página do Sylvanistas: /syl privacy) compartilha."
@@ -3473,7 +3473,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.APPROVED_NOT_MINE = "<%s> não está nela. Se ela é do Sylvanistas, peça a lista assinada ao autor ou a um Dreadguard e cole: /syl approved paste."
 	L.HELP_APPROVED = "  /syl approved [paste] - as guildas que a lista assinada do autor faz guildas do Sylvanistas; colar essa lista"
 	L.APPROVED_JOIN_HINT = "<%s> é uma das guildas do Sylvanistas cujo nome não diz Sylvanistas? Clique para colar a lista assinada do autor (/syl approved paste)."
-	-- 1.1 (pedido #22 do Fern): as notas de loot e os pontos da guilda.
+	-- 1.1 (pedido #22): as notas de loot e os pontos da guilda.
 	L.LOOT_LINK = "Notas de loot de <%s>"
 	L.LOOT_LINK_TIP = "O livro das decisões de loot da sua guilda, escrito pelos oficiais: que item foi para quem e por quê, para a próxima raide começar da decisão da semana passada. Pontos também, se a sua guilda usa: números que os oficiais põem à mão. Sem lances, sem rolagens, sem ouro: nada é distribuído aqui."
 	L.LOOT_TITLE = "Notas de loot de <%s>"
@@ -3510,7 +3510,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.LOOT_VIA_TIP = "%s repassou isto. Uma mudança de antes da sua sessão chega pela palavra do oficial que a repassa: nada prova quem a fez."
 	L.SEARCH_TIP_LOOT = "Um item, um nome ou palavras de uma nota, maiúsculas ou não: só aparecem as notas e os pontos que o contêm."
 	L.HELP_LOOT = "  /syl loot - as notas de loot e os pontos da sua guilda (os oficiais escrevem)"
-	-- 1.1 (pedido #24 do Fern): o quadro de artesãos.
+	-- 1.1 (pedido #24): o quadro de artesãos.
 	L.CRAFTER_LIST_ASK = "Pôr a sua %s no quadro de artesãos do Sylvanistas? O seu nome, guilda, esta profissão e o nível dela vão para todo jogador do Sylvanistas do seu reino e facção; o seu addon responde quem sabe fazer um item pelas receitas que você conhece (os ids delas, por sussurro a quem perguntou). Os outros sussurram você: você não fabrica nada para ninguém a não ser que queira."
 	L.CRAFTER_LIST_YES = "Pôr no quadro"
 	L.CRAFTER_LIST_NO = "Agora não"
@@ -3660,7 +3660,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.DUES_BUSY = "O addon do Tesoureiro está ocupado respondendo a outros: esta página pede de novo em alguns minutos."
 	L.DUES_REMOVE_WAIT = "Remover exige a lista do Tesoureiro dos últimos 10 minutos: esta página pede uma mais nova enquanto fica aberta."
 	L.DUES_REMOVE_STALE = "A lista do Tesoureiro tem mais de 10 minutos: pedida de novo, nada feito com %s. Tente quando a lista nova chegar."
-	-- 1.1 (a revisão das correções do Konig): acima e abaixo pelo valor do Rei que este addon tem,
+	-- 1.1 (a revisão das correções): acima e abaixo pelo valor do Rei que este addon tem,
 	-- nunca pelo que veio na lista do Tesoureiro; uma lista que difere não remove ninguém.
 	L.DUES_AMOUNT_DIFFERS = "A lista do Tesoureiro veio contada por %s por semana, mas a palavra da Dama Sombria que o seu addon tem diz %s nesta semana: acima e abaixo seguem a da Dama Sombria, ninguém é removido por esta lista, e a página pede uma mais nova enquanto fica aberta."
 	L.DUES_TABLE_DIFFERS = "A lista do Tesoureiro veio contada por %s por semana, mas a palavra da Dama Sombria que o seu addon tem diz %s nesta semana: quem pagou esse valor não se sabe aqui (?) até chegar uma lista pelo valor da Dama Sombria; a página pede uma mais nova enquanto fica aberta."
@@ -3676,7 +3676,7 @@ if GetLocale and GetLocale() == "ptBR" then
 	L.KEY_GUILD_SEEN = "vista com /who"
 	L.KEY_GUILD_CENSUS = "só no censo"
 	L.KEY_GUILD_TIP = "Os Veteranos e Dreadguards online dela que o seu /who viu nela (recebem a chave): %s. Clique: ela recebe a chave, ou não; marcada, o seu /who procura nela."
-	-- 1.1 (revisão do Konig da troca): só os Lordes e Capitães que o /who do próprio cliente que troca
+	-- 1.1 (revisão da troca): só os Lordes e Capitães que o /who do próprio cliente que troca
 	-- viu na guilda deles recebem o sussurro; os outros só o censo nomeia.
 	L.KEY_GUILD_WAIT_TIP = "Só o censo diz que são dela, o seu /who não os viu nela: %s. Nada de chave para eles até ele vê-los lá (uma linha do censo é palavra de qualquer um)."
 	L.KEY_GUILD_WAITING = "%d não vistos pelo seu /who"
@@ -3812,7 +3812,7 @@ if GetLocale and GetLocale() == "ptBR" then
 end
 
 ---------------------------------------------------------------------------
--- 1.1 (Konig's review of 1.1, moderation): a net-off word from higher up holds a name
+-- 1.1 (review of 1.1, moderation): a net-off word from higher up holds a name
 -- (Moderation.lua); a shared block term's length (Filter.lua).
 ---------------------------------------------------------------------------
 L.NETOFF_HELD_HIGHER = "%s was hidden or shown again by a word from higher up than yours: only someone as high can change it."
@@ -3824,7 +3824,7 @@ end
 
 ---------------------------------------------------------------------------
 -- 1.1.1: the Sylvanistas chats. A line still waiting to leave when the Sylvanistas channel changes (a new
--- realm key) is sent to neither channel (GitHub #34, Comm.lua). The Sylvanistas tab: a chat tab of
+-- realm key) is sent to neither channel , Comm.lua). The Sylvanistas tab: a chat tab of
 -- the game's named Sylvanistas, its lines without the channel's name (Channels.SetupTab).
 ---------------------------------------------------------------------------
 L.CHAN_MOVED = "[%s]: the Sylvanistas channel changed (a new channel key) before your line left. It was not sent to either channel: send it again to write on the new one."
@@ -4015,7 +4015,7 @@ end
 
 ---------------------------------------------------------------------------
 -- 1.1.2: Chattynator's tabs as the chat windows (Channels.lua; from hypertectonic's pull request
--- #47, GitHub #46). Its menus in its own words (its Locales.lua: "Rename tab", "Tab Settings",
+-- #47, . Its menus in its own words (its Locales.lua: "Rename tab", "Tab Settings",
 -- "Addons", "All Addons"; in pt-BR "Renomear aba", "Configurações da aba", "Addons", "Todos os
 -- addons").
 ---------------------------------------------------------------------------

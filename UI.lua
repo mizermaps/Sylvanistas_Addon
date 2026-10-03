@@ -233,7 +233,7 @@ table.insert(DETAIL_BUTTONS.realm, { "COUNCIL_ASK_BTN", function() ns.ShowDialog
 -- to councillors alone.
 table.insert(DETAIL_BUTTONS.realm, { "COUNCIL_ICON_BTN", function() ns.Workshop.ShowIconPicker() end,
 	shown = function() return ns.IsHighCouncillor(ns.me) end })
--- 1.1 (Fern's #28): an officer keeps the gear of the player he targets, in range (Inspect.lua).
+-- 1.1 (request #28): an officer keeps the gear of the player he targets, in range (Inspect.lua).
 table.insert(DETAIL_BUTTONS.heraldry, 1, { "GEAR_BTN", function() ns.Inspect.InspectGear() end,
 	shown = function() return ns.IsMember() and ns.Roster.IsOfficer() end })
 
@@ -707,7 +707,7 @@ end
 UI.HELP_ICON = "Interface\\Common\\help-i"
 
 -- The help button in the title bar, just left of the close button, where Blizzard puts a
--- window's minimize button (0.9.9, asked for by Max of Asmongold's moderators). A plain button:
+-- window's minimize button (0.9.9, asked for by Max of the Dark Lady's moderators). A plain button:
 -- a click opens the copy box (UI.ShowHelp), which already keeps to the gamepad UI's rules.
 local function HelpButton(f)
 	local close = f.CloseButton or _G[f:GetName() .. "CloseButton"]
@@ -1043,7 +1043,7 @@ local function CreateMain(style)
 	f:SetScript("OnShow", function()
 		UI.Refresh()
 		ns.SafeCall("issue reporter", ClearOfIssueReporter, MainClearOfIssueReporter)
-		-- 1.1 (Fern's #11): the first-open page, over the window, while anything is unanswered
+		-- 1.1 (request #11): the first-open page, over the window, while anything is unanswered
 		-- (Consent.lua: once a session, never in combat or an instance). The window works anyway.
 		ns.SafeCall("privacy page", ns.Consent.Ask, "window")
 	end)
@@ -2350,8 +2350,8 @@ end)
 ---------------------------------------------------------------------------
 
 local photo -- [frame] = its alpha before, while photo mode is on
--- Children of UIParent walked at most (1.0.0, Konig's review of 1.0.0): a screen with thousands of
--- frames (some addons make one per thing they show) is left as it is. Counted first (Konig's
+-- Children of UIParent walked at most (1.0.0, review of 1.0.0): a screen with thousands of
+-- frames (some addons make one per thing they show) is left as it is. Counted first (the reviewer's
 -- review of 1.1: GetChildren returns every child at once, however many, so capping the loop after
 -- it still listed them all): GetChildren is called only when there are PHOTO_MAX or fewer.
 UI.PHOTO_MAX = 1000

@@ -1,7 +1,7 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- The King's key rotation (1.1, Fern's request #8, its second part): a leaked realm key (/syl key)
+-- The King's key rotation (1.1, request #8, its second part): a leaked realm key (/syl key)
 -- shut without teaching everyone /syl key by hand. The King (his pinned character) or one of his
 -- Stewards, acting for him (the author's signed list names them; 1.1: the King rarely runs the
 -- addon's tools himself), never a Hand or an officer, presses Rotate on the Throne; his addon
@@ -247,7 +247,7 @@ function Keys.HandleAck(dist, sender, text)
 	if tonumber(at) ~= rot.at then return end
 	sender = ns.FullName(sender)
 	-- Only from a name his client whispered the key to (counted once it left): anyone else's K4
-	-- would pass on his Throne for a Lord or Captain who has it (Konig's review).
+	-- would pass on his Throne for a Lord or Captain who has it (review).
 	if not (type(rot.sent) == "table" and rot.sent[sender]) then
 		return ns.Log("realm key: %s's acknowledgement ignored: not whispered the key", sender)
 	end
@@ -388,7 +388,7 @@ Keys.Seen = Seen
 -- What his /who saw of the Lords and Captains the census names is kept in the rotation (rot.saw:
 -- [Name-Realm] = { guild, at = server time }), like the rest of it: Who.lua's own list starts
 -- empty after a /reload or relog, and is forgotten whole past Who.SEEN_MAX names (a pass over
--- the army's guilds lists more), while the hand-out depends on it (Konig's review).
+-- the army's guilds lists more), while the hand-out depends on it (review).
 local function Keep(rot, name, guild, at)
 	rot.saw = type(rot.saw) == "table" and rot.saw or {}
 	rot.saw[name] = { guild = guild, at = at }
@@ -494,7 +494,7 @@ end
 -- pace (quiet): first the players of every guild picked not searched yet (up to 50 each), then
 -- by name each one those answers did not list (full, or he logged in since), the one asked
 -- longest ago first and each at most once in WHO_FRESH: made-up names in one guild's census
--- never keep the next guild from its search (Konig's review). `only`: that guild alone (the one
+-- never keep the next guild from its search (review). `only`: that guild alone (the one
 -- he clicked).
 -- With the gamepad UI no quiet search goes, and none by name (1.1 review): his click on the
 -- /who line searches one guild picked plainly, as the census's Refresh does there (the answer in
@@ -502,8 +502,8 @@ end
 -- first, each again a minute after its last (Who.GUILD_AGAIN: a Lord who logged in since). A
 -- click on a guild's row only checks it there (the game's list opening would take the gamepad's
 -- focus). What the census's Refresh lists counts too.
-local asked, askedFor = {}, nil -- [Name-Realm] = GetTime() of our search for him by name; the rotation's epoch
-local askedGuild = {} -- [guild] = GetTime() of our plain search of it (the gamepad UI)
+local asked, askedFor = {}, nil -- [Name-Realm] = GetTime of our search for him by name; the rotation's epoch
+local askedGuild = {} -- [guild] = GetTime of our plain search of it (the gamepad UI)
 local function ConfirmPlain(rot, W, only)
 	if only then return false end
 	local now, list, waiting = GetTime(), {}, false

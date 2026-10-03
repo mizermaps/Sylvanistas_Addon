@@ -27,9 +27,9 @@
 -- (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 -- SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
--- Olympus's copy (0.9.10, Olympus Link's QR code, Link.lua) changes four things, each marked
--- "Olympus" below: xor through the game's bit library (upstream builds a 256 x 256 table), an
--- optional pause between the steps of qrcode() (Link.lua yields there, so the game never stops
+-- This copy (the Link window's QR code, Link.lua) changes four things, each marked
+-- "Sylvanistas" below: xor through the game's bit library (upstream builds a 256 x 256 table), an
+-- optional pause between the steps of qrcode (Link.lua yields there, so the game never stops
 -- for a big code), the encoder handed to the addon's namespace at the end of the file, and the
 -- upstream test exports (read from a global "testing") left out. Two locals named bit are called
 -- b, so they no longer hide the library's name. The encoding itself is upstream's.
@@ -61,7 +61,7 @@ local gsub,match,format=string.gsub,string.match,string.format
 local concat = table.concat
 
 
--- Olympus (the addon that bundles this copy, see the end of the file): the game's bit.bxor
+-- Sylvanistas (the addon that bundles this copy, see the end of the file): the game's bit.bxor
 -- (WoW and LuaJIT have it) instead of the upstream 256x256 table, which would stay in the
 -- addon's memory for good; the table only where there is no bit library.
 local xor_lookup = {}
@@ -112,7 +112,7 @@ local function binary(x,digits)
 	return rep("0",digits - #s) .. s
 end
 
--- A small helper function for add_typeinfo_to_matrix() and add_version_information()
+-- A small helper function for add_typeinfo_to_matrix and add_version_information
 -- Add a 2 (black by default) / -2 (blank by default) to the matrix at position x,y
 -- depending on the bitstring (size 1!) where "0"=blank and "1"=black.
 local function fill_matrix_position(matrix,bitstr,x,y)
@@ -147,7 +147,7 @@ end
 --- --------------------
 --- The capacity is calculated as follow: \\(\text{Number of data bits} = \text{number of codewords} * 8\\).
 --- The number of data bits is now reduced by 4 (the mode indicator) and the length string,
---- that varies between 8 and 16, depending on the version and the mode (see method `get_length()`). The
+--- that varies between 8 and 16, depending on the version and the mode (see method `get_length`). The
 --- remaining capacity is multiplied by the amount of data per bit string (numeric: 3, alphanumeric: 2, other: 1)
 --- and divided by the length of the bit string (numeric: 10, alphanumeric: 11, binary: 8, kanji: 13).
 --- Then the floor function is applied to the result:
@@ -1120,7 +1120,7 @@ local function get_matrix_with_lowest_penalty(version,ec_level,data,pause)
 	-- try masks 0-7
 	tab_min_penalty, min_penalty = get_matrix_and_penalty(version,ec_level,data,0)
 	for i=1,7 do
-		if pause then pause() end -- Olympus: a place to yield (see qrcode below)
+		if pause then pause() end -- Sylvanistas: a place to yield (see qrcode below)
 		tab, penalty = get_matrix_and_penalty(version,ec_level,data,i)
 		if penalty < min_penalty then
 			tab_min_penalty = tab
@@ -1142,7 +1142,7 @@ end
 --     on success: true, number matrix (only has ±1&±2. positive means black, ±2 means mandatory, in case if you didn't read comments above)
 --     on failed: false, error message string
 -- If ec_level or mode is given, use the ones for generating the qrcode. (mode option is not implemented yet, but it will be determined automatically)
--- Olympus: pause, when given, is called between the steps (the error correction, each mask), so
+-- Sylvanistas: pause, when given, is called between the steps (the error correction, each mask), so
 -- a caller running this in a coroutine can yield there and spread the work over frames.
 local function qrcode(str,ec_level,mode_enc,pause)
 	local arranged_data, version, data_raw, mode, len_bitstring
@@ -1151,7 +1151,7 @@ local function qrcode(str,ec_level,mode_enc,pause)
 	data_raw = data_raw .. encode_data(str,mode)
 	data_raw = add_pad_data(version,ec_level,data_raw)
 	arranged_data = arrange_codewords_and_calculate_ec(version,ec_level,data_raw)
-	if pause then pause() end -- Olympus
+	if pause then pause() end -- Sylvanistas
 	if #arranged_data % 8 ~= 0 then
 		return false, format("Arranged data %% 8 != 0: data length = %d, mod 8 = %d",#arranged_data, #arranged_data % 8)
 	end
@@ -1160,10 +1160,10 @@ local function qrcode(str,ec_level,mode_enc,pause)
 	return true, tab
 end
 
--- Olympus: the game hands each file of an addon its name and namespace, and drops what the
+-- Sylvanistas: the game hands each file of an addon its name and namespace, and drops what the
 -- file returns: the encoder goes into the namespace (ns.QREncode.qrcode) for Link.lua.
-local _, olympus = ...
-if type(olympus) == "table" then olympus.QREncode = { qrcode = qrcode } end
+local _, addon = ...
+if type(addon) == "table" then addon.QREncode = { qrcode = qrcode } end
 
 return {
 	qrcode = qrcode

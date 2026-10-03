@@ -45,7 +45,7 @@ local byte, char, concat = string.byte, string.char, table.concat
 local M32 = 4294967296
 
 ---------------------------------------------------------------------------
--- Slices: heavy loops call Pause(), which yields only inside a job Ed.Run started, once the
+-- Slices: heavy loops call Pause, which yields only inside a job Ed.Run started, once the
 -- job has had its time this frame.
 ---------------------------------------------------------------------------
 
@@ -93,7 +93,7 @@ local function Step()
 	end
 end
 
--- fn() runs a slice per frame; done(ok, result, slices) once it returns (ok false: it failed,
+-- fn runs a slice per frame; done(ok, result, slices) once it returns (ok false: it failed,
 -- result is the error). False when too many jobs wait already.
 function Ed.Run(fn, done)
 	if #jobs >= Ed.MAX_JOBS then return false end

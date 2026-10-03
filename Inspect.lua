@@ -70,7 +70,7 @@ function Inspect.Prune()
 	for i = Inspect.MAX_PLAYERS + 1, #list do players[list[i].name] = nil end
 end
 
--- The gear an officer's click kept (1.1, Fern's #28): at most GEAR_MAX players carry it, the
+-- The gear an officer's click kept (1.1, request #28): at most GEAR_MAX players carry it, the
 -- oldest gear dropped first (the player's inspection stays).
 Inspect.GEAR_MAX = 200
 function Inspect.PruneGear()
@@ -311,7 +311,7 @@ function Inspect.InspectTarget()
 	Pump()
 end
 
--- 1.1 (Fern's #28): an officer's click keeps the gear of the player he targets, in range, as the
+-- 1.1 (request #28): an officer's click keeps the gear of the player he targets, in range, as the
 -- game's inspection shows it: one request in the same queue and pace as the patrol's (one
 -- NotifyInspect at a time, never in combat or while the game's inspect window is open). Kept in
 -- his saved variables with the inspection, for a raid signup days later without pulling the player
@@ -459,7 +459,7 @@ function Inspect.TooltipLine(name)
 end
 
 ---------------------------------------------------------------------------
--- The officers' shared list (1.1, Fern's #29: "Officers only, merged over guild messages, inside
+-- The officers' shared list (1.1, request #29: "Officers only, merged over guild messages, inside
 -- the current inspect budget. Do not scan faster."). A patrol is one character's, so each officer
 -- rebuilt the same list. Now an officer's addon passes what his own inspections find (a player
 -- caught without the colors or with another tabard, and one caught before now wearing ours) to
@@ -480,7 +480,7 @@ end
 --                                                         did you find today?" (GUILD)
 -- A GUILD message reaches every guildmate's client (any of them can read its bytes with a
 -- script); the addon of anyone but an officer drops it unread. Versions before 1.1 have no
--- handler for these and drop them. Off until the officer says yes (Konig's review of 1.1: it was
+-- handler for these and drop them. Off until the officer says yes (review of 1.1: it was
 -- on by default and missing from the first-open page): his line there (Consent.lua), or /syl
 -- patrolshare on; off, or never answered: nothing sent, nothing taken.
 ---------------------------------------------------------------------------
@@ -692,7 +692,7 @@ function Inspect.SetSharing(on)
 	if on ~= nil then ns.db.patrolShare = on and true or false end
 	if not Inspect.Sharing() then return ns.Print(L.PATROLSHARE_OFF) end
 	ns.Print(Officer() and L.PATROLSHARE_ON or L.PATROLSHARE_ON_NOT_OFFICER)
-	-- (Konig's review of 1.1: the login's ask comes 40 to 70 s in, off until he answers; a yes on
+	-- (review of 1.1: the login's ask comes 40 to 70 s in, off until he answers; a yes on
 	-- the first-open page, 45 s in, or later asks then, unless ours went out this session.)
 	if on and Officer() then Inspect.AskShared() end
 end
@@ -719,7 +719,7 @@ end
 -- the list (King.lua, a switch like the Treasury's), in the Tabards tab and nowhere else. No
 -- raid warning, no chat line, no sound, for anyone; turned off, it leaves every screen.
 -- Nobody else publishes one any more: walls from older versions (S1) are ignored.
--- Closed until the tabard rule is in force, midnight in Texas (where Asmongold is) between
+-- Closed until the tabard rule is in force, midnight in Texas (where the Dark Lady is) between
 -- September 24 and 25, 2026: the Tabards page counts down to it.
 ---------------------------------------------------------------------------
 

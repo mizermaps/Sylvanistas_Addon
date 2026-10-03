@@ -341,7 +341,7 @@ function ns.StatusText()
 		for _, line in ipairs(TopologyLines(c)) do add("%s", line) end
 		local ch = ns.Channels and ns.Channels.Stats()
 		if ch then
-			-- (moved, 1.1.1: lines not sent because the channel changed before they left, GitHub #34.)
+			-- (moved, 1.1.1: lines not sent because the channel changed before they left, .)
 			add("chat: sent=%d shown=%d hidden=%d lane=%d moved=%d muted=%s drops bad=%d dup=%d rate=%d flood=%d forged=%d unverified=%d rank=%d",
 				ch.sent, ch.shown, ch.hidden, c.chatQueue or 0, ch.moved or 0, #ch.muted > 0 and table.concat(ch.muted, ",") or "none",
 				ch.bad, ch.dup, ch.rate, ch.flood, ch.forged, ch.unverified, ch.rank)
@@ -362,10 +362,10 @@ function ns.StatusText()
 		if ns.faction == "Horde" then
 			add("Horde Dark Lady: %s, realm %s", tostring(ns.KING_CHARACTER.Horde), tostring(ns.KingRealm and ns.KingRealm() or "?"))
 		end
-		-- (1.1, Fern's #11: each off until answered, on the first-open page or its command.)
+		-- (1.1, request #11: each off until answered, on the first-open page or its command.)
 		local ri = ns.db.royalInspection
 		add("royal inspection: %s (/syl inspection on|off)", ri == true and "taking part when sampled" or (ri == false and "not taking part" or "not chosen (not taking part)"))
-		-- 1.1 (Fern's #29): an officer's findings shared with his guild's officers.
+		-- 1.1 (request #29): an officer's findings shared with his guild's officers.
 		if ns.Inspect.MayShare then
 			add("patrol share: %s (/syl patrolshare on|off), %d of our officers' findings held", not ns.Inspect.Sharing() and "off"
 				or (ns.Inspect.MayShare() and "on" or "on, not an officer"), ns.Inspect.SharedCount())

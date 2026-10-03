@@ -62,7 +62,7 @@ local lastSummonSent, lastInspectSent = -math.huge, -math.huge
 local lastAgendaSent, lastAgendaWarn = -math.huge, -math.huge
 
 -- Text other players send that ends up on the King's screen (on stream): only what looks
--- like a character name ("Pyralis Ashandar") or a Sylvanistas guild name, nothing else.
+-- like a character name ("Firstname Surname") or a Sylvanistas guild name, nothing else.
 local function CleanName(s)
 	s = tostring(s or ""):gsub("%-.*$", "")
 	if #s > 30 or not s:match("^[%a\128-\255]+ ?[%a\128-\255]*$") then return nil end
@@ -96,7 +96,7 @@ function King.IsKing()
 end
 
 -- The author's test build (Dev.lua, never published) shows the tab without the powers:
--- nothing it does reaches anyone. The author turns this "Asmon's view" on and off from the
+-- nothing it does reaches anyone. The author turns this "the Dark Lady's view" on and off from the
 -- Workshop (ns.db.devKingView).
 function King.Preview()
 	if King.IsKing() then return false end
@@ -184,7 +184,7 @@ King.STEWARD_MAY = { S = true, I = true, A = true, X = true, V = true, E = true,
 -- 1.1: the calls to the army a Hand or a Steward sends (popups, raid warnings, windows, the gates'
 -- news): none shows from a name the moderators took off (net-off, Moderation.lua). Their lists (the
 -- Hands, the treasury's words) are not calls: they still count. The same for the King's week (1.1,
--- Konig's review): its entries and their cancels (D), and the signup sheets (R, Week.lua). A client
+-- review): its entries and their cancels (D), and the signup sheets (R, Week.lua). A client
 -- the moderators took off sends none of them (Moderation.Blocks), but its setter's cancel of his
 -- own entry, which every client takes for that entry alone (1.1 review).
 King.HIDDEN_CALLS = { S = true, I = true, A = true, X = true, V = true, E = true, G = true, D = true, R = true }
@@ -220,7 +220,7 @@ end
 -- On the King's own client his list is the one he keeps (his broadcast never comes back to
 -- him); everyone else trusts the list he last sent, while he keeps sending it. A Steward's
 -- the same (1.0.0): his own on his client, the one he last sent on everyone else's.
--- Whatever the case a name is written in (1.1, Konig's review): the King types a Hand's name as
+-- Whatever the case a name is written in (1.1, review): the King types a Hand's name as
 -- he likes, and a net-off word's target is free text, while the server spells a sender's name
 -- its own way; they are one character (hands and each Steward's set are kept in lower case).
 local function Named(list, key)
@@ -252,7 +252,7 @@ function King.IsHand() return not King.SetsLists() and ns.IsMember() and Hand(ns
 function King.IsHandName(name) return type(name) == "string" and Hand(name) end
 
 -- This client's own list, the one its Hands page changes: the King's; a Steward's own (1.0.0);
--- the author's Asmon's view's, as the King's (sent nowhere).
+-- the author's Dark Lady view's, as the King's (sent nowhere).
 local function Own()
 	if not King.IsKing() and King.IsSteward() then return myStewardHands end
 	return myHands
@@ -727,7 +727,7 @@ local function OnInspect(king, id)
 	if now - lastInspectSeen < King.INSPECT_GAP then return end
 	lastInspectSeen = now
 	-- Everyone hears the King's call; only a sample of the army patrols (and reports), and never
-	-- a player who said no (/syl inspection off, 0.9.3). 1.1 (Fern's #11): nor one who never
+	-- a player who said no (/syl inspection off, 0.9.3). 1.1 (request #11): nor one who never
 	-- answered (the first-open page, or /syl inspection on): nil is off.
 	if not (ns.db and ns.db.royalInspection == true) then
 		ns.Log("inspection %d: not taking part (%s)", id or 0, ns.db and ns.db.royalInspection == false and "/syl inspection off" or "not answered")
@@ -1250,7 +1250,7 @@ King.Para = Para
 ---------------------------------------------------------------------------
 -- Where the King's calls show: the roll call in the Realm tab (next to the Lords it calls),
 -- the Royal Inspection in the Tabards tab. Plain rows (not the parchment), for the King and
--- his Hands (and the author's Asmon's view).
+-- his Hands (and the author's Dark Lady view).
 ---------------------------------------------------------------------------
 
 local function Grey(s) return "|cff9d9d9d" .. s .. "|r" end
@@ -1528,7 +1528,7 @@ function King.StewardStatusLine()
 	return ("%s  |  Hands: %s"):format(who, #held > 0 and table.concat(held, ", ") or "none")
 end
 
--- The author's Workshop: Asmon's view on or off (the Throne, Vox Populi, the King's calls in
+-- The author's Workshop: the Dark Lady's view on or off (the Throne, Vox Populi, the King's calls in
 -- the Realm and the Tabards), to see and try them. Nothing the view does reaches anyone.
 function King.SetDevView(on)
 	ns.db.devKingView = on and true or false

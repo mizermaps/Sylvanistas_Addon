@@ -115,7 +115,7 @@ local function Build(i)
 	local okBox, eb = pcall(CreateFrame, "EditBox", "SylvanistasDialog" .. i .. "EditBox", f, "InputBoxTemplate")
 	if not okBox or not eb then eb = CreateFrame("EditBox", nil, f) end
 	eb.sylvanistasBox = true
-	-- The definitions' OnShow focus the box (eb:SetFocus()): not away from the chat.
+	-- The definitions' OnShow focus the box (eb:SetFocus): not away from the chat.
 	local setFocus = eb.SetFocus
 	eb.SetFocus = function(self) ns.Focus(self, setFocus) end
 	eb:SetAutoFocus(false)

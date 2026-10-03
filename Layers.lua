@@ -5,7 +5,7 @@ local L = ns.L
 -- NPC GUIDs (Creature-0-server-instance-zoneUID-npc-spawn): players who see the same
 -- zoneUID in the same zone share a layer. Each addon user announces its layer and rank on
 -- SylvanistasNet, and a layer is named after the highest ranked Sylvanistas member on it:
--- "Asmongold's layer". Experimental until tested on a live realm.
+-- "the Dark Lady's layer". Experimental until tested on a live realm.
 
 local Layers = {}
 ns.Layers = Layers
@@ -253,7 +253,7 @@ function Layers.Receive(sender, l)
 	-- 1.1: a name the moderators took off (net-off, Moderation.lua): no layer of theirs, and the
 	-- one they announced before goes.
 	if ns.Moderation.Hides and ns.Moderation.Hides(sender, l.guild) then return Layers.Forget(sender) end
-	-- The King's own layer tells where he plays (1.0.0, Konig's review: Hop.King), whatever a report says.
+	-- The King's own layer tells where he plays (1.0.0, review: Hop.King), whatever a report says.
 	if ns.Hop and ns.Hop.HeardKing then ns.Hop.HeardKing(sender) end
 	local old = where[sender]
 	local here = CurrentMap()

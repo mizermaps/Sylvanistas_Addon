@@ -56,7 +56,7 @@ ns.On("INIT", function()
 		end
 	end
 	-- Kept by older versions: a report bigger than a guild can be (forged), and one guild under
-	-- two spellings (the newer one stays). Collected first: pairs() must not see removals twice.
+	-- two spellings (the newer one stays). Collected first: pairs must not see removals twice.
 	local drop, byLower = {}, {}
 	for name, g in pairs(ns.rdb.guilds) do
 		if (tonumber(g.total) or 0) > ns.Codec.GUILD_CAP then
@@ -82,7 +82,7 @@ ns.On("INIT", function()
 	end
 	-- Sightings kept before v0.7.11 may carry a "-Realm" of our census group on the guild's
 	-- name (Who.GuildName): they go under its plain name, the newest one kept, or the guild
-	-- would show twice. Collect first: pairs() must not see new keys.
+	-- would show twice. Collect first: pairs must not see new keys.
 	local renamed = {}
 	for name in pairs(seen) do
 		local base = type(name) == "string" and ns.Who.GuildName and ns.Who.GuildName(name)
@@ -121,7 +121,7 @@ function Data.RecordSightings(players, capped)
 end
 ns.Who.Listen(Data.RecordSightings)
 
--- The server's clock (1.0.0), the same second on every realm, where ns.Now() is this computer's:
+-- The server's clock (1.0.0), the same second on every realm, where ns.Now is this computer's:
 -- nil on a client without it.
 function Data.ServerTime()
 	if type(GetServerTime) ~= "function" then return nil end
@@ -221,7 +221,7 @@ function Data.ForgetVotes()
 	end
 end
 
--- What the census's mark on a row says (1.1, Fern's #30): its senders split on the guild's leader
+-- What the census's mark on a row says (1.1, request #30): its senders split on the guild's leader
 -- or officers (`split`: no picture leads; `outvoted`: a sender's report is not what the others
 -- say), two fresh senders give sizes farther apart than SIZE_SLACK or SIZE_SHARE of the bigger
 -- plus SIZE_DRIFT a minute between their two reports (`sizes`: the pair farthest past that, the
@@ -321,7 +321,7 @@ function Data.Receive(r, sender)
 	end
 	-- The King's guild is led by the King: where he is pinned by name, a report naming anyone
 	-- else at its head counts for nothing, not even as a vote. It can't replace the row
-	-- everyone sees, nor outvote the real reporters (GitHub issue #18).
+	-- everyone sees, nor outvote the real reporters .
 	if Data.OtherKing(r.guild, r.leader) then
 		ns.Log("ignored %s from %s: names %s its leader, not the King", r.guild, who, tostring(r.leader))
 		return false
@@ -403,7 +403,7 @@ function Data.KnownRank(sender, guild, soft)
 	-- they all agree on counts), named by someone else too: a report never proves its own
 	-- sender's rank. The Crown (every guild master, the officers of <Sylvanistas>) needs two
 	-- senders naming them (theirs may be one).
-	-- A sender is itself by its name alone: "Asmon-OtherRealm" can't vouch for "Asmon-Realm".
+	-- A sender is itself by its name alone: "the Dark Lady-OtherRealm" can't vouch for "the Dark Lady-Realm".
 	local self = ns.ShortName(who)
 	local bySig, total, named, others = {}, 0, 0, 0
 	for src, v in pairs(votes) do
@@ -501,7 +501,7 @@ function Data.Summary()
 	return s
 end
 
--- Tonight's count (1.1, Fern's #16): this client's own view of the evening, from the reports it
+-- Tonight's count (1.1, request #16): this client's own view of the evening, from the reports it
 -- already holds. Once a minute (Data.EVENING_EVERY) it reads the online total and each zone's
 -- count (Data.Summary: fresh reports only, zones only from reporters who share them), and keeps
 -- the peak and, per zone, its first count, so the Census shows whether a zone fills or empties.

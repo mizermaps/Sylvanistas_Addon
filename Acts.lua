@@ -163,7 +163,7 @@ local function OnWrit(sender, id, rest)
 	local w = { id = id, king = ns.FullName(sender), by = ns.KingName(sender), to = to, text = text, t = now }
 	-- 1.1 (#31): a writ the player's block terms hit stays folded: no parchment, no alert, and
 	-- the Decrees tab offers it to read with a click (Filter.lua). His own terms alone: the shared
-	-- list never hides the King's writs (1.1, Konig's review).
+	-- list never hides the King's writs (1.1, review).
 	local F = ns.Filter
 	if F and not F.missing and F.Hides(text, true) then w.hidden = true end
 	list[#list + 1] = w
@@ -398,7 +398,7 @@ StaticPopupDialogs["SYLVANISTAS_GATES"] = {
 	hideOnEscape = true,
 	preferredIndex = 3,
 }
--- The same, for a guild whose census row is marked (1.1, Fern's #30): what the mark says, so the
+-- The same, for a guild whose census row is marked (1.1, request #30): what the mark says, so the
 -- gates never open on a size nobody else confirms without the King seeing it.
 StaticPopupDialogs["SYLVANISTAS_GATES_MARKED"] = {
 	text = L.GATES_CONFIRM_MARKED,

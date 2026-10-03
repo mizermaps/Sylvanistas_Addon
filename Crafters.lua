@@ -1,7 +1,7 @@
 local ADDON, ns = ...
 local L = ns.L
 
--- The crafters' board (1.1, Fern's #24): "On opening a profession they may publish skill and recipe
+-- The crafters' board (1.1, request #24): "On opening a profession they may publish skill and recipe
 -- ids. Others whisper with a click. No craft, no auction bids. Do not assume retail
 -- specialization trees exist on Forever. 'Who can make this' is currently a chat scroll. A board
 -- turns that into one whisper to a named crafter."
@@ -24,7 +24,7 @@ local L = ns.L
 --                                                   part each LIST_PACE); WL~<key>~0/0~: he is busy
 -- Ids travel as numbers; each client names them itself (the item's name in its own language).
 -- Versions before 1.1 have no handler for these and drop them.
--- A crafter the moderators took off (net-off, Moderation.lua; 1.1, Konig's review): his listing,
+-- A crafter the moderators took off (net-off, Moderation.lua; 1.1, review): his listing,
 -- answers and recipe lists are not taken, what a client heard of him before the word shows no
 -- more, and his own client sends none of them (Moderation.BLOCKED: W1, WA, WL).
 
@@ -240,7 +240,7 @@ function Crafters.Choose(key, yes)
 	local now = #Crafters.Listed()
 	local off = SelfOff()
 	if yes and off then
-		-- (1.1, Konig's review: kept, and listed once the moderators put us back on.)
+		-- (1.1, review: kept, and listed once the moderators put us back on.)
 		ns.Print(ns.Moderation.YouText(off))
 	elseif yes then
 		Crafters.SendListing(true)
@@ -280,7 +280,7 @@ local changedWaiting = false
 local lastListingKeys  -- the professions of the listing sent last
 local loginWait = false -- after login, our first listing waits for its own draw (Crafters.OnLogin)
 function Crafters.SendListing(force)
-	-- (1.1, Konig's review: while the moderators have us off, nothing: the next tick sends it once
+	-- (1.1, review: while the moderators have us off, nothing: the next tick sends it once
 	-- we are back on.)
 	if not ns.IsMember() or SelfOff() then return false end
 	local listed = Crafters.Listed()
@@ -323,7 +323,7 @@ function Crafters.HandleListing(dist, sender, text)
 	end
 	local guild, list = text:match("^W1~([^~]+)~([^~]+)$")
 	if not guild or #guild > 72 or not ns.IsFederation(guild) then return end
-	-- 1.1 (Konig's review): a name the moderators took off (net-off): not listed, and off the board.
+	-- 1.1 (review): a name the moderators took off (net-off): not listed, and off the board.
 	if Off(sender, guild) then
 		if board[sender] then
 			board[sender], boardCount = nil, boardCount - 1
@@ -357,7 +357,7 @@ ns.Comm.Handle("W1", function(...) Crafters.HandleListing(...) end)
 ns.Comm.Handle("W0", function(...) Crafters.HandleListing(...) end)
 
 -- The board now, listings heard in the last LIST_KEEP: { { name, guild, profs, t } }. Never a
--- crafter the moderators took off since (1.1, Konig's review): back on, his next listing shows.
+-- crafter the moderators took off since (1.1, review): back on, his next listing shows.
 function Crafters.Board()
 	local now, out = ns.Now(), {}
 	for name, e in pairs(board) do
@@ -469,7 +469,7 @@ function Crafters.HandleAnswer(dist, sender, text)
 	local askId, guild, prof, rank, list = text:match("^WA~([0-9a-z]+)~([^~]+)~([^~]+)~(%d+)~([^~]*)$")
 	if askId ~= myAsk.id or not ns.IsFederation(guild) or #prof > 24 or not Num(rank, 9999) then return end
 	sender = ns.FullName(sender)
-	if Off(sender, guild) then return end -- (1.1, Konig's review: net-off)
+	if Off(sender, guild) then return end -- (1.1, review: net-off)
 	if myAsk.answers[sender] then return end
 	if myAsk.count >= Crafters.ANSWERS_MAX then return end
 	local recipes = Recipes(list, Crafters.MATCHES_MAX)
@@ -562,7 +562,7 @@ function Crafters.HandleList(dist, sender, text)
 	if dist ~= "WHISPER" then return end
 	local key, part, parts, list = text:match("^WL~([^~]+)~(%d+)/(%d+)~([^~]*)$")
 	sender = ns.FullName(sender)
-	if Off(sender) then return end -- (1.1, Konig's review: net-off)
+	if Off(sender) then return end -- (1.1, review: net-off)
 	local l = key and lists[sender .. "~" .. key]
 	part, parts = Num(part, Crafters.LIST_PARTS), Num(parts, Crafters.LIST_PARTS)
 	local now = ns.Now()

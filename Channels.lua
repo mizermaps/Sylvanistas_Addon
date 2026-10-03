@@ -53,7 +53,7 @@ local function Label(tier)
 	return L[TIERS[tier].label]
 end
 
--- 1.1 (Fern's #11): the Sylvanistas chats are the player's choice, on the first-open page
+-- 1.1 (request #11): the Sylvanistas chats are the player's choice, on the first-open page
 -- (Consent.lua) or /syl chat on|off. Off until they answer (ns.db.addonChat is nil until then,
 -- account-wide), and off after a No: this client neither sends nor shows [Sylvanistas], [Captains]
 -- or [Lords]. A line that arrives is dropped before anything keeps it (no history, nothing to
@@ -224,12 +224,12 @@ end
 local function Trim(text) return (tostring(text):match("^%s*(.-)%s*$")) end
 
 ---------------------------------------------------------------------------
--- Chattynator's tabs (1.1.2; from hypertectonic's pull request #47, GitHub #46). Chattynator, a
+-- Chattynator's tabs (1.1.2; from hypertectonic's pull request #47, . Chattynator, a
 -- chat addon, moves the game's chat windows into a hidden frame of its own and shows its own
 -- windows and tabs in their place (Core/Overrides.lua): a line added to one of the game's windows
 -- there is never seen, but for the main one's, whose AddMessage it hooks. Its public API
 -- (Chattynator.API, API/Main.lua, the same from its release 151 to 224) is all Sylvanistas uses:
--- GetWindowsAndTabs() (its tabs' names, window by window, a new list at each call) and
+-- GetWindowsAndTabs (its tabs' names, window by window, a new list at each call) and
 -- AddMessageToWindowAndTab(window, tab, text, r, g, b) (a line in that tab). Sylvanistas never makes,
 -- names or sets up a tab of Chattynator's, nor its filters; nothing of the game's is called on
 -- that path (Chattynator draws the line later, from its own code). While Chattynator answers, its
@@ -390,7 +390,7 @@ end
 
 -- The Sylvanistas tab open now: its frame, number and name as the game has it, else nil. While
 -- Chattynator answers, its tab named Sylvanistas (1.1.2): the game's window of that name is hidden
--- behind Chattynator's, and a line there was never seen (GitHub #46 again, through 1.1.1's tab).
+-- behind Chattynator's, and a line there was never seen again, through 1.1.1's tab).
 local function FindTab()
 	local tabs = ChattyTabs()
 	if tabs then
@@ -804,8 +804,7 @@ end
 
 -- Every line kept goes through here, whether it is then shown, muted or held back by the flood
 -- guard: into the history the Chat tab shows (CHAT_CHANGED) and, from someone else, already
--- checked and sanitized, to a companion reading along (CHAT_LINE, for
--- SylvanistasBridge.RegisterChatObserver). The mute and the flood guard only decide what this chat
+-- checked and sanitized, as CHAT_LINE. The mute and the flood guard only decide what this chat
 -- frame shows.
 local function Keep(tier, sender, guild, class, text, mine)
 	AddHistory(tier, { sender = sender, guild = guild, class = class, text = text, mine = mine or nil })
@@ -894,7 +893,7 @@ function Channels.Send(tier, text, now, keepMute)
 	end
 	-- The first line in each channel waits for the player's OK: nothing is private there, and
 	-- they are told so before anything leaves (Channels.Confirm sends it). The warning holds the
-	-- channel it named too (GitHub #34).
+	-- channel it named too .
 	if not Warned()[tier] then
 		ns.ShowDialog("SYLVANISTAS_CHAT_PRIVACY", Label(tier), ns.Comm.Audience(), { tier = tier, text = text, channel = ns.Comm.ChannelName(), keepMute = keepMute or nil })
 		return false, "confirm"
@@ -918,7 +917,7 @@ function Channels.Send(tier, text, now, keepMute)
 	local failed, sentParts = false, 0
 	local line = {} -- (its parts in the lane, for Comm.DropLine)
 	for _, part in ipairs(parts) do
-		-- why (Comm.SendChat): "moved" the channel changed before it left (GitHub #34: it goes to
+		-- why (Comm.SendChat): "moved" the channel changed before it left : it goes to
 		-- neither channel), "late", "failed" or "left". Told once per line, at its first part not
 		-- sent, and CHAT_SEND_FAILED(tier, why, text, sentParts) with the whole line, so a window
 		-- can offer it back (sentParts: its parts that had already left). The parts are sent in
@@ -965,7 +964,7 @@ end
 -- The warning's answer, with the line it held (with the gamepad UI too: it rides in the
 -- window's data). Send: that channel counts as warned and the line goes through Channels.Send
 -- again, every check with it. Cancel, Escape or another window taking its place: not sent.
--- The channel changed while the warning waited (a new realm key, GitHub #34): the line was
+-- The channel changed while the warning waited (a new realm key, : the line was
 -- written for the audience the warning named, so it is not sent, and the channel is not counted
 -- as warned (the new one's audience was never shown); the player is told, as for a line dropped
 -- from the lane. Out of a Sylvanistas guild by then, or on no channel (1.1.1): no channel change,
@@ -1169,7 +1168,7 @@ end
 
 -- Our name however the server writes it: lower case, our realm left out (a namesake on a
 -- connected realm is another player), a hyphen between first name and surname read as the
--- space it stands for ("Faladori Elskylance" stays another).
+-- space it stands for ("Firstnam Esurname" stays another).
 local function Letters(name)
 	name = tostring(name or "")
 	local base, realm = name:match("^(.+)%-([^%-]+)$")
@@ -1197,7 +1196,7 @@ end)
 -- writ (no parchment, nothing to acknowledge, no popup, no sound): a raid move or a gates change
 -- that has to stay on screen. Not a second decree system: one line, the setter's own words,
 -- typed by a person.
--- Who pins, and for whom (Konig's review of 1.1): the army's line comes from the King (his pinned
+-- Who pins, and for whom (review of 1.1): the army's line comes from the King (his pinned
 -- name), his Stewards (the signed titles list) and his Hands (the King's list or a Steward's)
 -- alone, on the Sylvanistas channel: every client knows them alike, and no census report makes
 -- anyone one of them. A guild master pins for his own guild only, over GUILD: his guildmates'
@@ -1238,7 +1237,7 @@ end)
 -- from a guild master (<guild>: his own). Clients before 1.1 know no N1 and drop it unread.
 -- A higher rank's takedown of a guild master's pin, and its repeat, go where that pin went: over
 -- GUILD (<guild>: still the King's), which reaches his guildmates on every realm and on either
--- channel (Konig's review); their clients take it by the channel's rule (PinRank).
+-- channel (review); their clients take it by the channel's rule (PinRank).
 ---------------------------------------------------------------------------
 
 Channels.PIN_MAX = 100         -- bytes of a pinned line
@@ -1331,7 +1330,7 @@ local function Oldest(a, b)
 	return a.k < b.k
 end
 -- The lapsed go (and anything else a saved file holds), then past PIN_DOWN_KEEP the lowest
--- rank's, the oldest first (the review of Konig's fixes: a sender's takedowns never push out a
+-- rank's, the oldest first (the review of the fixes: a sender's takedowns never push out a
 -- higher rank's).
 local function PruneDown(list, now)
 	local kept = {}
@@ -1392,7 +1391,7 @@ local function Current(now)
 	return pin
 end
 
--- The pinned line as this client shows it, else nil (Konig's review): none while the Sylvanistas chats
+-- The pinned line as this client shows it, else nil (review): none while the Sylvanistas chats
 -- are off here (the player's choice, Consent.lua), none from a name or guild the moderators took
 -- off (net-off, Moderation.lua). It is kept meanwhile: the chats back on, or its setter back, it
 -- shows again while it lasts.
@@ -1489,7 +1488,7 @@ end
 local function Ours(p) return p.mine or Channels.IsMe(p.sender) end
 
 -- The moderators took us (or our guild) off (net-off): the word, or nil. Then we take no one
--- else's line down (the review of Konig's fixes): every other client drops such a takedown
+-- else's line down (the review of the fixes): every other client drops such a takedown
 -- (HandlePin), so none leaves, and the line stays here too. Our own still comes down.
 local function SelfOff()
 	local M = ns.Moderation
@@ -1515,7 +1514,7 @@ function Channels.TakeDownPin(now)
 	local p = Current(now)
 	if p and not Ours(p) and Channels.Pin(now) ~= p then p = nil end
 	if not p then
-		-- Nothing held here, though we may pin (Konig's review): the Forever beta never loads the
+		-- Nothing held here, though we may pin (review): the Forever beta never loads the
 		-- saved variables back, so after a /reload our own pin is gone here while the others still
 		-- show it. Our takedown goes all the same, where our pin would go, once a minute at most:
 		-- theirs drop whichever of ours they show (id 0 names no pin; any other's stays).
@@ -1556,7 +1555,7 @@ function Channels.TakeDownPin(now)
 	if own then
 		SendPin({ id = p.id, guild = p.guild, dist = p.dist }, now, true)
 	else
-		-- A guild master's pin (it came over GUILD): taken down over GUILD too (Konig's review),
+		-- A guild master's pin (it came over GUILD): taken down over GUILD too (review),
 		-- which reaches every client that holds it (his guildmates, on every realm and either
 		-- channel); we are in that guild, since we heard it. The channel would miss those on
 		-- another realm or the other channel, and reach thousands that hold nothing.
@@ -1584,7 +1583,7 @@ end
 
 -- A pin this client took down, heard again: its setter's client missed the takedown. Said again,
 -- named by its id, as rarely as our own takedowns, while we still outrank it, over the dist the
--- repeat came in on (a guild master's: GUILD, Konig's review). Never while the moderators have
+-- repeat came in on (a guild master's: GUILD, review). Never while the moderators have
 -- us off: nobody would take it (SelfOff).
 local function ResendDown(sender, id, rank, now, heard)
 	local mine, guild = MyPin()
@@ -1613,7 +1612,7 @@ function Channels.HandlePin(dist, sender, text, now)
 	body = Channels.CleanPin(body)
 	local takedown = body == "" or left == 0
 	local rank = Channels.PinRank(sender, guild, dist)
-	-- A takedown over GUILD from the King, a Steward or a Hand (Konig's review): of our guild
+	-- A takedown over GUILD from the King, a Steward or a Hand (review): of our guild
 	-- master's pin, sent where it went. Their rank by the channel's rule: it only removes a pin,
 	-- and the server vouches for the guildmate who sent it.
 	if takedown and dist == "GUILD" then
@@ -1625,7 +1624,7 @@ function Channels.HandlePin(dist, sender, text, now)
 		return false, "rank"
 	end
 	local current = Current(now)
-	-- A name or guild the moderators took off (net-off, Konig's review): no pin of theirs.
+	-- A name or guild the moderators took off (net-off, review): no pin of theirs.
 	local M = ns.Moderation
 	local hidden = M and M.Hides and M.Hides(sender, guild)
 	if takedown then
@@ -1636,7 +1635,7 @@ function Channels.HandlePin(dist, sender, text, now)
 		if not own and not (current and current.id == id and rank > current.rank) then
 			-- Nothing we hold: its sender's own pin of that id is remembered all the same (we may
 			-- have missed it, or it may come late), so it never shows here. Once a minute at most
-			-- from each (the review of Konig's fixes: a flood of made-up ids would push out what
+			-- from each (the review of the fixes: a flood of made-up ids would push out what
 			-- the King took down), and never id 0 (it names no pin).
 			if id ~= 0 and now - (blindFrom[sender] or -math.huge) >= Channels.PIN_GAP * 0.75 then
 				blindFrom[sender] = now
@@ -1900,7 +1899,7 @@ end)
 ns.On("LOGIN", function()
 	ns.Every(60, "chat housekeeping", Channels.Prune)
 	-- Our pinned line again for late logins (1.1), every PIN_RESEND while it lasts; after a
-	-- /reload too (Konig's review: its setter can still take it down).
+	-- /reload too (review: its setter can still take it down).
 	Channels.RestorePin()
 	ns.Every(60, "pin repeat", function() Channels.RepeatPin() end)
 end)

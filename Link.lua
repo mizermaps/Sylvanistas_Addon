@@ -9,10 +9,10 @@ local L = ns.L
 -- this character asked: each proof is an Ed25519 signature made by a confirmer's addon with a key
 -- of its own, kept for one character (SylvanistasDB.discord.keys[Name-Realm]), and certified for that
 -- character: OLK2, a signature on the key's public half, its tier and the character's name, by the
--- bot. The bot's keeper makes every key, a High Councillor's too (scripts/link-keys.py confirmer),
+-- bot. The bot's keeper makes every key, a High Councillor's too (the key tool confirmer),
 -- typed in game with /syl discord key and /syl discord cert. (The council authority's path, where a
 -- councillor's addon makes its own key and the author's client certifies it by itself, is below,
--- off unless the author turns it on: ns.LINK_COUNCIL_AUTHORITY, Konig's review.) Nothing of it is
+-- off unless the author turns it on: ns.LINK_COUNCIL_AUTHORITY, review.) Nothing of it is
 -- made, typed, announced or used before the bot is ready (Link.BotReady). The server stamps who
 -- whispers whom, so a proof names the character that really asked, and a certificate is honoured
 -- only from the character it names.
@@ -67,20 +67,20 @@ local L = ns.L
 -- A confirmer's key never leaves SylvanistasDB.discord.keys, nor the council authority's seed
 -- ns.LINK_CA_SEED: neither is ever printed, sent, logged, or written in /syl status and the bug report.
 
--- The Sylvanistas bot's public keys (64 hex digits each, from scripts/link-keys.py backend): a code
+-- The Sylvanistas bot's public keys (64 hex digits each, from the key tool backend): a code
 -- or certificate signed by any of them is accepted, so two can be listed while the key changes.
 -- Anything that is not 64 hex digits is ignored: until the bot's key is pasted here, every code
 -- is refused, and no confirmer key is made, typed, announced or used, nor any certificate asked
 -- for, signed or typed (Link.BotReady).
 ns.LINK_BACKEND_KEYS = { "PASTE-THE-BOT-PUBLIC-KEY-HEX-HERE" }
--- The High Council's certificate authority (scripts/link-keys.py ca, on the author's computer):
+-- The High Council's certificate authority (the key tool ca, on the author's computer):
 -- its public keys (64 hex digits each), whose certificates of tier c count for councillors' keys.
 -- Its seed is only in dist/LinkCA.lua (ns.LINK_CA_SEED), copied to the author's own game and never
 -- published. Its certificates count, and councillors' addons make a key and ask for one, only
 -- with the author's switch below on and the bot's key pasted above.
-ns.LINK_CA_KEYS = { "PASTE-THE-COUNCIL-AUTHORITY-PUBLIC-KEY-HEX-HERE" } -- (CHANGEME: the Olympus author's key was here)
--- The author's switch for the council authority's path (Konig's review): off. Off, every
--- confirmer's key, a High Councillor's too, is one the bot's keeper makes (scripts/link-keys.py
+ns.LINK_CA_KEYS = { "PASTE-THE-COUNCIL-AUTHORITY-PUBLIC-KEY-HEX-HERE" } -- CHANGEME: your council authority's public key
+-- The author's switch for the council authority's path (review): off. Off, every
+-- confirmer's key, a High Councillor's too, is one the bot's keeper makes (the key tool
 -- confirmer) and the bot certifies, typed in game with /syl discord key <id> <key> and
 -- /syl discord cert <certificate>: no addon makes a key of its own, asks the author's client for a
 -- certificate or signs one, and no addon takes the authority's certificates (the key that signs
@@ -88,11 +88,11 @@ ns.LINK_CA_KEYS = { "PASTE-THE-COUNCIL-AUTHORITY-PUBLIC-KEY-HEX-HERE" } -- (CHAN
 -- bits the client can't hide (Link.EntropySample says which), sits in plain text in the
 -- SavedVariables, and its certificate lasts a year. On (true), the path below ("High Councillors'
 -- keys, certified by the author's client") runs as it was written, once the bot is ready
--- (Link.BotReady); the bot's keeper then sets LINK_CA_PUBLIC in the Worker too (web/WORKER.md,
+-- (Link.BotReady); the bot's keeper then sets LINK_CA_PUBLIC in the Worker too (the bot's setup,
 -- step 1b). Keys it made are dropped at login while it is off (Link.Resume).
 ns.LINK_COUNCIL_AUTHORITY = false
--- The Sylvanistas Link page, a static page on this repository's GitHub Pages (web/public/, its address
--- also in web/public/config.js as PAGE_URL): the QR code and the copy box open it with the link in
+-- The Sylvanistas Link page, a static page on this repository's GitHub Pages (the link page, its address
+-- also in the link page's config as PAGE_URL): the QR code and the copy box open it with the link in
 -- the #fragment only, which no server ever gets. The page sends the link to the bot's Worker.
 ns.LINK_SITE = "https://CHANGEME-your-site.example/sylvanistas-link/"
 -- Whose watcher the texts name ("<name>'s watcher"); nil: "the bot's watcher".
@@ -274,7 +274,7 @@ local backendKeys, caKeys = {}, {}
 -- The bot's public keys this version knows, and the council authority's.
 function Link.BackendKeys() return KeyList(ns.LINK_BACKEND_KEYS, backendKeys) end
 function Link.CAKeys() return KeyList(ns.LINK_CA_KEYS, caKeys) end
--- The bot is ready: this version knows one of its keys. Until then (Konig's review) no confirmer
+-- The bot is ready: this version knows one of its keys. Until then (review) no confirmer
 -- key is made, typed, announced or used, and no certificate is asked for, signed or typed: a key
 -- would only wait in the SavedVariables for the launch.
 function Link.BotReady() return #Link.BackendKeys() > 0 end
@@ -371,7 +371,7 @@ function Link.Parse(s)
 	return b
 end
 
--- JavaScript's encodeURIComponent: letters, digits and - _ . ! ~ * ' ( ) as they are, every
+-- JavaScript's encodeURIComponent: letters, digits and - _ . ! ~ * ' ( as they are, every
 -- other byte (UTF-8 included) as %XX.
 function Link.EncodeURI(s)
 	return (s:gsub("[^A-Za-z0-9%-_%.!~%*'%(%)]", function(c) return ("%%%02X"):format(c:byte()) end))
@@ -1555,7 +1555,7 @@ end
 ---------------------------------------------------------------------------
 -- High Councillors' keys, certified by the author's client (the council authority)
 --
--- Off by default (ns.LINK_COUNCIL_AUTHORITY, Konig's review): councillors then type the key and
+-- Off by default (ns.LINK_COUNCIL_AUTHORITY, review): councillors then type the key and
 -- certificate the bot's keeper made them, as every confirmer does, and none of this runs. Only
 -- with the author's switch on, and once the bot is ready (Link.CouncilAuthority):
 -- a councillor pastes nothing: its addon makes a key of its own in the game, the first time it
@@ -1567,22 +1567,22 @@ end
 ---------------------------------------------------------------------------
 
 -- One sample of the entropy pool a councillor's key is made from, taken once a frame for
--- ENTROPY_FRAMES frames: debugprofilestop() (a millisecond clock with fractions: the frame's
--- timing), GetTimePreciseSec() where the client has it, GetTime(), GetServerTime(), time(),
--- math.random() twice, the addresses of two new tables (tostring({})), UnitGUID("player") and
--- GetCursorPosition(). SHA-512 of the whole pool, cut to 32 bytes, is the key's seed.
+-- ENTROPY_FRAMES frames: debugprofilestop (a millisecond clock with fractions: the frame's
+-- timing), GetTimePreciseSec where the client has it, GetTime, GetServerTime, time,
+-- math.random twice, the addresses of two new tables (tostring({})), UnitGUID("player") and
+-- GetCursorPosition. SHA-512 of the whole pool, cut to 32 bytes, is the key's seed.
 -- Its limits, honestly: WoW's Lua has no cryptographic random source, and none of these is one.
 -- The GUID, the times to the second and the cursor are known to, or guessable by, someone who
 -- watches; math.random is the game's generator, whose state is not secret by design; the table
 -- addresses depend on the heap. What an attacker can't know is the sub-millisecond readings of
 -- debugprofilestop and GetTimePreciseSec over eight frames on this computer (the frame-to-frame
 -- jitter), and the exact second the key was made: tens of bits, not 256. That is why this path is
--- off by default (Konig's review): a key made so is kept in plain text in the SavedVariables, its
+-- off by default (review): a key made so is kept in plain text in the SavedVariables, its
 -- public half goes on the channel every 5 minutes, and its certificate lasts a year. Turned on, it
 -- makes a key that only confirms Discord links, that the bot's keeper can revoke at once (the
 -- Worker's revocation lists, by key or by character) and that /syl discord key new replaces in
 -- game (it prints the old key's id: the keeper revokes that one at the bot). By default every
--- councillor's key is made from a real random source by the bot's keeper (scripts/link-keys.py
+-- councillor's key is made from a real random source by the bot's keeper (the key tool
 -- confirmer, on a computer) and typed with /syl discord key <id> <key>.
 function Link.EntropySample()
 	local parts = {}
@@ -2147,7 +2147,7 @@ function Link.PrintStatus()
 end
 
 -- /syl discord certified: the council authority's record (the author's client), for the bot's
--- keeper, who can revoke a key by its id or every key of a character (web/WORKER.md, step 1b).
+-- keeper, who can revoke a key by its id or every key of a character (the bot's setup).
 function Link.PrintCertified()
 	local list = {}
 	for id, e in pairs(Link.Certified() or {}) do
@@ -2306,7 +2306,7 @@ function Link.Resume()
 		ns.Print(L.LINK_KEY_PER_CHARACTER)
 	end
 	-- Keys an addon made in game for a High Councillor (auto) go, every character's of the account,
-	-- while the council authority's path does not run (Konig's review: made from tens of bits,
+	-- while the council authority's path does not run (review: made from tens of bits,
 	-- kept in plain text, certified for a year): said in one line. Keys from the bot's keeper stay.
 	if not Link.CouncilAuthority() then
 		local gone = false

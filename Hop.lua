@@ -131,7 +131,7 @@ local function OnlyGuests()
 	return true
 end
 
--- Everyone who shares their layer helps once they said yes to it (1.1, Fern's #11: the
+-- Everyone who shares their layer helps once they said yes to it (1.1, request #11: the
 -- first-open page, or /syl layerhelp on; nil, never answered, is off). Not the King: he is the
 -- one everybody wants, and his screen is on stream.
 function Hop.Helps() return ns.db ~= nil and ns.db.layerHelp == true end
@@ -662,7 +662,7 @@ function Hop.ZoneName(mapID)
 	return mapID and ns.Zones and ns.Zones.NameForKey and ns.Zones.NameForKey("m" .. mapID) or "?"
 end
 
--- The King's own word on where he plays (1.0.0, Konig's review of 1.0.0): the name the server
+-- The King's own word on where he plays (1.0.0, review of 1.0.0): the name the server
 -- stamped on the last message his client sent us (his crown, his layer, his commands: King.lua
 -- and Layers.lua call Hop.HeardKing for the character pinned by name, ns.IsKingCharacter).
 -- A census report is anyone's word: one forged report from another realm of our group placed him
@@ -679,7 +679,7 @@ end
 -- only shows; the Throne's commands ask for more): one forged report can't crown anyone
 -- while the guild's own reporter says otherwise. strict: two reports (inviting on its own,
 -- "For Sylvanistas!", waits for that).
--- His realm and his layer (1.0.0, Konig's review): where the census names the character pinned
+-- His realm and his layer (1.0.0, review): where the census names the character pinned
 -- by name, from his own messages alone (Hop.HeardKing), none heard yet: neither is known. Where
 -- none is pinned (another realm group), the census's word is all there is.
 function Hop.King(strict)

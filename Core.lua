@@ -8,14 +8,14 @@ local L = ns.L
 ---------------------------------------------------------------------------
 ns.FACTION_ONLY = "Horde"                      -- the addon runs for this faction alone (ns.IsMember)
 ns.GUILD_NAME = "Sylvanistas"                  -- the main guild's exact name (any case)
-ns.GM_CHARACTER = "Testiana Paladina"          -- the guild master (the "King"): his character's exact name
-ns.GM_REALM = "ClassicBetaPvE"                 -- his realm group (e.g. "ClassicBetaPvP"); nil: learned from his first message, see /syl status
+ns.GM_CHARACTER = "Testiana Paladina"          -- the guild master (the Dark Lady): her character's exact name
+ns.GM_REALM = "ClassicBetaPvE"                 -- her realm group (e.g. "ClassicBetaPvE"); nil: learned from her first message, see /syl status
 ns.GM_DISPLAY = "Dark Lady"                   -- what the addon calls her on the lines and the crown
 ns.AUTHOR_CHARACTER = "Riztosin Psalmpalm"      -- the addon keeper's character (the Workshop tab, bug reports, signed lists)
 ns.REALM_GROUP = "ClassicBetaPvE"              -- the author's and Treasurer's realm group (e.g. "ClassicBetaPvP")
 ns.TREASURER_CHARACTER = "CHANGEME_Treasurer"  -- the Treasurer (in the main guild)
 ns.TREASURER_MAIL_CHARACTER = "CHANGEME_TreasurerMail" -- where dues and treasury mail go (any guild)
-ns.TREASURY_OFF = true                        -- true turns the Treasury, Dues and Bank tabs off (Olympus ran them on the Alliance only)
+ns.TREASURY_OFF = true                        -- true turns the Treasury, Dues and Bank tabs off
 ns.WALL_OF_SHAME = false                       -- true lets the Dark Lady show the untabarded list to every member (the "Wall of Shame")
 
 ns.NAME = "Sylvanistas"
@@ -126,10 +126,10 @@ function ns.TellName(name)
 	return name
 end
 
--- WoW: Forever's names are a first name and a surname ("Faladoriel Skylance"), and its unit
+-- WoW: Forever's names are a first name and a surname ("Firstname Surname"), and its unit
 -- functions hand the surname back where the realm goes: UnitFullName("player") gives
--- "Faladoriel", "Skylance", and GetUnitName(unit, true) "Faladoriel-Skylance". The server
--- stamps addon messages "Faladoriel Skylance-ClassicBetaPvP", like the guild roster and /who:
+-- "Firstname", "Surname", and GetUnitName(unit, true) "Firstname-Surname". The server
+-- stamps addon messages "Firstname Surname-ClassicBetaPvP", like the guild roster and /who:
 -- that is the name everyone compares. ns.splitNames: this client splits names so (our own
 -- "realm" is none).
 function ns.IsRealmName(realm)
@@ -339,7 +339,7 @@ local function OpenStore(db, group)
 	db.realms[group] = R
 	local members = {}
 	for _, realm in ipairs(ns.GroupRealms(group)) do members[realm] = true end
-	-- Collect first: the merge must not change db.realms while pairs() walks it.
+	-- Collect first: the merge must not change db.realms while pairs walks it.
 	local merge = {}
 	for key in pairs(db.realms) do
 		if key ~= group and type(key) == "string" then
@@ -658,7 +658,7 @@ end
 
 -- An alert that interrupts: its raid warning (a.text), its sound, its popup or window (a.show).
 -- The caller prints its chat line. While quiet (and not the player's own click, a.own) it waits:
--- a.what, its words in the summary and on the Decrees tab (a.text by default); a.open(), still
+-- a.what, its words in the summary and on the Decrees tab (a.text by default); a.open, still
 -- current (none: as long as the player is away); a.key, the same alert repeated (the Agenda and
 -- its reminders): one line. True when it showed now.
 function ns.Alert(kind, tone, a)
@@ -859,7 +859,7 @@ end
 -- realm group alone (ns.KING_REALM's): anywhere else (Forever's other realms, Classic Era,
 -- Anniversary) there is no King by name either, like the Horde's, and a namesake on another
 -- group is not him.
--- The Horde's (0.9.4): Duskmonkey Boneback, guild master of <Mudhutters>. His realm is not known
+-- The Horde's (0.9.4): Firstname Surname, guild master of <Guild>. His realm is not known
 -- yet: until it is (ns.KING_REALM_HORDE), his name alone counts on the Horde, anywhere (Forever
 -- names are one per region; a namesake can only exist on another client or region).
 ns.KING_CHARACTER = { Horde = ns.GM_CHARACTER }
@@ -898,7 +898,7 @@ end
 -- chats. No name is written in this code (it is public, and names get sniped on launch realms):
 -- the list is signed by the author on his own computer and checked by every client (Sign.lua,
 -- Workshop.lua).
--- The mark (0.9.9, Max's): the game's target-frame skull, the one nameplates show. Fixed: nobody
+-- The mark (0.9.9): the game's target-frame skull, the one nameplates show. Fixed: nobody
 -- picks or changes it. Each councillor's own icon (0.9.8, Workshop.lua) is flavour after it; a
 -- councillor who never picked one shows the mark alone.
 ns.HIGH_COUNCIL_SKULL = "Interface\\TargetingFrame\\UI-TargetingFrame-Skull"
@@ -1063,14 +1063,14 @@ function ns.Stewards()
 end
 
 -- The approved guilds (1.1, the author's): guilds of Sylvanistas whose names the name rule
--- below leaves out (it leaves Olympian and Olympia out on purpose) count as Sylvanistas guilds when
+-- below leaves out count as Sylvanistas guilds when
 -- the author's signed titles list names them, per faction, in an entry of its own after the
 -- departments, like the Steward:
 --   ^guilds^<Alliance|Horde>^<Guild Name>,<Guild Name>,...
 -- Three "^": clients of 0.9.9 and 1.0.0 leave it out unread (a department has two; 1.0.0 reads
 -- "^steward^" alone) and still take, show and pass on the whole list. The list counts on its realm
 -- group only, as every signed list (ns.CouncilTitles), and only the author's key signs it
--- (scripts/council-sign.py guild).
+-- (the signing tool guild).
 ns.APPROVED_MAX = 20
 -- ...and the ones the addon ships with (1.1, the author's too): a guild whose first member nobody
 -- can hand the signed text counts as soon as its members update, with nothing to paste. Each
@@ -1185,8 +1185,8 @@ function ns.KingGuildName()
 	return want:sub(1, 1):upper() .. want:sub(2)
 end
 
--- The King's own screen (0.9.9, the author's, for Asmon's stream): the King's client, or the
--- author's "Asmon's view" (King.Preview) so he can try it. Nobody else's.
+-- The King's own screen (0.9.9, the author's, for the Dark Lady's stream): the King's client, or the
+-- author's "the Dark Lady's view" (King.Preview) so he can try it. Nobody else's.
 function ns.KingsScreen()
 	local K = ns.King
 	if type(K) ~= "table" or type(K.IsKing) ~= "function" then return false end
@@ -1235,7 +1235,7 @@ end
 
 -- Letters folded for a search (the Workshop's, 0.9.9; the tabs', 1.0.0), byte by byte: A-Z, and
 -- Latin-1's accented capitals (À to Þ but ×, in UTF-8 C3 80-9E, their small letters C3 A0-BE).
--- Not the C library's lower(): its idea of a letter can change with the locale and split a UTF-8
+-- Not the C library's lower: its idea of a letter can change with the locale and split a UTF-8
 -- letter. Any other letter stays whole.
 function ns.Fold(s)
 	s = tostring(s or ""):gsub("[A-Z]", function(c) return string.char(c:byte() + 32) end)
@@ -1284,13 +1284,11 @@ function ns.IsCrown()
 end
 
 -- Fixed on purpose: only guilds with "Sylvanistas" in their name belong to the realm, however
--- they spelled it. Guilds were made with the word misspelled (OLYMPVS the Roman way, Olimpvs,
--- Olmps, Olympuz...). Each word of the name is read the way it sounds (v as u, i as y, z as s,
--- 0 as o, a doubled letter once); then one slip anywhere in a word counts (a letter changed,
--- missing or added, or two swapped), and two at the start of a word that starts with an O
--- (Olmps, Olymp, Olympe, Oymps). Olimpo/Olympo/Olympos count the same way. Words are never
--- joined: "Holy Mpulse" is not Sylvanistas. Olympia, Olympic, Olympian, Olympiad and the like in
--- other languages (Olympique, olympisch) are other words and are left out, and so is polyp.
+-- they spelled it (Silvanistas, Sylvanystas...). Each word of the name is read the way it sounds
+-- (v as u, i as y, z as s, 0 as o, a doubled letter once); then one slip anywhere in a word counts
+-- (a letter changed, missing or added, or two swapped), and two at the start of a word that
+-- starts with an S. Words are never joined, and a name against the guild ("Anti Sylvanistas")
+-- is left out (Against, below).
 -- The main guild itself (the King's, the Treasurer's) is still the exact name, see IsCrownRank.
 -- Written as they sound (Sounds, below: v as u, i as y), or no name would ever match them.
 local REALM_WORDS = { "syluanystas" } -- as it sounds: Sylvanistas, Sylvanystas, Silvanistas
@@ -1341,7 +1339,7 @@ local function SylvanistasWord(word)
 	end
 	for _, target in ipairs(REALM_WORDS) do
 		if word:find(target, 1, true) then return true end
-		-- One slip anywhere in the word (Olympo's no shorter than itself: "olymo" is in polymorph).
+		-- One slip anywhere in the word.
 		for len = #target - 1, #target + 1 do
 			for i = 1, #word - len + 1 do
 				if Slips(word:sub(i, i + len - 1), target, 1) <= 1 then return true end
@@ -1409,7 +1407,7 @@ end
 
 function ns.IsFederation(guild)
 	if type(guild) ~= "string" or guild == "" then return false end
-	-- The King's own guild is Sylvanistas whatever its name (the Horde's is <Mudhutters>, 0.9.4).
+	-- The King's own guild is Sylvanistas whatever its name (the Horde's is <Guild>, 0.9.4).
 	if ns.IsKingGuild(guild) then return true end
 	-- A guild the author's signed list approves (1.1), whatever its name.
 	if ns.IsApprovedGuild(guild) then return true end
@@ -1540,7 +1538,7 @@ ns.RegisterEvent("ADDON_LOADED", function(name)
 		db.inspect = nil
 	end
 	-- Block list keys become "name-realm" (old keys were short names from this realm).
-	-- Collect first: adding keys while pairs() walks the table is an error in Lua 5.1.
+	-- Collect first: adding keys while pairs walks the table is an error in Lua 5.1.
 	if ns.realm ~= "?" then
 		local short = {}
 		for k in pairs(db.blocked) do
@@ -1710,7 +1708,7 @@ end)
 
 -- 1.1.2: a window that opens by itself (the author's bug report and version results, a player's
 -- window for his bug report ask) waits out a fight in the open world, where ns.Alert does not
--- hold it: in the middle of the screen it would catch the mouse mid-combat. fn() now out of
+-- hold it: in the middle of the screen it would catch the mouse mid-combat. fn now out of
 -- combat, else once it ends (PLAYER_REGEN_ENABLED). The same key waiting again: the newer fn, in
 -- the older's place. True when it ran now.
 local afterCombat = {} -- { key, fn }, in order
@@ -1827,7 +1825,7 @@ SlashCmdList.SYLVANISTAS = function(input)
 	ns.SafeCall(SlashWhere(input), function()
 		local cmd, rest = (input or ""):match("^%s*(%S*)%s*(.-)%s*$")
 		cmd = (cmd or ""):lower()
-		-- Sylvanistas words for Olympus commands (the old ones still work).
+		-- Sylvanistas words for the original command names (those still work).
 		cmd = ({ voice = "vox", rise = "arms", gather = "muster", dreadguard = "council", screams = "decrees", scream = "decrees" })[cmd] or cmd
 		if cmd == "" then
 			ns.UI.Toggle()
@@ -1842,14 +1840,14 @@ SlashCmdList.SYLVANISTAS = function(input)
 		elseif cmd == "mark" then
 			ns.Inspect.MarkTarget(rest)
 		elseif cmd == "gear" then
-			-- 1.1 (Fern's #28): officers keep the gear of the player they target, in range.
+			-- 1.1 (request #28): officers keep the gear of the player they target, in range.
 			ns.Inspect.InspectGear()
 		elseif cmd == "loot" then
-			-- 1.1 (Fern's #22): the guild's loot notes and points, on the Realm tab.
+			-- 1.1 (request #22): the guild's loot notes and points, on the Realm tab.
 			ns.UI.SelectTab("realm")
 			ns.Loot.Show(true)
 		elseif cmd == "craft" then
-			-- 1.1 (Fern's #24): who can make this item (a shift-clicked link) or these words.
+			-- 1.1 (request #24): who can make this item (a shift-clicked link) or these words.
 			if rest == "" then
 				ns.UI.SelectTab("realm")
 				ns.Views.ShowPage("crafters")
@@ -1862,7 +1860,7 @@ SlashCmdList.SYLVANISTAS = function(input)
 			-- 1.1: the guilds the author's signed list makes Sylvanistas guilds; "paste" to paste that list.
 			ns.Workshop.Approved(rest)
 		elseif cmd == "patrolshare" then
-			-- 1.1 (Fern's #29): officers pass their patrols' findings to their guild's officers.
+			-- 1.1 (request #29): officers pass their patrols' findings to their guild's officers.
 			local word, on = rest:lower(), nil
 			if word == "on" then on = true elseif word == "off" then on = false end
 			ns.Inspect.SetSharing(on)
@@ -1976,13 +1974,13 @@ SlashCmdList.SYLVANISTAS = function(input)
 				ns.Print(ns.Layers.Sharing() and L.LOCATION_ON or L.LOCATION_OFF)
 			end
 		elseif cmd == "filter" or cmd == "filtro" then
-			-- 1.1 (Fern's #31): block terms, the player's own and the shared list (Filter.lua).
+			-- 1.1 (request #31): block terms, the player's own and the shared list (Filter.lua).
 			ns.Filter.Slash(rest)
 		elseif cmd == "log" then
-			-- 1.1 (Fern's #12): the acts this client saw (Chronicle.lua): [n], a word, copy, clear.
+			-- 1.1 (request #12): the acts this client saw (Chronicle.lua): [n], a word, copy, clear.
 			ns.Chronicle.Slash(rest)
 		elseif cmd == "privacy" or cmd == "privacidade" then
-			-- 1.1 (Fern's #11): the page of what this addon shares, each answer to change (Consent.lua).
+			-- 1.1 (request #11): the page of what this addon shares, each answer to change (Consent.lua).
 			ns.Consent.Show()
 		elseif cmd == "chat" then
 			-- 1.1: the Sylvanistas chats on this client (Channels.ChatOn); alone, says which.

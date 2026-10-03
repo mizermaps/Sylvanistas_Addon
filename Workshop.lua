@@ -192,7 +192,7 @@ local function Answer(id)
 end
 
 -- A player can refuse the author's roll calls and update notices: /syl rollcall off (0.9.2).
--- 1.1 (Fern's #11): the roll call is answered only after a yes (the first-open page, or /syl
+-- 1.1 (request #11): the roll call is answered only after a yes (the first-open page, or /syl
 -- rollcall on): nil, never answered, is off. The update notice sends nothing, so it still shows
 -- until a No (Workshop.Notices).
 function Workshop.Answers() return ns.db ~= nil and ns.db.rollCall == true end
@@ -1504,14 +1504,14 @@ end
 
 ---------------------------------------------------------------------------
 -- The High Council (the moderators): a list of character names signed by the author on his
--- own computer (scripts/council-sign.py; Sign.lua checks it), never written in the code. His
+-- own computer (the signing tool; Sign.lua checks it), never written in the code. His
 -- character loads it from a file that exists on his machine only and publishes it; every
 -- client checks the signature, keeps the newest list and passes it along now and then, so
 -- nobody needs to be online and nobody can forge or change it.
 --   HS1~<time>~<realm group>~<First Surname>,...~<signature>   (signed: all before the last ~)
 -- On the channel it travels as HS~<the signed list> (0.9.8): Comm hands a message to its
 -- handler only when "~" follows the two letters of its type, and the list starts "HS1~".
--- Departments and titles (0.9.9, Max's) come in a second signed list, so 0.9.8 clients keep
+-- Departments and titles (0.9.9) come in a second signed list, so 0.9.8 clients keep
 -- the name list they know; it travels as HT~<the signed list>, taken and passed along the same
 -- way, and shows titles for names on the name list only (Core.lua):
 --   HT1~<time>~<realm group>~<public 0|1>~<departments>~<signature>
@@ -1562,7 +1562,7 @@ Workshop.LIST_ASK_AGAIN, Workshop.LIST_ASK_EVERY, Workshop.LIST_ASKS = 150, 600,
 -- count itself alone, and all of them answer), and one sender's asks count once per
 -- LIST_ASK_FROM (a client asks LIST_ASK_AGAIN apart at the soonest).
 -- The author's client answers sooner, always, once per AUTHOR_ANSWER_GAP.
--- A handful of answers (1.0.0, Konig's review of 1.0.0: one ask drew some 15 to 45 messages on the
+-- A handful of answers (1.0.0, review of 1.0.0: one ask drew some 15 to 45 messages on the
 -- channel, every drawn client sending both lists, each 5 to 14 pieces long). The clients drawn go
 -- in turn, in the order of their draws over LIST_ANSWER_SPREAD; one that hears another's answer
 -- begin (its first piece: Comm.pieceHook) waits for it, the time its pieces take (LIST_HOLD_PIECE
@@ -1715,18 +1715,18 @@ end
 Workshop.CouncilNames = CouncilNames
 
 -- A signed list (from the author's file, or heard on the channel): checked, kept if newer.
--- A signature check is the heaviest thing the addon does (0.9.8, Konig's review): lists heard on
+-- A signature check is the heaviest thing the addon does (0.9.8, review): lists heard on
 -- the channel are checked at most once a minute per sender and VERIFY_MAX times a minute in all,
 -- and a list already found false is not checked again. The author's own file is not limited.
 -- Once a minute per sender and per kind of list (0.9.9): a relay sends the names and the titles
 -- one after the other, and one gap for both would leave the titles unchecked at every relay.
--- Two budgets (1.0.0, Konig's review of 1.0.0: three strangers sending a forged list of each kind
+-- Two budgets (1.0.0, review of 1.0.0: three strangers sending a forged list of each kind
 -- spent the whole minute's checks, and nothing relayed was checked meanwhile, a councillor's
 -- removal included): lists from our guild (over GUILD, or on the channel from a guildmate our
 -- roster knows: the server names the sender) have VERIFY_MAX checks a minute of their own, which
 -- nobody outside our guild can spend. And a signature that can't be the author's (not 512 hex
 -- digits: Sign.Plausible) is refused before it costs anything, never checked, never asked for.
--- The author's own relays and answers (1.0.0, Konig's second look: "exempt your own relays from
+-- The author's own relays and answers (1.0.0, the reviewer's second look: "exempt your own relays from
 -- the shared cap") are outside both budgets: on a realm where no guildmate our roster knows is
 -- his, full-length forgeries from three strangers still spent the channel's checks every minute,
 -- and the author's relay removing a councillor waited behind them. His name is the server's word
@@ -1758,7 +1758,7 @@ function Workshop.ResetVerify() -- tests (the list times heard of go too)
 	if Workshop.ResetListAsk then Workshop.ResetListAsk() end
 end
 
--- A list heard from our guild (1.0.0, Konig's review): over GUILD, or on the channel from a
+-- A list heard from our guild (1.0.0, review): over GUILD, or on the channel from a
 -- guildmate (our roster: the server's word, never the sender's).
 local function FromGuild(dist, sender)
 	return dist == "GUILD" or (sender ~= nil and ns.Roster ~= nil and ns.Roster.RankOf(sender) ~= nil)
@@ -1775,7 +1775,7 @@ function Workshop.TakeCouncil(blob, sender, guild)
 	-- client a signature check for nothing (0.9.8).
 	local c = ns.rdb.council
 	if type(c) == "table" and (tonumber(c.at) or 0) >= at then return false end
-	if not ns.Sign or not ns.Sign.Plausible(sig) then return false end -- (costs nothing: Konig's review)
+	if not ns.Sign or not ns.Sign.Plausible(sig) then return false end -- (costs nothing: review)
 	if sender and not MayVerify(sender, "HS", blob, ns.Now(), guild) then
 		if not falseLists[blob] then Advertise("HS", at) end -- (not checked: asked for later)
 		return false
@@ -1917,7 +1917,7 @@ function Workshop.MembershipChanged(wasMember)
 	if ns.Roster and ns.Roster.RequestScan then ns.SafeCall("approved roster", ns.Roster.RequestScan, true) end
 end
 
--- A signed titles list pasted in (the text scripts/council-sign.py prints): taken as a list from
+-- A signed titles list pasted in (the text the signing tool prints): taken as a list from
 -- our own guild is, with the same checks (only a newer one, its signature the author's). True when
 -- taken.
 function Workshop.PasteTitles(text)
@@ -2060,7 +2060,7 @@ function Workshop.AskLists()
 	return true
 end
 
--- Someone else's answer beginning (1.0.0, Konig's review): the first piece of a list of a kind our
+-- Someone else's answer beginning (1.0.0, review): the first piece of a list of a kind our
 -- waiting answer on that lane would send, at least as new as ours. Our answer waits for it (see
 -- LIST_HOLD_*). Comm hands us the pieces only while an answer of ours waits (Comm.pieceHook).
 local function Waiting()
@@ -2119,7 +2119,7 @@ function Workshop.AnswerAsk(names, titles, dist)
 		-- A census that counts nobody but us is not in yet (whoever asked is online too).
 		local users = dist == "GUILD" and GuildUsers() or (ns.King and ns.King.AddonsOnline and ns.King.AddonsOnline() or 1)
 		if users <= 1 then return false end
-		-- (The channel: our guild's addon users on our realm at least, Konig's review.)
+		-- (The channel: our guild's addon users on our realm at least, review.)
 		if dist ~= "GUILD" then users = math.max(users, GuildUsers(true)) end
 		for _, kind in ipairs(kinds) do lane.drawnAt[kind] = now end
 		local share, draw = math.min(1, Workshop.LIST_ANSWERS / users), Workshop.random()
@@ -2241,7 +2241,7 @@ function Workshop.CouncilTree()
 	return loose, depts
 end
 
--- Asking a High Councillor for help (Max's): the councillors who opted in (/syl council help on)
+-- Asking a High Councillor for help (the): the councillors who opted in (/syl council help on)
 -- say so on the channel every few minutes; a player's request goes by whisper to up to three
 -- of them online, once every five minutes at most.
 Workshop.HELP_EVERY, Workshop.HELP_FRESH, Workshop.HELP_GAP = 300, 700, 300
