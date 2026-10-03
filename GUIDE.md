@@ -12,7 +12,7 @@ Start with **Part 1** whatever your rank, then read your own part.
 
 > **Who is who in the addon:** the **Dark Lady** is the guild master. **Dreadguard** are the
 > officers (guild ranks 0 and 1). **Dark Rangers** are helpers she names in the addon. A
-> **Veteran** is the guild master of a Sylvanistas guild (with one guild, that is the Dark Lady).
+> **Dark Lord** is the guild master of a Sylvanistas guild (with one guild, that is the Dark Lady).
 > **The Forsaken** are everyone. The addon gives powers by **rank position**, not rank name.
 
 ---
@@ -67,7 +67,7 @@ All current Screams are on the **Screams** tab (`/syl screams`).
 ### When the Dark Lady asks something
 - **Voice of the Forsaken** (polls): a window pops up, so tick your answer. Prefer chat only? `/syl voice off`.
 - **Audience:** when she holds an audience, a line appears if you're in her zone. Click it to ask to speak with her.
-- **Summon the Veterans:** a roll call for Veterans and Dreadguards; answer **Present, my Lady** or **Busy**.
+- **Summon the Dark Lords:** a roll call for Dark Lords and Dreadguards; answer **Present, my Lady** or **Busy**.
 - **Edicts:** her formal letters. Click **As you command** to acknowledge.
 
 ### Groups, crafting and more
@@ -122,7 +122,7 @@ Until it's sealed, anyone who joins the hidden channel by name can read the cens
 ### Officers' chat and tools
 | Want to… | Do |
 |---|---|
-| Talk to officers and Veterans | `/syd <text>` (Dreadguard channel) |
+| Talk to officers and Dark Lords | `/syd <text>` (Dreadguard channel) |
 | See who's been away | `/syl inactive 7` (or 14, 30). Removing someone takes a confirm, one per click. |
 | Check a player's gear | target them in range, `/syl gear` |
 | Write loot notes and points | **Realm** tab, loot notes (`/syl loot`) |
@@ -136,7 +136,7 @@ The Dark Lady names you on her **Sanctum** tab. You then see the **Sanctum** tab
 
 | Tool | Where |
 |---|---|
-| **Summon Veterans** (roll call) | **The Realm** tab |
+| **Summon Dark Lords** (roll call) | **The Realm** tab |
 | **Voice of the Forsaken** (polls) | **Voice of the Forsaken** tab |
 | **Agenda** (events on the guild's week) | **Agenda** button on the **Sanctum**, e.g. `Sat 20:00 Raid night` |
 | **Banshee Inspection** (tabard check) | **Tabards** tab |
@@ -162,7 +162,7 @@ calls her **Dark Lady** and puts her **crown** on the map.
 | Tool | What it does |
 |---|---|
 | **Hold Audience** (**Sanctum**) | members in your zone queue to speak with you; you call them one by one |
-| **Edicts** | formal letters to the Veterans, the Dreadguard or everyone, signed by you |
+| **Edicts** | formal letters to the Dark Lords, the Dreadguard or everyone, signed by you |
 | **Voice of the Forsaken** | quick polls, 2 to 6 answers |
 | **Agenda / the week** | dated events with signups (raid night, etc.) |
 | **Banshee Scream** | a free-text announcement shown to every member |
@@ -202,7 +202,7 @@ together, using plain rising numbers (e.g. `1.1.3`).
 | `/syl privacy` | all | sharing switches |
 | `/syl hop` | all | ask for an invite to the Dark Lady's layer |
 | `/syl layerhelp on` | all | let others ask you for invites |
-| `/sy` / `/syd` / `/syv` | all / Dreadguard / Veterans | chats |
+| `/sy` / `/syd` / `/sydl` | all / Dreadguard / Dark Lords | chats |
 | `/syl screams` | all | the Screams tab |
 | `/syl voice on/off` | all | polls in a window, or in chat only |
 | `/syl lfg …` | all | the Board |

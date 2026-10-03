@@ -29,7 +29,7 @@ A `CHANGEME_` name can belong to no real character, so that role stays empty unt
 | **Ambassador** | her deputy (signed list) |
 | **Dark Rangers** | helpers she names in game |
 | **Dreadguard** | officers (rank 0-1), and the moderators (signed list) |
-| **Veterans** | guild masters of Sylvanistas guilds |
+| **Dark Lords** | guild masters of Sylvanistas guilds |
 | **the Forsaken** | everyone |
 | **Sanctum** | the Dark Lady's tab |
 | **Screams** | map calls: **Banshee Scream** (hers), **Call for the Revenant** (help needed), **Gathering** (meeting point) |
@@ -42,7 +42,7 @@ A `CHANGEME_` name can belong to no real character, so that role stays empty unt
 | `/syl status` | what the addon detects (guild, channel, layer) |
 | `/syl privacy` | sharing switches (layer, layer help, chats…) |
 | `/syl hop` | ask for an invite to another layer |
-| `/sy`, `/syd`, `/syv` | chats: everyone, Dreadguard, Veterans |
+| `/sy`, `/syd`, `/sydl` | chats: everyone, Dreadguard, Dark Lords |
 | `/syl screams`, `/syl rise`, `/syl gather` | screams; Call for the Revenant; Gathering |
 | `/syl voice` | polls |
 | `/syl key <secret>` | seal the guild channel (Dreadguard) |
