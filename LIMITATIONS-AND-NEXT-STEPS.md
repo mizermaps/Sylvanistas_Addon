@@ -138,7 +138,28 @@ Pronouns for the Dark Lady are she/her; Ambassadors, Dreadguards and guild maste
 | `/syl sound arms \| muster \| royal \| court \| throne \| vox` | `rise \| gather \| banshee \| audience \| sanctum \| voice` |
 
 **Not renamed (still open):**
-- German, French, Spanish and Portuguese: only the Dark Lady is renamed (die Dunkle Fürstin,
+**Translations** (all role names renamed; "Dreadguard", "Banshee" and "Revenant" kept as names):
+
+| English | Deutsch | Français | Español | Português |
+|---|---|---|---|---|
+| the Dark Lady | die Dunkle Fürstin | la Dame noire | la Dama Oscura | a Dama Sombria |
+| Ambassador | Botschafter | Ambassadeur | Embajador | Embaixador |
+| Dark Rangers | Dunkle Waldläufer | Forestiers noirs | Forestales Oscuros | Patrulheiros Sombrios |
+| Dreadguard | Dreadguard | Dreadguard | Dreadguard | Dreadguard |
+| Veterans | Veteranen | Vétérans | Veteranos | Veteranos |
+| the Forsaken | die Verlassenen | les Réprouvés | los Renegados | os Renegados |
+| Sanctum | Sanktum | Sanctum | Santuario | Santuário |
+| Banshee Court | Banshee-Hof | Cour Banshee | Corte Banshee | Corte Banshee |
+| Banshee decree / Edict | Banshee-Erlass / -Edikt | décret / édit Banshee | decreto / Edicto Banshee | decreto / Édito Banshee |
+| Absolution | Absolution | absolution | absolución | absolvição |
+| Audience | Audienz | audience | audiencia | audiência |
+| Portal | Portal | portail | portal | portal |
+| Call for the Revenant | Ruf nach dem Wiedergänger | Appel au Revenant | Llamada al Revenant | Chamado ao Revenant |
+| Gathering | Versammlung | Rassemblement | Reunión | Reunião |
+| Voice of the Forsaken | *(English)* | *(English)* | *(English)* | Voz dos Renegados |
+| untabarded list | Liste ohne Wappenrock | liste sans tabard | lista sin tabardo | lista sem tabardo |
+
+German, French and Spanish translate only part of the addon; the rest shows in English. Portuguese is complete.
   la Dame noire, la Dama Oscura, a Dama Sombria). Their other role names are still Olympus-style.
 - Code identifiers and comments (`ns.King`, `KING_GUILD`…) are unchanged; players never see them.
 
