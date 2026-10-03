@@ -236,7 +236,7 @@ ns.ANSWER_BANK = {
 		{ id = "feat-decrees", topic = "features",
 			q = { "What's a Call for the Revenant?", "How do I send a gathering?" },
 			text = "Dreadguards+: Call for the Revenant (/syl rise) or Gathering (/syl gather). Add test for a preview only you see.",
-			long = "Dreadguards and up send a Call for the Revenant (an alarm and map marker for every guild) or a Gathering (a rally point for 30 minutes). Banshee decrees and Tabard inspections are for the Banshee Court. Others get a local preview; /syl rise test tries it." },
+			long = "Dreadguards and up send a Call for the Revenant (an alarm and map marker for every guild) or a Gathering (a rally point for 30 minutes). Banshee Screams and Tabard inspections are for the Banshee Court. Others get a local preview; /syl rise test tries it." },
 		{ id = "feat-alert-sounds", topic = "features",
 			q = { "How do I turn off the alert sounds?", "Why didn't I get the raid warning in my dungeon?" },
 			text = "Type /syl sound off for all, or /syl sound <kind> off. In instances alerts wait; /syl alerts always shows them at once.",

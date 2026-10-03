@@ -111,7 +111,7 @@ All Olympus role and feature names in the English text and the in-game help are 
 | Lord | **Veteran** | guild master of each Sylvanistas guild |
 | army | **the Forsaken** | everyone |
 | Throne | **Sanctum** | her tab |
-| Royal / Crown | **Banshee / the Banshee Queen**, and **the Banshee Court** for her guild's leadership | decrees, inspection, absolution |
+| Royal / Crown | **Banshee / the Banshee Queen** (her announcement: **Banshee Scream**), and **the Banshee Court** for her guild's leadership | decrees, inspection, absolution |
 | Court | **Audience** | "holds an audience in …" |
 | Writs | **Edicts** | her formal letters |
 | Pardon | **Absolution** | clears a name from the untabarded list for a week |
@@ -150,7 +150,7 @@ Pronouns for the Dark Lady are she/her; Ambassadors, Dreadguards and guild maste
 | the Forsaken | die Verlassenen | les Réprouvés | los Renegados | os Renegados |
 | Sanctum | Sanktum | Sanctum | Santuario | Santuário |
 | Banshee Court | Banshee-Hof | Cour Banshee | Corte Banshee | Corte Banshee |
-| Banshee decree / Edict | Banshee-Erlass / -Edikt | décret / édit Banshee | decreto / Edicto Banshee | decreto / Édito Banshee |
+| Banshee Scream / Edict | Banshee-Schrei / -Edikt | cri / édit Banshee | grito / Edicto Banshee | grito / Édito Banshee |
 | Absolution | Absolution | absolution | absolución | absolvição |
 | Audience | Audienz | audience | audiencia | audiência |
 | Portal | Portal | portail | portal | portal |
