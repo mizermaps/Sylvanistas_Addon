@@ -57,7 +57,7 @@ This file lists what to expect from the current build, then the steps to turn it
 - The game only allows `/who` searches, whispers and guild invites from clicks, never automatically.
 
 ### 1.7 Branding and scale
-- ✅ Logos replaced with the Sylvanistas "S" emblem (`media/logo64`, `logo128`, `emblem128`; source in `art-source/emblem_v3.png`). The bronze portrait borders and star are generic and stay.
+- ✅ Logos replaced with the Sylvanistas "S" emblem (`media/logo64`, `logo128`, `emblem128`; source in `art-source/sylvanas_logo.png`). The bronze portrait borders and star are generic and stay.
 - ✅ Role names are Sylvanistas-themed in English (see Step 4). Translations only rename the Dark Lady so far.
 - Translations (de, fr, es, pt-BR) were renamed automatically, so some grammar is off, e.g. "do Sylvanistas".
 - The realm-wide census and the voting between guild reports were built for dozens of guilds. With one guild,
