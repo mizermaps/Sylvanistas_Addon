@@ -332,6 +332,46 @@ function Keys.CanRotate()
 	return (ns.King.IsKing() and ns.IsKingCharacter(ns.me)) or ns.King.IsSteward()
 end
 
+-- Sylvanistas: a Dreadguard (rank 0-1 of the Dark Lady's guild) rotates the key for that guild
+-- directly: a new key nobody sees, taken here and handed to the guild over GUILD, where every
+-- guildmate's addon already takes a key from its officers (HandleKey, K1). The Dark Lady's own
+-- rotation (above) still reaches the other Sylvanistas guilds; this one reaches her guild alone.
+function Keys.CanGuildRotate()
+	return ns.IsMember() and ns.Roster.IsOfficer() and ns.IsKingGuild(GetGuildInfo("player")) or false
+end
+
+function Keys.GuildRotatePrompt()
+	if not Keys.CanGuildRotate() then return ns.Print(L.KEY_ROTATE_ONLY_KING) end
+	ns.ShowDialog("SYLVANISTAS_KEY_GUILD_ROTATE")
+end
+
+function Keys.GuildRotate()
+	if not Keys.CanGuildRotate() then return ns.Print(L.KEY_ROTATE_ONLY_KING) end
+	local at = Clock()
+	local was = Latest()
+	if was and at <= was then at = was + 1 end
+	local held = ns.rdb.realmKey
+	local key = Keys.NewKey()
+	local list = Hashes(ns.rdb.keyEpoch and ns.rdb.keyEpoch.retires, ValidKey(held) and Hash(held) or nil, Hash(key))
+	Take(key, at, true, #list > 0 and table.concat(list, ".") or nil)
+	ToGuild(key, at)
+	stats.rotated = stats.rotated + 1
+	ns.Log("realm key: rotated for our guild by an officer (epoch %d)", at)
+	ns.Print(L.KEY_GUILD_ROTATED)
+	return true
+end
+
+StaticPopupDialogs["SYLVANISTAS_KEY_GUILD_ROTATE"] = {
+	text = L.KEY_GUILD_ROTATE_CONFIRM,
+	button1 = YES or "Yes",
+	button2 = NO or "No",
+	OnAccept = function() ns.SafeCall("key guild rotate", Keys.GuildRotate) end,
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+	preferredIndex = 3,
+}
+
 -- The King's own /who saw someone of this guild (Data.Seen, within Data.KEEP): the server's word
 -- that a guild of that name exists. A census row alone is anyone's report.
 local function Seen(guild)

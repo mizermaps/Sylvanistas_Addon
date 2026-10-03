@@ -1801,7 +1801,7 @@ local function Help()
 	print(L.HELP_CMD_BUG)
 	print(L.HELP_CMD_STATUS)
 	print(L.HELP_CMD_KEY)
-	if ns.Keys.CanRotate and ns.Keys.CanRotate() then print(L.HELP_KEY_ROTATE) end -- (1.1: the King's alone)
+	if ns.Keys.CanRotate and ns.Keys.CanRotate() then print(L.HELP_KEY_ROTATE) elseif ns.Keys.CanGuildRotate and ns.Keys.CanGuildRotate() then print(L.HELP_KEY_GUILD_ROTATE) end -- (1.1: the King's alone)
 	print(L.HELP_CMD_BLOCK)
 	print(L.HELP_NETOFF)
 	print(L.HELP_ALT)
@@ -2016,6 +2016,8 @@ SlashCmdList.SYLVANISTAS = function(input)
 					ns.Print(L.RESTART_NEEDED)
 				elseif ns.Keys.CanRotate() then
 					ns.Keys.RotatePrompt()
+				elseif ns.Keys.CanGuildRotate and ns.Keys.CanGuildRotate() then
+					ns.Keys.GuildRotatePrompt() -- (Sylvanistas: any Dreadguard, for the Dark Lady's guild)
 				else
 					ns.Print(L.KEY_ROTATE_ONLY_KING)
 				end

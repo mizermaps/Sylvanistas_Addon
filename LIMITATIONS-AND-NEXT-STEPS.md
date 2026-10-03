@@ -163,16 +163,17 @@ German, French and Spanish translate only part of the addon; the rest shows in E
   la Dame noire, la Dama Oscura, a Dama Sombria). Their other role names are still Olympus-style.
 - Code identifiers and comments (`ns.King`, `KING_GUILD`…) are unchanged; players never see them.
 
-### Step 5: Remove what you won't use (optional)
-Smaller means faster loading and fewer places for bugs. Candidates:
-- **Alliance leftovers**: `ns.CHANNEL` (Alliance channel), Alliance branches in `Comm.ChannelSpec`,
-  and the `ns.Stores` split. They're harmless since the addon stays idle on Alliance.
-- **Discord Link** (`Link.lua`, `Ed25519.lua`, `libs/QREncode`), if you won't run a bot.
-- **Treasury / Dues / Bank**, if the guild doesn't run a shared bank.
-- **Tabard inspection** (`Inspect.lua`, King's Royal Inspection), if tabards don't matter to you.
+### Step 5: Remove what you won't use ✅ decided: keep everything
 
-Removing a module means deleting its line in `Sylvanistas.toc` **and** checking for code that calls
-it (`ns.<Module>`). Ask me to do this safely.
+All modules stay. Unused features are switched off by settings rather than deleted (a deleted
+module's buttons and help would still show, and some callers expect lists back):
+`ns.TREASURY_OFF = true` (Treasury, Dues, Bank), `ns.WALL_OF_SHAME = false`; guildmate map dots
+are off by default; Discord Link stays inert without a bot.
+
+**Key rotation:** the Dark Lady (full rotation on the Sanctum tab, reaching every Sylvanistas
+guild) **or any Dreadguard** (rank 0-1 of her guild): `/syl key rotate` asks to confirm, makes a
+new key nobody sees, moves them to it and hands it to the guild over guild chat. Guildmates online
+follow at once; the rest when a Dreadguard is online at their login.
 
 ### Step 6: Set up signing (optional, for High Council, Stewards, approved guilds)
 1. Make your own RSA-2048 (e = 3) key pair on your computer and keep the private half private.
