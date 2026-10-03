@@ -416,7 +416,7 @@ ns.ANSWER_BANK = {
 		{ id = "help-report-bug", topic = "install-update-bugs",
 			q = { "Where do I report a bug?", "How do I send the author an error?" },
 			text = "Sylvanistas window, help button (left of the X), Report a bug. If the author's online there's a button to send it to him.",
-			long = "Open the Sylvanistas window, click the help button left of the X, then Report a bug. Copy the text to GitHub or a CurseForge comment. If the author is online, that window also has a button that sends it straight to him in game." },
+			long = "Open the Sylvanistas window, click the help button left of the X, then Report a bug. Paste the text in a comment on the CurseForge page. If the author is online, that window also has a button that sends it straight to him in game." },
 		{ id = "help-blocked", topic = "install-update-bugs",
 			q = { "The game says it blocked Sylvanistas", "I got an 'action blocked' error" },
 			text = "A /reload clears it. Then report it: Sylvanistas window, help button, Report a bug (not /syl bug with the gamepad).",

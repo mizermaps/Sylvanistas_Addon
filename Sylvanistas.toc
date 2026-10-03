@@ -6,7 +6,6 @@
 ## SavedVariables: SylvanistasDB
 ## IconTexture: Interface\AddOns\Sylvanistas\media\logo64
 ## X-License: MIT
-## X-Website: https://github.com/CHANGEME/sylvanistas-addon
 
 Bootstrap.lua
 libs\LibStub\LibStub.lua

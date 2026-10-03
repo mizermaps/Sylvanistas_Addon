@@ -2093,10 +2093,9 @@ function UI.ShowBugReport()
 	UI.ShowCopy(L.REPORT_BUG, text, ns.Workshop and ns.Workshop.BugAction and ns.Workshop.BugAction(text) or nil)
 end
 
--- Where the addon lives: its code and issues (the toc's X-Website), its CurseForge page.
+-- Where the addon lives: its CurseForge page (bugs and questions as comments there).
+-- (Sylvanistas: no public code repository; bugs and questions go to the CurseForge page.)
 UI.LINKS = {
-	github = "https://github.com/CHANGEME/sylvanistas-addon",
-	issues = "https://github.com/CHANGEME/sylvanistas-addon/issues",
 	curseforge = "https://www.curseforge.com/wow/addons/CHANGEME-sylvanistas",
 }
 
@@ -2134,8 +2133,6 @@ function UI.ShowHelp()
 		L.HELP_CHATWIN,
 		"",
 		L.HELP_LINKS,
-		"  GitHub: " .. UI.LINKS.github,
-		"  " .. L.HELP_ISSUES .. ": " .. UI.LINKS.issues,
 		"  CurseForge: " .. UI.LINKS.curseforge,
 	}
 	UI.ShowCopy(L.HELP_TITLE, table.concat(lines, "\n"), { label = L.REPORT_BUG, fn = function() UI.ShowBugReport() end })
