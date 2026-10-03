@@ -616,13 +616,16 @@ end
 -- Shared tooltips
 ---------------------------------------------------------------------------
 
+-- What a guild's guild master is called: the Dark Lady in her own guild, a Dark Lord elsewhere.
+local function LeaderTitle(guild) return ns.IsKingGuild(guild) and L.KING or L.LORD end
+
 local function GuildTooltip(e)
 	return function(tt)
 		local g = e.g
 		tt:AddLine("<" .. Plain(e.name) .. ">", 0.25, 1, 0.25)
 		tt:AddDoubleLine(L.COL_MEMBERS, ns.FormatNumber(g.total), 1, 0.82, 0, 1, 1, 1)
 		tt:AddDoubleLine(L.COL_ONLINE, ns.FormatNumber(g.online), 1, 0.82, 0, 1, 1, 1)
-		tt:AddDoubleLine(L.LORD, Plain(g.leader or "?"), 1, 0.82, 0, 1, 1, 1)
+		tt:AddDoubleLine(LeaderTitle(e.name), Plain(g.leader or "?"), 1, 0.82, 0, 1, 1, 1)
 		tt:AddDoubleLine(L.VACANCIES, ns.FormatNumber(math.max(0, 1000 - (g.total or 0))), 1, 0.82, 0, 1, 1, 1)
 		if g.avgLevel and g.avgLevel > 0 then tt:AddDoubleLine(L.AVG_LEVEL, ("%.1f"):format(g.avgLevel), 1, 0.82, 0, 1, 1, 1) end
 		tt:AddDoubleLine(L.INACTIVE_30, ns.FormatNumber(g.inactive30 or 0), 1, 0.82, 0, 1, 1, 1)
@@ -1223,7 +1226,7 @@ local function Known(s, wanted)
 			if e.fresh == fresh then
 				if g.leader then
 					Add(e.name, { name = g.leader, realm = g.realm, class = g.leaderClass, level = g.leaderLevel, zone = g.leaderZone,
-						rank = L.LORD, online = g.leaderOnline, days = g.leaderDays }, not fresh)
+						rank = LeaderTitle(e.name), online = g.leaderOnline, days = g.leaderDays }, not fresh)
 				end
 				for _, o in ipairs(g.officers or {}) do
 					Add(e.name, { name = o.name, realm = g.realm, class = o.class, level = o.level, zone = o.zone, rank = L.CAPTAIN,
@@ -1558,10 +1561,10 @@ local function RealmLines(s, q)
 		if not open then return end
 		if g.leader and (not only or only.lord) then
 			local lord = { name = g.leader, realm = g.realm, class = g.leaderClass, level = g.leaderLevel, zone = g.leaderZone,
-				guild = e.name, rank = L.LORD, online = g.leaderOnline, days = g.leaderDays }
+				guild = e.name, rank = LeaderTitle(e.name), online = g.leaderOnline, days = g.leaderDays }
 			lines[#lines + 1] = {
 				key = g.leader,
-				indent = 1, text = Mark(g.leader, g.realm, g.leaderOnline) .. CROWN .. Gold(L.LORD) .. "  " .. ClassColored(g.leader, lord.class and ns.CLASS_FILES[lord.class])
+				indent = 1, text = Mark(g.leader, g.realm, g.leaderOnline) .. CROWN .. Gold(lord.rank) .. "  " .. ClassColored(g.leader, lord.class and ns.CLASS_FILES[lord.class])
 					.. Tag(g.leader, g.realm),
 				right = Presence(g.leaderOnline, g.leaderDays),
 				onClick = function() ns.UI.ShowPerson(lord) end,
